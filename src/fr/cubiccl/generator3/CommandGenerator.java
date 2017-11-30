@@ -1,4 +1,6 @@
-package application;
+package fr.cubiccl.generator3;
+
+import fr.cubiccl.generator3.application.MainWindow;
 
 
 public class CommandGenerator

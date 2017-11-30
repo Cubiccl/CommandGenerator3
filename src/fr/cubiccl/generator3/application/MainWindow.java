@@ -1,5 +1,6 @@
-package application;
+package fr.cubiccl.generator3.application;
 
+import fr.cubiccl.generator3.CommandGenerator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
