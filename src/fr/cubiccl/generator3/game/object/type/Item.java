@@ -54,6 +54,12 @@ public abstract class Item extends GameObjectType
 		return this.hasDurability || this.maxDamage == 0;
 	}
 
+	@Override
+	public Text name()
+	{
+		return this.nameMain();
+	}
+
 	/** @param damage - A damage value.
 	 * @return The name of this Item for the input damage value. */
 	public Text name(int damage)
