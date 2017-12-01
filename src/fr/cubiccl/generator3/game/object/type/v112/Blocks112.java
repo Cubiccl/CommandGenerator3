@@ -157,7 +157,7 @@ public final class Blocks112
 	public static final Block Anvil = new Block(145, "anvil").setTextureType(-4);
 	public static final Block ChestTrapped = new BlockFurniture(146, "trapped_chest");
 	public static final Block PressurePlateGold = new BlockNumbered(147, "light_weighted_pressure_plate");
-	public static final Block PressurePlateIron = new BlockNumbered(148, "heavy_weighter_pressure_plate");
+	public static final Block PressurePlateIron = new BlockNumbered(148, "heavy_weighted_pressure_plate");
 	public static final Block ComparatorOff = new Block(149, "unpowered_comparator");
 	public static final Block ComparatorOn = new Block(150, "powered_comparator");
 	public static final Block DaylightDetector = new Block(151, "daylight_detector").setTextureType(-1);
