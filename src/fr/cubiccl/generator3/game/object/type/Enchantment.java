@@ -2,7 +2,7 @@ package fr.cubiccl.generator3.game.object.type;
 
 import fr.cubiccl.generator3.util.Text;
 
-public class EnchantmentType extends GameObjectType
+public class Enchantment extends GameObjectType
 {
 
 	/** This Enchantment's numerical ID. */
@@ -12,7 +12,7 @@ public class EnchantmentType extends GameObjectType
 	/** This Enchantment's maximum Level in survival. */
 	public final int maxLevel;
 
-	public EnchantmentType(int idNum, String idStr, int maxLevel)
+	public Enchantment(int idNum, String idStr, int maxLevel)
 	{
 		this.idInt = idNum;
 		this.idString = "minecraft:" + idStr;

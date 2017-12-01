@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Textures;
 
-public class EffectType extends GameObjectType
+public class Effect extends GameObjectType
 {
 
 	/** This Effect's numerical ID. */
@@ -13,7 +13,7 @@ public class EffectType extends GameObjectType
 	/** This Effect's string ID. */
 	public final String idString;
 
-	public EffectType(int idNum, String idString)
+	public Effect(int idNum, String idString)
 	{
 		this.idString = "minecraft:" + idString;
 		this.idInt = idNum;
