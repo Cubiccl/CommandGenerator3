@@ -1,5 +1,7 @@
 package fr.cubiccl.generator3.game.object.type;
 
+import fr.cubiccl.generator3.util.Text;
+
 public class Particle extends GameObjectType
 {
 
@@ -15,6 +17,12 @@ public class Particle extends GameObjectType
 	public String id()
 	{
 		return this.id;
+	}
+
+	@Override
+	public Text name()
+	{
+		return new Text(this.id, false);
 	}
 
 }

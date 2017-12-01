@@ -130,6 +130,12 @@ public class Block extends GameObjectType
 		return false;
 	}
 
+	@Override
+	public Text name()
+	{
+		return this.nameMain();
+	}
+
 	/** @param damage - A damage value.
 	 * @return The name of this Block for the input damage value. */
 	public Text name(int damage)
