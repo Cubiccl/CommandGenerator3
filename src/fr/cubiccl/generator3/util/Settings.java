@@ -53,8 +53,27 @@ public class Settings
 	/** The available Minecraft Versions. */
 	public static enum Version
 	{
+
 		v111("1.11.2", "1.11", 0),
 		v112("1.12", "1.12", 1);
+
+		private static final Comparator<Version> versionComparator = new Comparator<Version>()
+		{
+			@Override
+			public int compare(Version o1, Version o2)
+			{
+				return o1.compare(o2);
+			}
+		};
+
+		public static Version earliest()
+		{
+			ArrayList<Version> vs = new ArrayList<Version>();
+			for (Version version : values())
+				vs.add(version);
+			vs.sort(versionComparator);
+			return vs.get(0);
+		}
 
 		public static Version get(String id)
 		{
@@ -69,21 +88,24 @@ public class Settings
 			ArrayList<Version> vs = new ArrayList<Version>();
 			for (Version version : values())
 				vs.add(version);
-			vs.sort(new Comparator<Version>()
-			{
-				@Override
-				public int compare(Version o1, Version o2)
-				{
-					return o1.compare(o2);
-				}
-			});
+			vs.sort(versionComparator);
 			return vs.toArray(new Version[vs.size()]);
+		}
+
+		public static Version latest()
+		{
+			ArrayList<Version> vs = new ArrayList<Version>();
+			for (Version version : values())
+				vs.add(version);
+			vs.sort(versionComparator);
+			return vs.get(vs.size() - 1);
 		}
 
 		/** This Version's ID. */
 		public final String id;
 		/** This Version's name. */
 		public final String name;
+
 		/** The position of the Version. */
 		public final int order;
 

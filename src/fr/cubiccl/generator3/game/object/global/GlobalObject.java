@@ -38,6 +38,12 @@ public class GlobalObject<O extends GameObjectType, I extends GameObjectInstance
 		this.typeTable = new HashMap<Version, O>();
 	}
 
+	/** @return True if this Object exists in the input Version. */
+	public boolean exists(Version version)
+	{
+		return this.introduced.isBefore(version) && this.removed.isAfter(version);
+	}
+
 	@SuppressWarnings("unchecked")
 	public I instance(Version version)
 	{
