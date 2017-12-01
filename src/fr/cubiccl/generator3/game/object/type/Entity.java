@@ -2,6 +2,7 @@ package fr.cubiccl.generator3.game.object.type;
 
 import java.awt.image.BufferedImage;
 
+import fr.cubiccl.generator3.game.object.type.GameObjectType;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Textures;
 

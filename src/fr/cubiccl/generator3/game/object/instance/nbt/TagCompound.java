@@ -17,6 +17,15 @@ public class TagCompound extends Tag
 	}
 
 	@Override
+	public TagCompound duplicate()
+	{
+		TagCompound t = new TagCompound(this.tagType);
+		for (Tag tag : this.value)
+			t.value.add((Tag) tag.duplicate());
+		return t;
+	}
+
+	@Override
 	protected String value()
 	{
 		StringBuilder value = new StringBuilder("{");

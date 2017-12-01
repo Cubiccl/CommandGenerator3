@@ -2,9 +2,10 @@ package fr.cubiccl.generator3.game.object.type;
 
 import java.awt.image.BufferedImage;
 
+import fr.cubiccl.generator3.game.object.instance.GameObjectInstance;
 import fr.cubiccl.generator3.util.Text;
 
-public class Achievement extends GameObjectType
+public class Achievement extends GameObjectType implements GameObjectInstance
 {
 
 	/** This Achievement's ID. */
@@ -16,6 +17,12 @@ public class Achievement extends GameObjectType
 	{
 		this.id = "minecraft:" + id;
 		this.textureItem = item;
+	}
+
+	@Override
+	public Achievement duplicate()
+	{
+		return this;
 	}
 
 	@Override

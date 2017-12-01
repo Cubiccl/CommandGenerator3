@@ -14,6 +14,12 @@ public class TagByte extends Tag
 	}
 
 	@Override
+	public TagByte duplicate()
+	{
+		return new TagByte(this.tagType, this.value);
+	}
+
+	@Override
 	protected String value()
 	{
 		return String.valueOf(this.value + "b");

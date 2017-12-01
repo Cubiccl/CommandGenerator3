@@ -3,7 +3,7 @@ package fr.cubiccl.generator3.game.object.instance.nbt;
 import fr.cubiccl.generator3.game.object.instance.GameObjectInstance;
 import fr.cubiccl.generator3.game.object.type.NBTTag;
 
-public abstract class Tag extends GameObjectInstance
+public abstract class Tag implements GameObjectInstance
 {
 
 	/** The NBT Tag type. */

@@ -14,6 +14,12 @@ public class TagBoolean extends Tag
 	}
 
 	@Override
+	public TagBoolean duplicate()
+	{
+		return new TagBoolean(this.tagType, this.value);
+	}
+
+	@Override
 	protected String value()
 	{
 		return String.valueOf(this.value);

@@ -14,6 +14,12 @@ public class TagLong extends Tag
 	}
 
 	@Override
+	public TagLong duplicate()
+	{
+		return new TagLong(this.tagType, this.value);
+	}
+
+	@Override
 	protected String value()
 	{
 		return String.valueOf(this.value + "l");

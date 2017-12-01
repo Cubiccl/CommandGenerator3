@@ -1,8 +1,9 @@
 package fr.cubiccl.generator3.game.object.type;
 
+import fr.cubiccl.generator3.game.object.instance.GameObjectInstance;
 import fr.cubiccl.generator3.util.Text;
 
-public class Particle extends GameObjectType
+public class Particle extends GameObjectType implements GameObjectInstance
 {
 
 	/** This Particle's ID. */
@@ -11,6 +12,12 @@ public class Particle extends GameObjectType
 	public Particle(String id)
 	{
 		this.id = "minecraft:" + id;
+	}
+
+	@Override
+	public Particle duplicate()
+	{
+		return this;
 	}
 
 	@Override

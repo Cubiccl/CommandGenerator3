@@ -14,6 +14,12 @@ public class TagString extends Tag
 	}
 
 	@Override
+	public TagString duplicate()
+	{
+		return new TagString(this.tagType, this.value);
+	}
+
+	@Override
 	protected String value()
 	{
 		return "\"" + this.value + "\"";
