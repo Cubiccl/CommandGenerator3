@@ -25,6 +25,7 @@ public class Effect extends GameObjectType
 		return this.idString;
 	}
 
+	@Override
 	public Text name()
 	{
 		return new Text("effect." + this.idString);

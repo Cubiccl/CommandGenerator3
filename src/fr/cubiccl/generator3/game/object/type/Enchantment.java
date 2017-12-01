@@ -25,6 +25,7 @@ public class Enchantment extends GameObjectType
 		return this.idString;
 	}
 
+	@Override
 	public Text name()
 	{
 		return new Text("enchantment." + this.idString);

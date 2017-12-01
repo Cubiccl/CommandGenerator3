@@ -31,6 +31,7 @@ public class Achievement extends GameObjectType implements GameObjectInstance
 		return this.id;
 	}
 
+	@Override
 	public Text name()
 	{
 		return new Text("achievement." + this.id);

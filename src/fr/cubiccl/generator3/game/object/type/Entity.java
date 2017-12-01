@@ -23,6 +23,7 @@ public class Entity extends GameObjectType
 		return this.id;
 	}
 
+	@Override
 	public Text name()
 	{
 		return new Text("entity." + this.id);

@@ -3,19 +3,19 @@ package fr.cubiccl.generator3.game.object.type;
 import fr.cubiccl.generator3.game.object.instance.GameObjectInstance;
 import fr.cubiccl.generator3.util.Text;
 
-public class Sound extends GameObjectType implements GameObjectInstance
+public class Attribute extends GameObjectType implements GameObjectInstance
 {
 
-	/** This Entity's ID. */
+	/** This Achievement's ID. */
 	public final String id;
 
-	public Sound(String id)
+	public Attribute(String id)
 	{
 		this.id = id;
 	}
 
 	@Override
-	public Sound duplicate()
+	public Attribute duplicate()
 	{
 		return this;
 	}
@@ -29,7 +29,7 @@ public class Sound extends GameObjectType implements GameObjectInstance
 	@Override
 	public Text name()
 	{
-		return new Text(this.id, false);
+		return new Text("attribute." + this.id);
 	}
 
 }
