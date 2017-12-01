@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import fr.cubiccl.generator3.util.*;
 
-public abstract class Item extends GameObjectType
+public class Item extends GameObjectType
 {
 
 	/** <code>true</code> if this Item has durability. */
@@ -15,6 +15,11 @@ public abstract class Item extends GameObjectType
 	public final String idString;
 	/** The maximum damage value this Item may have. */
 	public int maxDamage;
+
+	public Item(int idInt, String idString)
+	{
+		this(idInt, idString, 0);
+	}
 
 	public Item(int idInt, String idString, int maxDamage)
 	{

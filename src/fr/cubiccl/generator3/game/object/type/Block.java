@@ -154,6 +154,12 @@ public class Block extends GameObjectType
 		return new Text("block." + nameID);
 	}
 
+	public Block setTextureType(int textureType)
+	{
+		this.textureType = textureType;
+		return this;
+	}
+
 	/** @param damage - A damage value.
 	 * @return The name of this Block for the input damage value. */
 	public BufferedImage texture(int damage)
