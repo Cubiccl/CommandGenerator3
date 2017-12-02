@@ -15,6 +15,11 @@ public class PlacedBlock implements GameObjectInstance
 	/** The Damage value. */
 	public int damageValue;
 
+	public PlacedBlock(Block block, int damageValue)
+	{
+		this(block, damageValue, null);
+	}
+
 	public PlacedBlock(Block block, int damageValue, TagCompound blockEntity)
 	{
 		this.block = block;
@@ -24,7 +29,7 @@ public class PlacedBlock implements GameObjectInstance
 
 	public GlobalBlock globalValue()
 	{
-		return VersionTranslator.translator(this.block.version).blocks.inverse().get(new PlacedBlock(this.block, this.damageValue, null));
+		return VersionTranslator.translator(this.block.version).blocks.inverse().get(new PlacedBlock(this.block, this.damageValue));
 	}
 
 }

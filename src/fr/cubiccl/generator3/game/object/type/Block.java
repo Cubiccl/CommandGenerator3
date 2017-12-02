@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
-import fr.cubiccl.generator3.game.object.global.GlobalBlock;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.*;
 
 public class Block extends GameObjectType
@@ -100,11 +98,6 @@ public class Block extends GameObjectType
 		}
 
 		return states;
-	}
-
-	public GlobalBlock globalValue()
-	{
-		return VersionTranslator.translator(this.version).blockGroups.inverse().get(this);
 	}
 
 	@Override

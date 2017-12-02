@@ -19,6 +19,11 @@ public class ItemStack implements GameObjectInstance
 	/** The slot containing these items. -1 if no slot. */
 	public int slot;
 
+	public ItemStack(Item item, int damageValue)
+	{
+		this(item, damageValue, -1, -1, null);
+	}
+
 	public ItemStack(Item item, int damageValue, int quantity, int slot, TagCompound nbtTags)
 	{
 		this.item = item;
@@ -30,7 +35,7 @@ public class ItemStack implements GameObjectInstance
 
 	public GlobalItem globalValue()
 	{
-		return VersionTranslator.translator(this.item.version).items.inverse().get(new ItemStack(this.item, this.damageValue, 0, 0, null));
+		return VersionTranslator.translator(this.item.version).items.inverse().get(new ItemStack(this.item, this.damageValue));
 	}
 
 }

@@ -21,13 +21,10 @@ public class VersionTranslator
 
 	public final HashBiMap<GlobalAchievement, Achievement> achievements = HashBiMap.create();
 	public final HashBiMap<GlobalAttribute, Attribute> attributes = HashBiMap.create();
-	public final HashBiMap<GlobalBlock, Block> blockGroups = HashBiMap.create();
 	public final HashBiMap<GlobalBlock, PlacedBlock> blocks = HashBiMap.create();
 	public final HashBiMap<GlobalEffect, Effect> effects = HashBiMap.create();
 	public final HashBiMap<GlobalEnchantment, Enchantment> enchantments = HashBiMap.create();
 	public final HashBiMap<GlobalEntity, LivingEntity> entities = HashBiMap.create();
-	public final HashBiMap<GlobalEntity, Entity> entityGroups = HashBiMap.create();
-	public final HashBiMap<GlobalItem, Item> itemGroups = HashBiMap.create();
 	public final HashBiMap<GlobalItem, ItemStack> items = HashBiMap.create();
 	public final HashBiMap<GlobalNBTTag, NBTTag> nbtTags = HashBiMap.create();
 	public final HashBiMap<GlobalParticle, Particle> particles = HashBiMap.create();
