@@ -9,7 +9,6 @@ import fr.cubiccl.generator3.game.object.global.*;
 import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Settings.Version;
 
-@SuppressWarnings("rawtypes")
 public class Registry<T extends GlobalObject>
 {
 	public static final Comparator<GlobalObject> _idComparator = new Comparator<GlobalObject>()

@@ -1,9 +1,11 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.instance.GameObjectInstance;
+import fr.cubiccl.generator3.game.object.global.GlobalParticle;
+import fr.cubiccl.generator3.game.object.global.VersionTranslator;
+import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 
-public class Particle extends GameObjectType implements GameObjectInstance
+public class Particle extends GameObjectType
 {
 
 	/** This Particle's ID. */
@@ -11,13 +13,13 @@ public class Particle extends GameObjectType implements GameObjectInstance
 
 	public Particle(String id)
 	{
+		super(Persistance.selectedVersion);
 		this.id = "minecraft:" + id;
 	}
 
-	@Override
-	public Particle duplicate()
+	public GlobalParticle globalValue()
 	{
-		return this;
+		return VersionTranslator.translator(this.version).particles.inverse().get(this);
 	}
 
 	@Override

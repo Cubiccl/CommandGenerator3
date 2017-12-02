@@ -1,10 +1,9 @@
 package fr.cubiccl.generator3.game.object.global;
 
-import fr.cubiccl.generator3.game.object.instance.AppliedEffect;
 import fr.cubiccl.generator3.game.object.type.Effect;
 import fr.cubiccl.generator3.util.Settings.Version;
 
-public class GlobalEffect extends GlobalObject<Effect, AppliedEffect>
+public class GlobalEffect extends GlobalObject
 {
 	public GlobalEffect(String id)
 	{
@@ -15,4 +14,10 @@ public class GlobalEffect extends GlobalObject<Effect, AppliedEffect>
 	{
 		super("effect." + id, introduced, removed);
 	}
+
+	public Effect value(Version version)
+	{
+		return VersionTranslator.translator(version).effects.get(this);
+	}
+
 }

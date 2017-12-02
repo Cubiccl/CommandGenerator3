@@ -8,7 +8,12 @@ import javafx.stage.Stage;
 
 public class MainWindow extends Application
 {
-	
+
+	public static void initialize(String[] args)
+	{
+		launch(args);
+	}
+
 	public MainWindow()
 	{
 		CommandGenerator.window = this;

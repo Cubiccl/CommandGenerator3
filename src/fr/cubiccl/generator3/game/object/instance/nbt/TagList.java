@@ -17,15 +17,6 @@ public class TagList extends Tag
 	}
 
 	@Override
-	public TagList duplicate()
-	{
-		TagList t = new TagList(this.tagType);
-		for (Tag tag : this.value)
-			t.value.add((Tag) tag.duplicate());
-		return t;
-	}
-
-	@Override
 	protected String value()
 	{
 		StringBuilder value = new StringBuilder("[");

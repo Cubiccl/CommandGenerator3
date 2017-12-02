@@ -14,12 +14,6 @@ public class TagInt extends Tag
 	}
 
 	@Override
-	public TagInt duplicate()
-	{
-		return new TagInt(this.tagType, this.value);
-	}
-
-	@Override
 	protected String value()
 	{
 		return String.valueOf(this.value);

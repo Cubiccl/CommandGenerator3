@@ -3,7 +3,7 @@ package fr.cubiccl.generator3.game.object.global;
 import fr.cubiccl.generator3.game.object.type.Achievement;
 import fr.cubiccl.generator3.util.Settings.Version;
 
-public class GlobalAchievement extends GlobalObject<Achievement, Achievement>
+public class GlobalAchievement extends GlobalObject
 {
 	public GlobalAchievement(String id)
 	{
@@ -14,4 +14,10 @@ public class GlobalAchievement extends GlobalObject<Achievement, Achievement>
 	{
 		super("achievement." + id, introduced, removed);
 	}
+
+	public Achievement value(Version version)
+	{
+		return VersionTranslator.translator(version).achievements.get(this);
+	}
+
 }

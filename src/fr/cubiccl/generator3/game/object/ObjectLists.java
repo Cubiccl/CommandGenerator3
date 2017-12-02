@@ -5,7 +5,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import fr.cubiccl.generator3.game.object.global.GlobalObject;
 
-@SuppressWarnings("rawtypes")
 public final class ObjectLists implements ListChangeListener<GlobalObject>
 {
 	private static final ObjectLists _instance = new ObjectLists();

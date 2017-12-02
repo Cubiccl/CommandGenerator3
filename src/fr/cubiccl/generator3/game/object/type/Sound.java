@@ -1,9 +1,11 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.instance.GameObjectInstance;
+import fr.cubiccl.generator3.game.object.global.GlobalSound;
+import fr.cubiccl.generator3.game.object.global.VersionTranslator;
+import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 
-public class Sound extends GameObjectType implements GameObjectInstance
+public class Sound extends GameObjectType
 {
 
 	/** This Entity's ID. */
@@ -11,13 +13,13 @@ public class Sound extends GameObjectType implements GameObjectInstance
 
 	public Sound(String id)
 	{
+		super(Persistance.selectedVersion);
 		this.id = id;
 	}
 
-	@Override
-	public Sound duplicate()
+	public GlobalSound globalValue()
 	{
-		return this;
+		return VersionTranslator.translator(this.version).sounds.inverse().get(this);
 	}
 
 	@Override

@@ -10,6 +10,6 @@ public class CommandGenerator
 	
 	public static void main(String[] args)
 	{
-		MainWindow.launch(args);
+		MainWindow.initialize(args);
 	}
 }

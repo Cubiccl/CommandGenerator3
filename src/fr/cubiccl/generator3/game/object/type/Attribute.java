@@ -1,9 +1,11 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.instance.GameObjectInstance;
+import fr.cubiccl.generator3.game.object.global.GlobalAttribute;
+import fr.cubiccl.generator3.game.object.global.VersionTranslator;
+import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 
-public class Attribute extends GameObjectType implements GameObjectInstance
+public class Attribute extends GameObjectType
 {
 
 	/** This Achievement's ID. */
@@ -11,13 +13,13 @@ public class Attribute extends GameObjectType implements GameObjectInstance
 
 	public Attribute(String id)
 	{
+		super(Persistance.selectedVersion);
 		this.id = id;
 	}
 
-	@Override
-	public Attribute duplicate()
+	public GlobalAttribute globalValue()
 	{
-		return this;
+		return VersionTranslator.translator(this.version).attributes.inverse().get(this);
 	}
 
 	@Override

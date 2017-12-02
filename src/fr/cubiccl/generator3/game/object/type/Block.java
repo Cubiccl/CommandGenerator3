@@ -7,10 +7,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
-import fr.cubiccl.generator3.util.Lang;
-import fr.cubiccl.generator3.util.Logger;
-import fr.cubiccl.generator3.util.Text;
-import fr.cubiccl.generator3.util.Textures;
+import fr.cubiccl.generator3.game.object.global.GlobalBlock;
+import fr.cubiccl.generator3.game.object.global.VersionTranslator;
+import fr.cubiccl.generator3.util.*;
 
 public class Block extends GameObjectType
 {
@@ -34,6 +33,7 @@ public class Block extends GameObjectType
 
 	public Block(int idInt, String idString)
 	{
+		super(Persistance.selectedVersion);
 		this.idString = idString == null ? null : "minecraft:" + idString;
 		this.idInt = idInt;
 		this.textureType = 0;
@@ -100,6 +100,11 @@ public class Block extends GameObjectType
 		}
 
 		return states;
+	}
+
+	public GlobalBlock globalValue()
+	{
+		return VersionTranslator.translator(this.version).blockGroups.inverse().get(this);
 	}
 
 	@Override

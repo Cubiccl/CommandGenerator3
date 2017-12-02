@@ -2,10 +2,12 @@ package fr.cubiccl.generator3.game.object.type;
 
 import java.awt.image.BufferedImage;
 
-import fr.cubiccl.generator3.game.object.instance.GameObjectInstance;
+import fr.cubiccl.generator3.game.object.global.GlobalAchievement;
+import fr.cubiccl.generator3.game.object.global.VersionTranslator;
+import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 
-public class Achievement extends GameObjectType implements GameObjectInstance
+public class Achievement extends GameObjectType
 {
 
 	/** This Achievement's ID. */
@@ -15,14 +17,14 @@ public class Achievement extends GameObjectType implements GameObjectInstance
 
 	public Achievement(String id, Item item)
 	{
+		super(Persistance.selectedVersion);
 		this.id = "minecraft:" + id;
 		this.textureItem = item;
 	}
 
-	@Override
-	public Achievement duplicate()
+	public GlobalAchievement globalValue()
 	{
-		return this;
+		return VersionTranslator.translator(this.version).achievements.inverse().get(this);
 	}
 
 	@Override

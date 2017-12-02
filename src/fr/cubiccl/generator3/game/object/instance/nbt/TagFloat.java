@@ -14,12 +14,6 @@ public class TagFloat extends Tag
 	}
 
 	@Override
-	public TagFloat duplicate()
-	{
-		return new TagFloat(this.tagType, this.value);
-	}
-
-	@Override
 	protected String value()
 	{
 		return String.valueOf(this.value + "f");

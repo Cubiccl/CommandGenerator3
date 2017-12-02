@@ -14,12 +14,6 @@ public class TagShort extends Tag
 	}
 
 	@Override
-	public TagShort duplicate()
-	{
-		return new TagShort(this.tagType, this.value);
-	}
-
-	@Override
 	protected String value()
 	{
 		return String.valueOf(this.value + "s");

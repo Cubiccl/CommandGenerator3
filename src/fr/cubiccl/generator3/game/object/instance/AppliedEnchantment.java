@@ -16,10 +16,4 @@ public class AppliedEnchantment implements GameObjectInstance
 		this.level = level;
 	}
 
-	@Override
-	public AppliedEnchantment duplicate()
-	{
-		return new AppliedEnchantment(this.enchantment, this.level);
-	}
-
 }

@@ -17,10 +17,4 @@ public class LivingEntity implements GameObjectInstance
 		this.nbtTags = nbtTags;
 	}
 
-	@Override
-	public LivingEntity duplicate()
-	{
-		return new LivingEntity(this.entity, this.nbtTags.duplicate());
-	}
-
 }

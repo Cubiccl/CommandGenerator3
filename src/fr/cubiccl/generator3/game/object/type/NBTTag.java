@@ -3,7 +3,10 @@ package fr.cubiccl.generator3.game.object.type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import fr.cubiccl.generator3.game.object.global.GlobalNBTTag;
+import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Lang;
+import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Text.Replacement;
 
@@ -102,6 +105,7 @@ public abstract class NBTTag extends GameObjectType
 
 	public NBTTag(String id, byte type, GameObjectType... applicable)
 	{
+		super(Persistance.selectedVersion);
 		this.id = id;
 		this.type = type;
 		this.applicable = new ArrayList<GameObjectType>(Arrays.asList(applicable));
@@ -137,6 +141,11 @@ public abstract class NBTTag extends GameObjectType
 		NBTTag o = (NBTTag) obj;
 
 		return this.type == o.type && this.id().equals(o.id());
+	}
+
+	public GlobalNBTTag globalValue()
+	{
+		return VersionTranslator.translator(this.version).nbtTags.inverse().get(this);
 	}
 
 	@Override

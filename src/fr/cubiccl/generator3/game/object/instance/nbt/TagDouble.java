@@ -14,12 +14,6 @@ public class TagDouble extends Tag
 	}
 
 	@Override
-	public TagDouble duplicate()
-	{
-		return new TagDouble(this.tagType, this.value);
-	}
-
-	@Override
 	protected String value()
 	{
 		return String.valueOf(this.value + "d");

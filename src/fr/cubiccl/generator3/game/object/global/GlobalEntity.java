@@ -4,7 +4,7 @@ import fr.cubiccl.generator3.game.object.instance.LivingEntity;
 import fr.cubiccl.generator3.game.object.type.Entity;
 import fr.cubiccl.generator3.util.Settings.Version;
 
-public class GlobalEntity extends GlobalObject<Entity, LivingEntity>
+public class GlobalEntity extends GlobalObject
 {
 	public GlobalEntity(String id)
 	{
@@ -15,4 +15,15 @@ public class GlobalEntity extends GlobalObject<Entity, LivingEntity>
 	{
 		super("entity." + id, introduced, removed);
 	}
+
+	public LivingEntity value(Version version)
+	{
+		return VersionTranslator.translator(version).entities.get(this);
+	}
+
+	public Entity valueAsGroup(Version version)
+	{
+		return VersionTranslator.translator(version).entityGroups.get(this);
+	}
+
 }

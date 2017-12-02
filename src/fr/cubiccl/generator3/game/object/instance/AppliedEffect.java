@@ -22,10 +22,4 @@ public class AppliedEffect implements GameObjectInstance
 		this.isAmbient = isAmbient;
 	}
 
-	@Override
-	public AppliedEffect duplicate()
-	{
-		return new AppliedEffect(this.effect, this.amplifier, this.duration, this.isAmbient);
-	}
-
 }
