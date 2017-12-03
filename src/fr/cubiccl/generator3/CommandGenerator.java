@@ -1,5 +1,7 @@
 package fr.cubiccl.generator3;
 
+import fr.cubiccl.generator3.util.Settings;
+
 
 
 public class CommandGenerator
@@ -9,11 +11,13 @@ public class CommandGenerator
 	
 	public static void main(String[] args)
 	{
+		Settings.loadSettings();
 		MainApplication.initialize(args);
 	}
 
 	public static void exit()
 	{
 		window.primaryStage.close();
+		Settings.save();
 	}
 }

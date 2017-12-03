@@ -1,8 +1,9 @@
 package fr.cubiccl.generator3.util;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.Properties;
 
 /** Settings. */
 public class Settings
@@ -131,7 +132,7 @@ public class Settings
 	/** The selected Language. */
 	private static Language language;
 	/** Stores the Settings. */
-	private static HashMap<String, String> settings = new HashMap<String, String>();
+	private static Properties settings = new Properties();
 	/** <code>true</code> if the Generator is in debug mode. */
 	public static boolean testMode = false;
 
@@ -171,7 +172,7 @@ public class Settings
 	public static String getSetting(String id)
 	{
 		if (!settings.containsKey(id)) setSetting(id, getDefault(id));
-		return settings.get(id);
+		return (String) settings.get(id);
 	}
 
 	/** @return The selected {@link Language}. */
@@ -184,25 +185,35 @@ public class Settings
 	/** Loads the Settings by reading the settings file. */
 	public static void loadSettings()
 	{
-		String[] values = FileUtils.readFileAsArray("settings.txt");
-		String lang = getDefault(LANG);
-		for (String line : values)
+		try
 		{
-			String id = line.split("=")[0];
-			String value = line.substring(line.indexOf('=') + 1);
-			if (id.equals(LANG)) lang = value;
-			else setSetting(id, value);
+			settings.load(new FileInputStream(new File("settings.txt")));
+		} catch (FileNotFoundException e)
+		{
+			Logger.log("Settings file not found, creating default.");
+			// e.printStackTrace();
+		} catch (IOException e)
+		{
+			// e.printStackTrace();
 		}
-		setSetting(LANG, lang);
+		String lang = getDefault(LANG);
+		if (!settings.containsKey(LANG)) settings.put(LANG, lang);
+		setSetting(LANG, settings.getProperty(LANG));
 	}
 
 	/** Saves the Settings to the file. */
 	public static void save()
 	{
-		ArrayList<String> data = new ArrayList<String>();
-		for (String id : settings.keySet())
-			data.add(id + "=" + getSetting(id));
-		FileUtils.writeToFile("settings.txt", data.toArray(new String[data.size()]));
+		try
+		{
+			settings.store(new FileOutputStream(new File("settings.txt")), null);
+		} catch (FileNotFoundException e)
+		{
+			// e.printStackTrace();
+		} catch (IOException e)
+		{
+			// e.printStackTrace();
+		}
 	}
 
 	/** Changes the selected Language.

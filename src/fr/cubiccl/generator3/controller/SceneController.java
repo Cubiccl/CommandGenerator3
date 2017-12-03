@@ -58,4 +58,9 @@ public class SceneController
 		}
 	}
 
+	public static Stage topStage()
+	{
+		return popups.peek();
+	}
+
 }

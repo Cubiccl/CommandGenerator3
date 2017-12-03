@@ -81,11 +81,14 @@ public class FileUtils
 	public static String[] readFileAsArray(String path)
 	{
 		ArrayList<String> lines = new ArrayList<String>();
-		if (path != null)
+		URL url = FileUtils.class.getResource(path);
+		if (url != null)
 		{
+			File f = new File(url.getPath());
+			if (!f.exists()) return lines.toArray(new String[lines.size()]);
 			try
 			{
-				BufferedReader br = new BufferedReader(new FileReader(new File(FileUtils.class.getResource(path).getPath())));
+				BufferedReader br = new BufferedReader(new FileReader(f));
 				String line;
 				while ((line = br.readLine()) != null)
 					if (!line.equals("") && !line.startsWith("//")) lines.add(line);
