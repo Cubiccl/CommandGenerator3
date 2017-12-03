@@ -21,23 +21,6 @@ public class Settings
 			return get(Settings.getDefault(LANG));
 		}
 
-		/** @return An array containing all Languages. */
-		public static Language[] getLanguages()
-		{
-			ArrayList<Language> langs = new ArrayList<Settings.Language>();
-			for (Language language : values())
-				langs.add(language);
-			langs.sort(new Comparator<Language>()
-			{
-				@Override
-				public int compare(Language o1, Language o2)
-				{
-					return o1.name.toLowerCase().compareTo(o2.name.toLowerCase());
-				}
-			});
-			return langs.toArray(new Language[langs.size()]);
-		}
-
 		/** This Language's id. */
 		public final String id;
 		/** This Language's name. */
@@ -48,6 +31,13 @@ public class Settings
 			this.id = id;
 			this.name = name;
 		}
+
+		@Override
+		public String toString()
+		{
+			return this.name;
+		}
+
 	}
 
 	/** The available Minecraft Versions. */
@@ -137,8 +127,7 @@ public class Settings
 	/** The Generator's version. */
 	public static final String GENERATOR_VERSION = "2.6.3.2";
 	/** Setting IDs. */
-	public static final String LANG = "lang", SLASH = "slash", SORT_TYPE = "sort", INDENTATION = "indentation", LAST_VERSION = "lastversion",
-			LAST_FOLDER = "folder";
+	public static final String LANG = "lang", SORT_TYPE = "sort", INDENTATION = "indentation", LAST_FOLDER = "folder", MINECRAFT_LOCATION = "mc_location";
 	/** The selected Language. */
 	private static Language language;
 	/** Stores the Settings. */
@@ -155,15 +144,22 @@ public class Settings
 			case LANG:
 				return Language.ENGLISH.id;
 
-			case LAST_VERSION:
-				return " ";
-
 			case LAST_FOLDER:
 				return "";
 
 			case INDENTATION:
-			case SLASH:
 				return "true";
+
+			case MINECRAFT_LOCATION:
+				String workingDirectory;
+				String OS = (System.getProperty("os.name")).toUpperCase();
+				if (OS.contains("WIN")) workingDirectory = System.getenv("AppData");
+				else
+				{
+					workingDirectory = System.getProperty("user.home");
+					workingDirectory += "\\Library\\Application Support";
+				}
+				return workingDirectory + "\\.minecraft";
 
 			default:
 				return null;
@@ -181,6 +177,7 @@ public class Settings
 	/** @return The selected {@link Language}. */
 	public static Language language()
 	{
+		if (language == null) language = Language.get(getSetting(LANG));
 		return language;
 	}
 
