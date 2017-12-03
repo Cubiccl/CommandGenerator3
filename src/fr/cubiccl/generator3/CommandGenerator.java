@@ -1,5 +1,6 @@
 package fr.cubiccl.generator3;
 
+import fr.cubiccl.generator3.util.Lang;
 import fr.cubiccl.generator3.util.Settings;
 
 
@@ -12,6 +13,7 @@ public class CommandGenerator
 	public static void main(String[] args)
 	{
 		Settings.loadSettings();
+		Lang.updateLang();
 		MainApplication.initialize(args);
 	}
 

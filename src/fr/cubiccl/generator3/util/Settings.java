@@ -1,6 +1,9 @@
 package fr.cubiccl.generator3.util;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Properties;
@@ -188,12 +191,9 @@ public class Settings
 		try
 		{
 			settings.load(new FileInputStream(new File("settings.txt")));
-		} catch (FileNotFoundException e)
-		{
-			Logger.log("Settings file not found, creating default.");
-			// e.printStackTrace();
 		} catch (IOException e)
 		{
+			Logger.log("Settings file not found, creating default.");
 			// e.printStackTrace();
 		}
 		String lang = getDefault(LANG);
@@ -207,22 +207,20 @@ public class Settings
 		try
 		{
 			settings.store(new FileOutputStream(new File("settings.txt")), null);
-		} catch (FileNotFoundException e)
-		{
-			// e.printStackTrace();
+			Logger.log("Preferences saved.");
 		} catch (IOException e)
 		{
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
 	/** Changes the selected Language.
 	 * 
 	 * @param newLanguage - The new Language. */
-	public static void setLanguage(Language newLanguage)
+	private static void setLanguage(Language newLanguage)
 	{
 		language = newLanguage;
-		// CommandGenerator.updateLanguage();
+		Lang.updateLang();
 	}
 
 	/** Changes the value of a setting.
