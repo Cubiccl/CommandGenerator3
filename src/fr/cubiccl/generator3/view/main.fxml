@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -8,28 +9,44 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="441.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.controller.main.MainController">
    <top>
     <MenuBar BorderPane.alignment="CENTER">
       <menus>
-        <Menu fx:id="menuFile">
+        <Menu fx:id="menuFile" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" fx:id="menuFileNew" />
-            <MenuItem mnemonicParsing="false" fx:id="menuFileOpen" />
+            <MenuItem fx:id="menuFileNew" mnemonicParsing="false" text="New..." />
+            <MenuItem fx:id="menuFileOpen" mnemonicParsing="false" text="Open..." />
             <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#onMenuPreferences" fx:id="menuFilePreferences" />
+                  <MenuItem fx:id="menuFilePreferences" mnemonicParsing="false" onAction="#onMenuPreferences" text="Preferences..." />
                   <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem onAction="#onMenuQuit" fx:id="menuFileExit" />
+            <MenuItem fx:id="menuFileExit" onAction="#onMenuQuit" text="Exit" />
           </items>
         </Menu>
-        <Menu fx:id="menuEdit" />
-        <Menu mnemonicParsing="false" fx:id="menuHelp" />
+        <Menu fx:id="menuEdit" text="Edit" />
+        <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help" />
       </menus>
     </MenuBar>
    </top>
    <left>
-      <TreeView fx:id="mapExplorer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="explorerLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Map explorer" textAlignment="CENTER" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <TreeView fx:id="mapExplorer" prefHeight="200.0" prefWidth="200.0" showRoot="false" VBox.vgrow="ALWAYS" />
+         </children>
+         <opaqueInsets>
+            <Insets left="2.0" />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
    </left>
    <center>
       <TextArea prefHeight="200.0" prefWidth="200.0" text="Sample data..." BorderPane.alignment="CENTER" />

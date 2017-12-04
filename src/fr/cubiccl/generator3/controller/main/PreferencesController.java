@@ -1,4 +1,4 @@
-package fr.cubiccl.generator3.controller;
+package fr.cubiccl.generator3.controller.main;
 
 import java.io.File;
 import java.net.URL;
@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
+import fr.cubiccl.generator3.controller.SceneController;
 import fr.cubiccl.generator3.util.Settings;
 import fr.cubiccl.generator3.util.Settings.Language;
 import fr.cubiccl.generator3.util.Text;

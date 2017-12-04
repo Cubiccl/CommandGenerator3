@@ -125,11 +125,12 @@ public class Text
 
 	void translate()
 	{
-		if (!this.doTranslate) this.value.setValue(this.id);
-
-		String output = Lang.translate(this.id);
-		for (Replacement replacement : this.replacements)
-			output = replacement.apply(output);
-		this.value.setValue(output);
+		if (this.doTranslate)
+		{
+			String output = Lang.translate(this.id);
+			for (Replacement replacement : this.replacements)
+				output = replacement.apply(output);
+			this.value.setValue(output);
+		} else this.value.setValue(this.id);
 	}
 }

@@ -6,9 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import fr.cubiccl.generator3.util.Text;
 
 public class MainApplication extends Application
 {
+	public static final Text applicationName = new Text("general.title");
 
 	public static void initialize(String[] args)
 	{
@@ -37,6 +39,7 @@ public class MainApplication extends Application
 		stage.setMaximized(true);
 		stage.getIcons().add(new Image(MainApplication.class.getResourceAsStream("/textures/blocks/command_block.png")));
 		stage.show();
+		stage.titleProperty().bind(applicationName.value);
 	}
 
 }
