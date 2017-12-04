@@ -9,27 +9,27 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="441.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.controller.MainController">
+<BorderPane prefHeight="441.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.controller.main.MainController">
    <top>
     <MenuBar BorderPane.alignment="CENTER">
       <menus>
-        <Menu text="_File">
+        <Menu fx:id="menuFile">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
+            <MenuItem mnemonicParsing="false" fx:id="menuFileNew" />
+            <MenuItem mnemonicParsing="false" fx:id="menuFileOpen" />
             <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#onMenuPreferences" text="Preferences..." />
+                  <MenuItem mnemonicParsing="false" onAction="#onMenuPreferences" fx:id="menuFilePreferences" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem onAction="#onMenuQuit" text="Quit" />
+            <MenuItem onAction="#onMenuQuit" fx:id="menuFileExit" />
           </items>
         </Menu>
-        <Menu text="_Edit" />
-        <Menu mnemonicParsing="false" text="_Help" />
+        <Menu fx:id="menuEdit" />
+        <Menu mnemonicParsing="false" fx:id="menuHelp" />
       </menus>
     </MenuBar>
    </top>
    <left>
-      <TreeView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <TreeView fx:id="mapExplorer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <center>
       <TextArea prefHeight="200.0" prefWidth="200.0" text="Sample data..." BorderPane.alignment="CENTER" />

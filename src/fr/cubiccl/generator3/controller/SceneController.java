@@ -28,6 +28,7 @@ public class SceneController
 		if (!popups.isEmpty())
 		{
 			s = popups.pop();
+			s.titleProperty().unbind();
 			s.close();
 		}
 		return s;
@@ -44,6 +45,7 @@ public class SceneController
 				stage.setScene(scene);
 				stage.initModality(Modality.APPLICATION_MODAL);
 				popups.push(stage);
+				stage.getIcons().add(CommandGenerator.window.primaryStage.getIcons().get(0));
 				stage.show();
 				return stage;
 			} else

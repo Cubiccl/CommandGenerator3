@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainApplication extends Application
@@ -34,6 +35,7 @@ public class MainApplication extends Application
 		scene.getStylesheets().add(getClass().getResource("view/generator.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setMaximized(true);
+		stage.getIcons().add(new Image(MainApplication.class.getResourceAsStream("/textures/blocks/command_block.png")));
 		stage.show();
 	}
 

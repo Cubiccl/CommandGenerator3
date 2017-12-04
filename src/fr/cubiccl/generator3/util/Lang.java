@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Properties;
 
+import fr.cubiccl.generator3.controller.main.MainController;
 import fr.cubiccl.generator3.util.Settings.Language;
 
 /** Manages translations. */
@@ -131,6 +132,9 @@ public class Lang
 
 		for (Text text : usedTexts)
 			text.translate();
+
+		if (MainController.instance != null) MainController.instance.mapExplorer.refresh();
+
 	}
 
 	private Lang()
