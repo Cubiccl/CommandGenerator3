@@ -4,10 +4,15 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import fr.cubiccl.generator3.util.Text;
 
-public class MapTree
+public class MapTree extends MapTreeItem
 {
-	public static class AdvancementsFolder implements MapContent
+	public static class AdvancementsFolder extends MapTreeItem
 	{
+		public AdvancementsFolder()
+		{
+			super(true);
+		}
+
 		@Override
 		public Image icon()
 		{
@@ -21,8 +26,14 @@ public class MapTree
 		}
 	}
 
-	public static class CommandsFolder implements MapContent
+	public static class CommandsFolder extends MapTreeItem
 	{
+
+		public CommandsFolder()
+		{
+			super(true);
+		}
+
 		@Override
 		public Image icon()
 		{
@@ -36,8 +47,14 @@ public class MapTree
 		}
 	}
 
-	public static class FunctionsFolder implements MapContent
+	public static class FunctionsFolder extends MapTreeItem
 	{
+
+		public FunctionsFolder()
+		{
+			super(true);
+		}
+
 		@Override
 		public Image icon()
 		{
@@ -51,8 +68,14 @@ public class MapTree
 		}
 	}
 
-	public static class LootTablesFolder implements MapContent
+	public static class LootTablesFolder extends MapTreeItem
 	{
+
+		public LootTablesFolder()
+		{
+			super(true);
+		}
+
 		@Override
 		public Image icon()
 		{
@@ -66,8 +89,14 @@ public class MapTree
 		}
 	}
 
-	public static class RecipesFolder implements MapContent
+	public static class RecipesFolder extends MapTreeItem
 	{
+
+		public RecipesFolder()
+		{
+			super(true);
+		}
+
 		@Override
 		public Image icon()
 		{
@@ -81,22 +110,35 @@ public class MapTree
 		}
 	}
 
-	public final TreeItem<MapContent> advancements, commands, functions, loottables, recipes;
+	public final TreeItem<MapTreeItem> advancements, commands, functions, loottables, recipes;
 	public final Map map;
-	public final TreeItem<MapContent> root;
+	public final TreeItem<MapTreeItem> root;
 
 	@SuppressWarnings("unchecked")
 	public MapTree(Map map)
 	{
+		super(true);
 		this.map = map;
-		this.root = MapContent.create(this.map);
-		this.advancements = MapContent.create(new AdvancementsFolder());
-		this.commands = MapContent.create(new CommandsFolder());
-		this.functions = MapContent.create(new FunctionsFolder());
-		this.loottables = MapContent.create(new LootTablesFolder());
-		this.recipes = MapContent.create(new RecipesFolder());
+		this.root = this.getTreeItem();
+		this.advancements = new AdvancementsFolder().getTreeItem();
+		this.commands = new CommandsFolder().getTreeItem();
+		this.functions = new FunctionsFolder().getTreeItem();
+		this.loottables = new LootTablesFolder().getTreeItem();
+		this.recipes = new RecipesFolder().getTreeItem();
 
 		this.root.getChildren().addAll(this.advancements, this.commands, this.functions, this.loottables, this.recipes);
+	}
+
+	@Override
+	public Image icon()
+	{
+		return new Image(Map.class.getResourceAsStream("/textures/ui/map.png"));
+	}
+
+	@Override
+	public String toString()
+	{
+		return this.map.name;
 	}
 
 }

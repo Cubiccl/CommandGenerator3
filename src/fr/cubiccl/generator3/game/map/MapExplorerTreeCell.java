@@ -8,12 +8,12 @@ import fr.cubiccl.generator3.controller.main.MainController;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Text.Replacement;
 
-public class MapExplorerTreeCell extends TreeCell<MapContent>
+public class MapExplorerTreeCell extends TreeCell<MapTreeItem>
 {
 	private static final Text deleteT = new Text("treemap.menu.delete");
 	private static final Text newT = new Text("menu.file.new");
 
-	private ContextMenu menu(MapContent item)
+	private ContextMenu menu(MapTreeItem item)
 	{
 		ContextMenu menu = new ContextMenu();
 
@@ -25,7 +25,7 @@ public class MapExplorerTreeCell extends TreeCell<MapContent>
 			});
 
 			menu.getItems().add(newmap);
-		} else if (item instanceof Map)
+		} else if (item instanceof MapTree)
 		{
 			MenuItem remove = new MenuItem(deleteT.toString());
 			remove.setOnAction(e -> {
@@ -33,7 +33,7 @@ public class MapExplorerTreeCell extends TreeCell<MapContent>
 				alert.setHeaderText(deleteT.toString());
 				alert.setContentText(new Text("treemap.menu.delete.confirm", new Replacement("<map>", item.toString())).toString());
 				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == ButtonType.OK) Maps.unregister((Map) item);
+				if (result.get() == ButtonType.OK) Maps.unregister(((MapTree) item).map);
 			});
 
 			menu.getItems().add(remove);
@@ -43,7 +43,7 @@ public class MapExplorerTreeCell extends TreeCell<MapContent>
 	}
 
 	@Override
-	protected void updateItem(MapContent item, boolean empty)
+	protected void updateItem(MapTreeItem item, boolean empty)
 	{
 		super.updateItem(item, empty);
 		this.setText(empty ? null : item.toString());

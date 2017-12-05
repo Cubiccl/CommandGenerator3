@@ -6,9 +6,10 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -32,7 +33,7 @@
     </MenuBar>
    </top>
    <left>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox styleClass="panel" stylesheets="@generator.css" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="explorerLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Map explorer" textAlignment="CENTER" VBox.vgrow="NEVER">
                <font>
@@ -41,17 +42,21 @@
             <TreeView fx:id="mapExplorer" prefHeight="200.0" prefWidth="200.0" showRoot="false" VBox.vgrow="ALWAYS" />
          </children>
          <opaqueInsets>
-            <Insets left="2.0" />
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </opaqueInsets>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
       </VBox>
    </left>
-   <center>
-      <TextArea prefHeight="200.0" prefWidth="200.0" text="Sample data..." BorderPane.alignment="CENTER" />
-   </center>
    <bottom>
-      <Label text="Label" BorderPane.alignment="CENTER" />
+      <Pane styleClass="panel" stylesheets="@generator.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label />
+         </children>
+      </Pane>
    </bottom>
+   <center>
+      <TabPane fx:id="editorPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>

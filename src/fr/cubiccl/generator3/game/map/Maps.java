@@ -34,7 +34,7 @@ public class Maps
 		maps.add(map);
 		maps.sort(Comparator.naturalOrder());
 		MainController.instance.mapExplorer.getRoot().getChildren().add(map.createTree());
-		MainController.instance.mapExplorer.getRoot().getChildren().sort((TreeItem<MapContent> o1, TreeItem<MapContent> o2) -> {
+		MainController.instance.mapExplorer.getRoot().getChildren().sort((TreeItem<MapTreeItem> o1, TreeItem<MapTreeItem> o2) -> {
 			return o1.getValue().toString().toLowerCase().compareTo(o2.getValue().toString().toLowerCase());
 		});
 	}

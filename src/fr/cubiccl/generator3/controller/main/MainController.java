@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import fr.cubiccl.generator3.CommandGenerator;
 import fr.cubiccl.generator3.controller.SceneController;
 import fr.cubiccl.generator3.game.map.Map;
-import fr.cubiccl.generator3.game.map.MapContent;
+import fr.cubiccl.generator3.game.map.MapTreeItem;
 import fr.cubiccl.generator3.game.map.MapExplorerTreeCell;
 import fr.cubiccl.generator3.game.map.Maps;
 import fr.cubiccl.generator3.util.Text;
@@ -30,8 +30,10 @@ public class MainController implements Initializable
 
 	private static final Text menuHelpT = new Text("menu.help");
 
+	public TabPane editorPane;
 	public Label explorerLabel;
-	public TreeView<MapContent> mapExplorer;
+	public TreeView<MapTreeItem> mapExplorer;
+	public MapExplorerController mapExplorerController;
 	public Menu menuFile, menuEdit, menuHelp;
 	public MenuItem menuFileNew, menuFileOpen, menuFilePreferences, menuFileExit;
 
@@ -53,7 +55,7 @@ public class MainController implements Initializable
 		this.explorerLabel.textProperty().bind(explorerLabelT.value);
 
 		List<Map> maps = Maps.list();
-		TreeItem<MapContent> root = new TreeItem<MapContent>(null);
+		TreeItem<MapTreeItem> root = new TreeItem<MapTreeItem>(null);
 		for (Map map : maps)
 			root.getChildren().add(map.createTree());
 
@@ -61,6 +63,8 @@ public class MainController implements Initializable
 		this.mapExplorer.setCellFactory(param -> {
 			return new MapExplorerTreeCell();
 		});
+		this.mapExplorerController = new MapExplorerController(this.mapExplorer);
+		this.mapExplorer.getSelectionModel().selectionModeProperty().set(SelectionMode.MULTIPLE);
 	}
 
 	public void onMenuNew()

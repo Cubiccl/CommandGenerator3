@@ -1,9 +1,8 @@
 package fr.cubiccl.generator3.game.map;
 
 import javafx.scene.control.TreeItem;
-import javafx.scene.image.Image;
 
-public class Map implements Comparable<Map>, MapContent
+public class Map implements Comparable<Map>
 {
 
 	// Version
@@ -29,16 +28,9 @@ public class Map implements Comparable<Map>, MapContent
 		return this.name.compareTo(o.name);
 	}
 
-	public TreeItem<MapContent> createTree()
+	public TreeItem<MapTreeItem> createTree()
 	{
-		this.tree = new MapTree(this);
-		return this.tree.root;
-	}
-
-	@Override
-	public Image icon()
-	{
-		return new Image(Map.class.getResourceAsStream("/textures/ui/map.png"));
+		return (this.tree = new MapTree(this)).root;
 	}
 
 	@Override
