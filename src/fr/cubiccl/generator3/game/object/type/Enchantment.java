@@ -2,6 +2,7 @@ package fr.cubiccl.generator3.game.object.type;
 
 import fr.cubiccl.generator3.game.object.global.GlobalEnchantment;
 import fr.cubiccl.generator3.game.object.global.VersionTranslator;
+import fr.cubiccl.generator3.game.object.type.v112.Enchantments112;
 import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 
@@ -21,6 +22,7 @@ public class Enchantment extends GameObjectType
 		this.idInt = idNum;
 		this.idString = "minecraft:" + idStr;
 		this.maxLevel = maxLevel;
+		Enchantments112.values.add(this);
 	}
 
 	public GlobalEnchantment globalValue()

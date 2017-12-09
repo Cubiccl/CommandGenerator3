@@ -1,0 +1,25 @@
+{
+	"id": 50,
+	"unuseddamage": [
+		0
+	],
+	"states": {
+		"facing": {
+			"type": 0,
+			"customdamage": [
+				1,
+				2,
+				3,
+				4,
+				5
+			],
+			"values": [
+				"east",
+				"west",
+				"south",
+				"north",
+				"up"
+			]
+		}
+	}
+}

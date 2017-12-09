@@ -1,0 +1,32 @@
+{
+	"id": 104,
+	"texture": -1,
+	"class": "Numbered",
+	"states": {
+		"facing": {
+			"type": 0,
+			"damage": -1,
+			"values": [
+				"south",
+				"west",
+				"north",
+				"east",
+				"up"
+			]
+		},
+		"age": {
+			"type": 2,
+			"damage": 1,
+			"values": [
+				"0",
+				"1",
+				"2",
+				"3",
+				"4",
+				"5",
+				"6",
+				"7"
+			]
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"id": 207,
+	"class": "Numbered",
+	"states": {
+		"age": {
+			"type": 2,
+			"damage": 1,
+			"values": [
+				"0",
+				"1",
+				"2",
+				"3"
+			]
+		}
+	}
+}

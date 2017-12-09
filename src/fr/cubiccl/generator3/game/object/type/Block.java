@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
+import fr.cubiccl.generator3.game.object.type.v112.Blocks112;
 import fr.cubiccl.generator3.util.*;
 
 public class Block extends GameObjectType
@@ -14,12 +15,12 @@ public class Block extends GameObjectType
 
 	/** The possible {@link BlockState Block states} for this Block. */
 	public HashMap<String, BlockState> blockStates;
-	/** List of custom available damage values for this Block if {@link Block#damageMax} is <code>-1</code>. */
-	public int[] damageValues;
 	/** Numerical ID of this Block. */
 	public final int idInt;
 	/** Text ID of this Block. */
 	public final String idString;
+	/** The maximum damage value for this Block. */
+	public int maxDamage;
 	/** Defines how to handle language and texture.<br />
 	 * If <code>0</code>, default.<br />
 	 * If <code>-1</code>, texture is the same for any damage.<br />
@@ -31,14 +32,19 @@ public class Block extends GameObjectType
 
 	public Block(int idInt, String idString)
 	{
+		this(idInt, idString, 0);
+	}
+
+	public Block(int idInt, String idString, int maxDamage)
+	{
 		super(Persistance.selectedVersion);
 		this.idString = idString == null ? null : "minecraft:" + idString;
 		this.idInt = idInt;
 		this.textureType = 0;
-		this.damageValues = new int[]
-		{ 0 };
+		this.maxDamage = maxDamage;
 		this.blockStates = new HashMap<String, BlockState>();
 		this.unusedDamage = new HashSet<Integer>();
+		Blocks112.values.add(this);
 	}
 
 	/** Adds a State to this Block.
@@ -63,7 +69,7 @@ public class Block extends GameObjectType
 			if (this.blockStates.keySet().contains(id) && this.blockStates.get(id).hasValue(parsed.get(id))) damage += this.blockStates.get(id).damageForValue(
 					parsed.get(id));
 		if (this.isDamageValid(damage)) return damage;
-		return this.damageValues[0];
+		return 0;
 	}
 
 	/** Finds the Block states described by the input damage value.
@@ -110,19 +116,18 @@ public class Block extends GameObjectType
 	 * @return <code>true</code> if the input damage value is valid for this Block. */
 	public boolean isDamageValid(int damage)
 	{
-		for (int i : this.damageValues)
-			if (i == damage) return true;
-		return false;
+		if (this.unusedDamage.contains(damage)) return false;
+		return damage >= 0 && damage <= this.maxDamage;
 	}
 
 	/** @return <code>true</code> if this Block's texture is unique. */
 	private boolean isTextureUnique()
 	{
-		if (this.damageValues.length == 1 || this.textureType == -1) return true;
+		if (this.maxDamage == 0 || this.textureType == -1) return true;
 		if (this.textureType < -1)
 		{
-			for (int i : this.damageValues)
-				if (i >= -this.textureType) return false;
+			for (int i = 0; i <= this.maxDamage; ++i)
+				if (!this.unusedDamage.contains(i) && i >= -this.textureType) return false;
 			return true;
 		}
 		return false;
@@ -138,7 +143,7 @@ public class Block extends GameObjectType
 	 * @return The name of this Block for the input damage value. */
 	public Text name(int damage)
 	{
-		if (this.damageValues.length == 0) return new Text("block." + this.idString);
+		if (this.maxDamage == 0) return new Text("block." + this.idString);
 		return new Text("block." + this.idString + "." + damage);
 	}
 
@@ -171,7 +176,7 @@ public class Block extends GameObjectType
 	/** @return The texture to use to represent this Block's group (no damage value). */
 	public BufferedImage textureMain()
 	{
-		return this.texture(this.damageValues[0]);
+		return this.texture(0);
 	}
 
 	/** Reloads damage values to match this Block's states. */
@@ -206,7 +211,19 @@ public class Block extends GameObjectType
 		int[] d = new int[damage.size()];
 		for (int i = 0; i < d.length; ++i)
 			d[i] = damage.get(i);
-		this.damageValues = d;
+
+		int current = 0;
+		this.unusedDamage.clear();
+		for (int v : d)
+		{
+			while (current < v)
+			{
+				this.unusedDamage.add(current);
+				++current;
+			}
+			this.maxDamage = current;
+			++current;
+		}
 	}
 
 }

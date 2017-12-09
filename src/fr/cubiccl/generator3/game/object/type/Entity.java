@@ -2,6 +2,7 @@ package fr.cubiccl.generator3.game.object.type;
 
 import java.awt.image.BufferedImage;
 
+import fr.cubiccl.generator3.game.object.type.v112.Entities112;
 import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Textures;
@@ -16,6 +17,7 @@ public class Entity extends GameObjectType
 	{
 		super(Persistance.selectedVersion);
 		this.id = "minecraft:" + id;
+		Entities112.values.add(this);
 	}
 
 	@Override

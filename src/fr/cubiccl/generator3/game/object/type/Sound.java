@@ -15,6 +15,7 @@ public class Sound extends GameObjectType
 	{
 		super(Persistance.selectedVersion);
 		this.id = id;
+		Sounds112.values.add(this);
 	}
 
 	public GlobalSound globalValue()

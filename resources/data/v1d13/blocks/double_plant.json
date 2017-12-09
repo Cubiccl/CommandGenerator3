@@ -1,0 +1,30 @@
+{
+	"id": 175,
+	"texture": 8,
+	"unuseddamage": [
+		6,
+		7
+	],
+	"states": {
+		"half": {
+			"type": 0,
+			"damage": 8,
+			"values": [
+				"lower",
+				"upper"
+			]
+		},
+		"variant": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"sunflower",
+				"syringa",
+				"double_grass",
+				"double_fern",
+				"double_rose",
+				"paeonia"
+			]
+		}
+	}
+}

@@ -48,8 +48,8 @@ public class Settings
 	public static enum Version
 	{
 
-		v111("1.11.2", "1.11", 0),
-		v112("1.12", "1.12", 1);
+		v111("1.11.2", "1d11", 0),
+		v112("1.12", "1d12", 1);
 
 		private static final Comparator<Version> versionComparator = new Comparator<Version>()
 		{

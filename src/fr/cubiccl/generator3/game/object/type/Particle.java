@@ -2,6 +2,7 @@ package fr.cubiccl.generator3.game.object.type;
 
 import fr.cubiccl.generator3.game.object.global.GlobalParticle;
 import fr.cubiccl.generator3.game.object.global.VersionTranslator;
+import fr.cubiccl.generator3.game.object.type.v112.Particles112;
 import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 
@@ -15,6 +16,7 @@ public class Particle extends GameObjectType
 	{
 		super(Persistance.selectedVersion);
 		this.id = "minecraft:" + id;
+		Particles112.values.add(this);
 	}
 
 	public GlobalParticle globalValue()

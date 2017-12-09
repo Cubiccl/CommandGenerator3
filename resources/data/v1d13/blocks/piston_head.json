@@ -1,0 +1,39 @@
+{
+	"id": 34,
+	"texture": -8,
+	"class": "Facing",
+	"unuseddamage": [
+		6,
+		7
+	],
+	"states": {
+		"facing": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"down",
+				"up",
+				"north",
+				"south",
+				"west",
+				"east"
+			]
+		},
+		"short": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"type": {
+			"type": 0,
+			"damage": 8,
+			"values": [
+				"normal",
+				"sticky"
+			]
+		}
+	}
+}

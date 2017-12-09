@@ -1,0 +1,32 @@
+{
+	"id": 149,
+	"texture": -1,
+	"states": {
+		"mode": {
+			"type": 0,
+			"damage": 4,
+			"values": [
+				"compare",
+				"substract"
+			]
+		},
+		"powered": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"facing": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"north",
+				"east",
+				"south",
+				"west"
+			]
+		}
+	}
+}

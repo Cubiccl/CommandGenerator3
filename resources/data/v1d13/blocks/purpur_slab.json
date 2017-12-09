@@ -1,0 +1,30 @@
+{
+	"id": 205,
+	"texture": -1,
+	"unuseddamage": [
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7
+	],
+	"states": {
+		"half": {
+			"type": 0,
+			"damage": 8,
+			"values": [
+				"bottom",
+				"top"
+			]
+		},
+		"variant": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"default"
+			]
+		}
+	}
+}

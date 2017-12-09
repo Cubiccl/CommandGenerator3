@@ -1,0 +1,28 @@
+{
+	"id": 159,
+	"class": "Stained",
+	"states": {
+		"color": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"white",
+				"orange",
+				"magenta",
+				"light_blue",
+				"yellow",
+				"lime",
+				"pink",
+				"gray",
+				"silver",
+				"cyan",
+				"purple",
+				"blue",
+				"brown",
+				"green",
+				"red",
+				"black"
+			]
+		}
+	}
+}

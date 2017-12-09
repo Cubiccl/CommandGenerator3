@@ -2,6 +2,7 @@ package fr.cubiccl.generator3.game.object.type;
 
 import java.awt.image.BufferedImage;
 
+import fr.cubiccl.generator3.game.object.type.v112.Items112;
 import fr.cubiccl.generator3.util.*;
 
 public class Item extends GameObjectType
@@ -27,6 +28,7 @@ public class Item extends GameObjectType
 		this.idString = idString == null ? null : "minecraft:" + idString;
 		this.idInt = idInt;
 		this.maxDamage = maxDamage;
+		Items112.values.add(this);
 	}
 
 	/** @return The list of possible damage values for this Item. */
