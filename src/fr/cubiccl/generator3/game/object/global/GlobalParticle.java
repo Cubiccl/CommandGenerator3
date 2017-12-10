@@ -5,12 +5,12 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class GlobalParticle extends GlobalObject
 {
-	public GlobalParticle(String id, int order)
+	public GlobalParticle(String id, double order)
 	{
 		super("particle." + id, order);
 	}
 
-	public GlobalParticle(String id, int order, Version introduced, Version removed)
+	public GlobalParticle(String id, double order, Version introduced, Version removed)
 	{
 		super("particle." + id, order, introduced, removed);
 	}

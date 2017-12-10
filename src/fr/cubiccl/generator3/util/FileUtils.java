@@ -70,7 +70,7 @@ public class FileUtils
 		String[] data = readFileAsArray(path);
 		String toreturn = "";
 		for (String line : data)
-			if (!line.equals("")) toreturn += line;
+			if (!line.equals("")) toreturn += line + "\n";
 		return toreturn;
 	}
 

@@ -5,14 +5,14 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class GlobalNBTTag extends GlobalObject
 {
-	public GlobalNBTTag(String id, int order)
+	public GlobalNBTTag(String id, double order)
 	{
-		super("achievement." + id, order);
+		super("nbttag." + id, order);
 	}
 
-	public GlobalNBTTag(String id, int order, Version introduced, Version removed)
+	public GlobalNBTTag(String id, double order, Version introduced, Version removed)
 	{
-		super("achievement." + id, order, introduced, removed);
+		super("nbttag." + id, order, introduced, removed);
 	}
 
 	public NBTTag value(Version version)

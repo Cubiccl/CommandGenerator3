@@ -2,6 +2,8 @@ package fr.cubiccl.generator3.game.object.type;
 
 import java.awt.image.BufferedImage;
 
+import fr.cubiccl.generator3.game.object.global.GlobalItem;
+import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.*;
 
 public class Item extends GameObjectType
@@ -39,6 +41,11 @@ public class Item extends GameObjectType
 	public int getDurability()
 	{
 		return this.maxDamage;
+	}
+
+	public GlobalItem globalValue()
+	{
+		return VersionTranslator.translator(this.version).items.inverse().get(this);
 	}
 
 	@Override

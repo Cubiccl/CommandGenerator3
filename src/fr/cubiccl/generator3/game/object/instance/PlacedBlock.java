@@ -1,7 +1,5 @@
 package fr.cubiccl.generator3.game.object.instance;
 
-import fr.cubiccl.generator3.game.object.global.GlobalBlock;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.game.object.instance.nbt.TagCompound;
 import fr.cubiccl.generator3.game.object.type.Block;
 
@@ -25,11 +23,6 @@ public class PlacedBlock implements GameObjectInstance
 		this.block = block;
 		this.damageValue = damageValue;
 		this.blockEntity = blockEntity;
-	}
-
-	public GlobalBlock globalValue()
-	{
-		return VersionTranslator.translator(this.block.version).blocks.inverse().get(new PlacedBlock(this.block, this.damageValue));
 	}
 
 }

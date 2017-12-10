@@ -1,7 +1,5 @@
 package fr.cubiccl.generator3.game.object.instance;
 
-import fr.cubiccl.generator3.game.object.global.GlobalItem;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.game.object.instance.nbt.TagCompound;
 import fr.cubiccl.generator3.game.object.type.Item;
 
@@ -31,11 +29,6 @@ public class ItemStack implements GameObjectInstance
 		this.quantity = quantity;
 		this.slot = slot;
 		this.nbtTags = nbtTags;
-	}
-
-	public GlobalItem globalValue()
-	{
-		return VersionTranslator.translator(this.item.version).items.inverse().get(new ItemStack(this.item, this.damageValue));
 	}
 
 }

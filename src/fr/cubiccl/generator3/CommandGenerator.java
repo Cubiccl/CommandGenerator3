@@ -1,5 +1,6 @@
 package fr.cubiccl.generator3;
 
+import fr.cubiccl.generator3.game.object.GlobalRegistry;
 import fr.cubiccl.generator3.util.Lang;
 import fr.cubiccl.generator3.util.Settings;
 
@@ -18,6 +19,7 @@ public class CommandGenerator
 	{
 		Settings.loadSettings();
 		Lang.updateLang();
+		GlobalRegistry.loadObjects();
 		MainApplication.initialize(args);
 	}
 }

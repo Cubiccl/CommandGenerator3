@@ -22,7 +22,7 @@ public final class ObjectLists implements ListChangeListener<GlobalObject>
 	@Override
 	public void onChanged(Change<? extends GlobalObject> c)
 	{
-		c.getList().sort(Registry._idComparator);
+		c.getList().sort(GlobalRegistry._idComparator);
 	}
 
 }
