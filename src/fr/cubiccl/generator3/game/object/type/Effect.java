@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 
 import fr.cubiccl.generator3.game.object.global.GlobalEffect;
 import fr.cubiccl.generator3.game.object.global.VersionTranslator;
-import fr.cubiccl.generator3.game.object.type.v112.Effects112;
 import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Textures;
@@ -22,7 +21,6 @@ public class Effect extends GameObjectType
 		super(Persistance.selectedVersion);
 		this.idString = "minecraft:" + idString;
 		this.idInt = idNum;
-		Effects112.values.add(this);
 	}
 
 	public GlobalEffect globalValue()

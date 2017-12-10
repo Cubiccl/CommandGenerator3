@@ -1,7 +1,7 @@
 package fr.cubiccl.generator3.game.object.type.blocks;
 
 import fr.cubiccl.generator3.game.object.type.Block;
-import fr.cubiccl.generator3.game.object.type.v112.Blocks112;
+import fr.cubiccl.generator3.game.object.type.BlockState;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Text.Replacement;
 
@@ -17,11 +17,11 @@ public class BlockDoor extends Block
 	public BlockDoor(int idInt, String idString)
 	{
 		super(idInt, idString, 11);
-		Blocks112.variant(this, "facing", -1, "north", "south", "west", "east");
-		Blocks112.variant(this, "half", -1, "lower", "upper");
-		Blocks112.variant(this, "hinge", -1, "left", "right");
-		Blocks112.bool(this, "open", -1);
-		Blocks112.bool(this, "powered", -1);
+		this.addBlockState(new BlockState("facing", BlockState.STRING, -1, "north", "south", "west", "east"));
+		this.addBlockState(new BlockState("half", BlockState.STRING, -1, "lower", "upper"));
+		this.addBlockState(new BlockState("hinge", BlockState.STRING, -1, "left", "right"));
+		this.addBlockState(new BlockState("open", BlockState.BOOLEAN, -1, "false", "true"));
+		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, -1, "false", "true"));
 		this.setTextureType(-8);
 	}
 

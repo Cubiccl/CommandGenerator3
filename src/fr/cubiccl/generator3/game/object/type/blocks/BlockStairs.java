@@ -1,7 +1,7 @@
 package fr.cubiccl.generator3.game.object.type.blocks;
 
 import fr.cubiccl.generator3.game.object.type.Block;
-import fr.cubiccl.generator3.game.object.type.v112.Blocks112;
+import fr.cubiccl.generator3.game.object.type.BlockState;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Text.Replacement;
 
@@ -17,9 +17,9 @@ public class BlockStairs extends Block
 	public BlockStairs(int idInt, String idString)
 	{
 		super(idInt, idString);
-		Blocks112.variant(this, "facing", 1, "east", "west", "south", "north");
-		Blocks112.variant(this, "half", 4, "bottom", "top");
-		Blocks112.variant(this, "shape", -1, "straight", "inner_left", "inner_right", "outer_left", "outer_right");
+		this.addBlockState(new BlockState("facing", BlockState.STRING, 1, "east", "west", "south", "north"));
+		this.addBlockState(new BlockState("half", BlockState.STRING, 4, "bottom", "top"));
+		this.addBlockState(new BlockState("shape", BlockState.STRING, -1, "straight", "inner_left", "inner_right", "outer_left", "outer_right"));
 		this.setTextureType(-4);
 	}
 

@@ -5,14 +5,14 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class GlobalBlock extends GlobalObject
 {
-	public GlobalBlock(String id)
+	public GlobalBlock(String id, int order)
 	{
-		super("block." + id);
+		super("block." + id, order);
 	}
 
-	public GlobalBlock(String id, Version introduced, Version removed)
+	public GlobalBlock(String id, int order, Version introduced, Version removed)
 	{
-		super("block." + id, introduced, removed);
+		super("block." + id, order, introduced, removed);
 	}
 
 	public PlacedBlock value(Version version)

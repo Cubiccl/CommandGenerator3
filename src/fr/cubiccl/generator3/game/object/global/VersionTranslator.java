@@ -11,11 +11,11 @@ import fr.cubiccl.generator3.util.Settings.Version;
 public class VersionTranslator
 {
 
-	public static final VersionTranslator v112 = new VersionTranslator();
+	public static final VersionTranslator v113 = new VersionTranslator();
 
 	public static VersionTranslator translator(Version version)
 	{
-		if (version == Version.v112) return v112;
+		if (version == Version.v113) return v113;
 		return null;
 	}
 

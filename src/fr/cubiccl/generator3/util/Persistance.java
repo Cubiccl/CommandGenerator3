@@ -8,6 +8,6 @@ public class Persistance
 	public static Version currentIntroduce = Version.earliest();
 	public static Version currentRemoved = Version.latest();
 	
-	public static Version selectedVersion = Version.v112;
+	public static Version selectedVersion = Version.v113;
 
 }

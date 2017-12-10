@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
-import fr.cubiccl.generator3.game.object.type.v112.Blocks112;
 import fr.cubiccl.generator3.util.*;
 
 public class Block extends GameObjectType
@@ -44,7 +43,6 @@ public class Block extends GameObjectType
 		this.maxDamage = maxDamage;
 		this.blockStates = new HashMap<String, BlockState>();
 		this.unusedDamage = new HashSet<Integer>();
-		Blocks112.values.add(this);
 	}
 
 	/** Adds a State to this Block.

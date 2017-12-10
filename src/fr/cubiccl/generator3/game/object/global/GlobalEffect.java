@@ -5,14 +5,14 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class GlobalEffect extends GlobalObject
 {
-	public GlobalEffect(String id)
+	public GlobalEffect(String id, int order)
 	{
-		super("effect." + id);
+		super("effect." + id, order);
 	}
 
-	public GlobalEffect(String id, Version introduced, Version removed)
+	public GlobalEffect(String id, int order, Version introduced, Version removed)
 	{
-		super("effect." + id, introduced, removed);
+		super("effect." + id, order, introduced, removed);
 	}
 
 	public Effect value(Version version)

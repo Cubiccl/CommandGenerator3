@@ -48,8 +48,7 @@ public class Settings
 	public static enum Version
 	{
 
-		v111("1.11.2", "1d11", 0),
-		v112("1.12", "1d12", 1);
+		v113("1.13", "1d13", 0);
 
 		private static final Comparator<Version> versionComparator = new Comparator<Version>()
 		{
@@ -73,7 +72,7 @@ public class Settings
 		{
 			for (Version v : Version.values())
 				if (v.id.equals(id)) return v;
-			return v112;
+			return v113;
 		}
 
 		/** @return An array containing all Versions. */

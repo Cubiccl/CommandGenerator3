@@ -1,7 +1,7 @@
 package fr.cubiccl.generator3.game.object.type.blocks;
 
 import fr.cubiccl.generator3.game.object.type.Block;
-import fr.cubiccl.generator3.game.object.type.v112.Blocks112;
+import fr.cubiccl.generator3.game.object.type.BlockState;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Text.Replacement;
 
@@ -17,7 +17,7 @@ public class BlockLiquid extends Block
 	public BlockLiquid(int idInt, String idString)
 	{
 		super(idInt, idString);
-		Blocks112.numbered(this, "level", 1, 15);
+		this.addBlockState(new BlockState("level", BlockState.STRING, 1, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"));
 		this.setTextureType(-1);
 	}
 

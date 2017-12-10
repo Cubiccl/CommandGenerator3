@@ -1,7 +1,7 @@
 package fr.cubiccl.generator3.game.object.type.blocks;
 
 import fr.cubiccl.generator3.game.object.type.Block;
-import fr.cubiccl.generator3.game.object.type.v112.Blocks112;
+import fr.cubiccl.generator3.game.object.type.BlockState;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Text.Replacement;
 
@@ -17,7 +17,7 @@ public class BlockTerracotta extends Block
 	public BlockTerracotta(int idInt, String idString)
 	{
 		super(idInt, idString);
-		Blocks112.variant(this, "facing", 1, "south", "west", "north", "east");
+		this.addBlockState(new BlockState("facing", BlockState.STRING, 1, "south", "west", "north", "east"));
 		this.setTextureType(-1);
 	}
 
