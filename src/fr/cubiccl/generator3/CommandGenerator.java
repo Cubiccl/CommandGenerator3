@@ -18,7 +18,7 @@ public class CommandGenerator
 	public static void main(String[] args)
 	{
 		Settings.loadSettings();
-		Lang.updateLang();
+		Lang.fullReload();
 		GlobalRegistry.loadObjects();
 		MainApplication.initialize(args);
 	}

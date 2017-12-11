@@ -2,6 +2,7 @@ package fr.cubiccl.generator3.game.object.global;
 
 import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Settings.Version;
+import fr.cubiccl.generator3.util.Text;
 
 /** Represents a global Object type, version independent.
  * 
@@ -13,6 +14,7 @@ public class GlobalObject implements Comparable<GlobalObject>
 	/** This Object's ID. */
 	public final String id;
 	public final Version introduced;
+	public final Text name;
 	public int order;
 	public final Version removed;
 
@@ -27,6 +29,7 @@ public class GlobalObject implements Comparable<GlobalObject>
 		this.order = order;
 		this.introduced = introduced;
 		this.removed = removed;
+		this.name = new Text(this.id);
 	}
 
 	@Override
@@ -45,7 +48,7 @@ public class GlobalObject implements Comparable<GlobalObject>
 	@Override
 	public String toString()
 	{
-		return this.id;
+		return this.name.toString();
 	}
 
 }

@@ -41,6 +41,7 @@
                      </VBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#onDelete" text="Delete selected" />
+                  <Button mnemonicParsing="false" onAction="#reloadLanguage" text="Reload language" />
                </children>
             </VBox>
          </center>

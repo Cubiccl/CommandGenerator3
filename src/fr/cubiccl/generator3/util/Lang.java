@@ -43,6 +43,13 @@ public class Lang
 		return textID;
 	}
 
+	public static void fullReload()
+	{
+		loadEnglish();
+		loadRemapping();
+		updateLang();
+	}
+
 	/** @return True if the input <code>textID</code> exists in the language files. */
 	public static boolean keyExists(String textID)
 	{
@@ -107,8 +114,6 @@ public class Lang
 	/** Updates the languages. Checks for the current languages and reads the files. */
 	public static void updateLang()
 	{
-		if (english.size() == 0) loadEnglish();
-		if (remapping.size() == 0) loadRemapping();
 		dictionnary.clear();
 
 		if (Settings.language() != Language.ENGLISH)

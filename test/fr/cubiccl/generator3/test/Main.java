@@ -117,7 +117,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		Settings.loadSettings();
-		Lang.updateLang();
+		Lang.fullReload();
 		GlobalRegistry.loadObjects();
 		TestApplication.initialize(args);
 	}

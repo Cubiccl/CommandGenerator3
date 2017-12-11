@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import fr.cubiccl.generator3.game.object.GlobalRegistry;
 import fr.cubiccl.generator3.game.object.global.*;
+import fr.cubiccl.generator3.util.Lang;
 
 public class MainTestController implements Initializable
 {
@@ -94,6 +95,7 @@ public class MainTestController implements Initializable
 	public void onDelete()
 	{
 		GlobalObject object = this.objectSelection.getSelectionModel().getSelectedItem();
+		if (object == null) return;
 
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Delete");
@@ -215,6 +217,11 @@ public class MainTestController implements Initializable
 		this.move(this.selected(), this.selected() - 1);
 	}
 
+	public void reloadLanguage()
+	{
+		Lang.fullReload();
+	}
+
 	protected void reloadObject()
 	{
 		GlobalObject object = this.objectSelection.getSelectionModel().getSelectedItem();
@@ -239,7 +246,7 @@ public class MainTestController implements Initializable
 		String search = this.searchbox.getText();
 		int index = -1;
 		for (int i = 0; i < objects.size(); ++i)
-			if (objects.get(i).id.contains(search))
+			if (objects.get(i).name.toString().contains(search))
 			{
 				index = i;
 				break;
