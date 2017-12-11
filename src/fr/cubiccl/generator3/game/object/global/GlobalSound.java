@@ -5,12 +5,12 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class GlobalSound extends GlobalObject
 {
-	public GlobalSound(String id, double order)
+	public GlobalSound(String id, int order)
 	{
 		super("sound." + id, order);
 	}
 
-	public GlobalSound(String id, double order, Version introduced, Version removed)
+	public GlobalSound(String id, int order, Version introduced, Version removed)
 	{
 		super("sound." + id, order, introduced, removed);
 	}

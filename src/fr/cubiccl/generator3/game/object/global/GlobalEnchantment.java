@@ -5,12 +5,12 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class GlobalEnchantment extends GlobalObject
 {
-	public GlobalEnchantment(String id, double order)
+	public GlobalEnchantment(String id, int order)
 	{
 		super("enchantment." + id, order);
 	}
 
-	public GlobalEnchantment(String id, double order, Version introduced, Version removed)
+	public GlobalEnchantment(String id, int order, Version introduced, Version removed)
 	{
 		super("enchantment." + id, order, introduced, removed);
 	}

@@ -13,15 +13,15 @@ public class GlobalObject implements Comparable<GlobalObject>
 	/** This Object's ID. */
 	public final String id;
 	public final Version introduced;
-	public double order;
+	public int order;
 	public final Version removed;
 
-	public GlobalObject(String id, double order)
+	public GlobalObject(String id, int order)
 	{
 		this(id, order, Persistance.currentIntroduce, Persistance.currentRemoved);
 	}
 
-	public GlobalObject(String id, double order, Version introduced, Version removed)
+	public GlobalObject(String id, int order, Version introduced, Version removed)
 	{
 		this.id = id;
 		this.order = order;

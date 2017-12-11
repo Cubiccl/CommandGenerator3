@@ -29,10 +29,9 @@ public class TestApplication extends Application
 			Main.exit();
 		});
 		Parent root = FXMLLoader.load(getClass().getResource("view/main-test.fxml"));
-		Scene scene = new Scene(root, 300, 300);
+		Scene scene = new Scene(root, 700, 500);
 		//scene.getStylesheets().add(getClass().getResource("view/generator.css").toExternalForm());
 		stage.setScene(scene);
-		stage.setMaximized(true);
 		stage.getIcons().add(new Image(MainApplication.class.getResourceAsStream("/textures/blocks/command_block.png")));
 		stage.show();
 		stage.titleProperty().setValue("Generator3 Testing");

@@ -40,39 +40,39 @@ public class GlobalRegistry<T extends GlobalObject>
 
 		JsonObject object = root.get("attributes").asObject();
 		for (Member m : object)
-			attributes.register(new GlobalAttribute(m.getName(), m.getValue().asDouble()));
+			attributes.register(new GlobalAttribute(m.getName(), m.getValue().asInt()));
 
 		object = root.get("blocks").asObject();
 		for (Member m : object)
-			blocks.register(new GlobalBlock(m.getName(), m.getValue().asDouble()));
+			blocks.register(new GlobalBlock(m.getName(), m.getValue().asInt()));
 
 		object = root.get("effects").asObject();
 		for (Member m : object)
-			effects.register(new GlobalEffect(m.getName(), m.getValue().asDouble()));
+			effects.register(new GlobalEffect(m.getName(), m.getValue().asInt()));
 
 		object = root.get("enchantments").asObject();
 		for (Member m : object)
-			enchantments.register(new GlobalEnchantment(m.getName(), m.getValue().asDouble()));
+			enchantments.register(new GlobalEnchantment(m.getName(), m.getValue().asInt()));
 
 		object = root.get("entities").asObject();
 		for (Member m : object)
-			entities.register(new GlobalEntity(m.getName(), m.getValue().asDouble()));
+			entities.register(new GlobalEntity(m.getName(), m.getValue().asInt()));
 
 		object = root.get("items").asObject();
 		for (Member m : object)
-			items.register(new GlobalItem(m.getName(), m.getValue().asDouble()));
+			items.register(new GlobalItem(m.getName(), m.getValue().asInt()));
 
 		object = root.get("nbttags").asObject();
 		for (Member m : object)
-			nbttags.register(new GlobalNBTTag(m.getName(), m.getValue().asDouble()));
+			nbttags.register(new GlobalNBTTag(m.getName(), m.getValue().asInt()));
 
 		object = root.get("particles").asObject();
 		for (Member m : object)
-			particles.register(new GlobalParticle(m.getName(), m.getValue().asDouble()));
+			particles.register(new GlobalParticle(m.getName(), m.getValue().asInt()));
 
 		object = root.get("sounds").asObject();
 		for (Member m : object)
-			sounds.register(new GlobalSound(m.getName(), m.getValue().asDouble()));
+			sounds.register(new GlobalSound(m.getName(), m.getValue().asInt()));
 	}
 
 	private final HashMap<String, T> objects;
@@ -105,6 +105,16 @@ public class GlobalRegistry<T extends GlobalObject>
 	public void register(T object)
 	{
 		this.objects.put(object.id, object);
+	}
+
+	public int size()
+	{
+		return this.objects.size();
+	}
+
+	public void unregister(T object)
+	{
+		this.objects.remove(object.id);
 	}
 
 }

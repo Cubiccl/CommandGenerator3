@@ -5,12 +5,12 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class GlobalAttribute extends GlobalObject
 {
-	public GlobalAttribute(String id, double order)
+	public GlobalAttribute(String id, int order)
 	{
 		super("attribute." + id, order);
 	}
 
-	public GlobalAttribute(String id, double order, Version introduced, Version removed)
+	public GlobalAttribute(String id, int order, Version introduced, Version removed)
 	{
 		super("attribute." + id, order, introduced, removed);
 	}

@@ -5,12 +5,12 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class GlobalItem extends GlobalObject
 {
-	public GlobalItem(String id, double order)
+	public GlobalItem(String id, int order)
 	{
 		super("item." + id, order);
 	}
 
-	public GlobalItem(String id, double order, Version introduced, Version removed)
+	public GlobalItem(String id, int order, Version introduced, Version removed)
 	{
 		super("item." + id, order, introduced, removed);
 	}

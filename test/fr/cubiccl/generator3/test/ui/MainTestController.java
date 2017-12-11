@@ -3,29 +3,28 @@ package fr.cubiccl.generator3.test.ui;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import fr.cubiccl.generator3.game.object.GlobalRegistry;
-import fr.cubiccl.generator3.game.object.global.GlobalObject;
+import fr.cubiccl.generator3.game.object.global.*;
 
 public class MainTestController implements Initializable
 {
 	@SuppressWarnings("rawtypes")
 	private GlobalRegistry currentRegistry;
 
-	public TextField id, order, searchbox;
+	public Label modeLabel, nameLabel;
 	public ListView<String> modeSelection;
-	public Label nameLabel, modeLabel;
 	public ListView<GlobalObject> objectSelection;
-	public Button ok, cancel;
+	public TextField searchbox;
+	public Button top, up, down, bottom;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
@@ -39,7 +38,6 @@ public class MainTestController implements Initializable
 				onModeSelected(c.getList().get(0));
 			}
 		});
-
 		this.objectSelection.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<GlobalObject>()
 		{
 			@Override
@@ -53,14 +51,67 @@ public class MainTestController implements Initializable
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
 			{
-				reloadObjects();
+				select(newValue);
 			}
 		});
 	}
 
-	public void onCancel()
+	private void move(int from, int to)
 	{
-		this.reloadObject();
+		if (this.selected() == -1) return;
+
+		boolean negative = to < from;
+		for (int i = negative ? from - 1 : from + 1; negative ? i >= to : i <= to;)
+		{
+			this.objectSelection.getItems().get(i).order += negative ? 1 : -1;
+			if (negative) --i;
+			else ++i;
+		}
+		this.objectSelection.getItems().get(from).order += to - from;
+		this.reloadObjects();
+		this.objectSelection.getSelectionModel().select(to);
+		// this.objectSelection.scrollTo(Math.max(0, to - 10));
+
+		this.objectSelection.requestFocus();
+	}
+
+	public void onAbove()
+	{
+		this.move(this.selected(), this.selected() - 10);
+	}
+
+	public void onBelow()
+	{
+		this.move(this.selected(), this.selected() + 10);
+	}
+
+	public void onBottom()
+	{
+		this.move(this.selected(), this.objectSelection.getItems().size() - 1);
+	}
+
+	@SuppressWarnings("unchecked")
+	public void onDelete()
+	{
+		GlobalObject object = this.objectSelection.getSelectionModel().getSelectedItem();
+
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Delete");
+		alert.setHeaderText("");
+		alert.setContentText("Are you sure you want to delete " + object.id + " !?");
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK)
+		{
+			this.onBottom();
+			this.currentRegistry.unregister(object);
+			this.reloadObjects();
+		}
+	}
+
+	public void onDown()
+	{
+		this.move(this.selected(), this.selected() + 1);
 	}
 
 	private void onModeSelected(String mode)
@@ -102,24 +153,72 @@ public class MainTestController implements Initializable
 		this.reloadObjects();
 	}
 
-	public void onOK()
+	@SuppressWarnings("unchecked")
+	public void onNew()
 	{
-		GlobalObject object = this.objectSelection.getSelectionModel().getSelectedItem();
-		if (object == null) return;
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setTitle("New object");
+		dialog.setHeaderText("");
+		dialog.setContentText("Type in the id of the new object:");
 
-		object.order = Double.parseDouble(this.order.getText());
+		Optional<String> result = dialog.showAndWait();
+		if (!result.isPresent()) return;
+
+		String id = result.get();
+		GlobalObject newObject = null;
+		String mode = this.modeSelection.getSelectionModel().getSelectedItem();
+		int order = this.currentRegistry.size();
+		switch (mode)
+		{
+			case "Blocks":
+				newObject = new GlobalBlock(id, order);
+				break;
+			case "Items":
+				newObject = new GlobalItem(id, order);
+				break;
+			case "Entities":
+				newObject = new GlobalEntity(id, order);
+				break;
+			case "Attributes":
+				newObject = new GlobalAttribute(id, order);
+				break;
+			case "Effects":
+				newObject = new GlobalEffect(id, order);
+				break;
+			case "Enchantments":
+				newObject = new GlobalEnchantment(id, order);
+				break;
+			case "NBT Tags":
+				newObject = new GlobalNBTTag(id, order);
+				break;
+			case "Particles":
+				newObject = new GlobalParticle(id, order);
+				break;
+			case "Sounds":
+				newObject = new GlobalSound(id, order);
+				break;
+			default:
+				break;
+		}
+
+		if (newObject != null) currentRegistry.register(newObject);
 		this.reloadObjects();
 	}
 
-	private void reloadObject()
+	public void onTop()
+	{
+		this.move(this.selected(), 0);
+	}
+
+	public void onUp()
+	{
+		this.move(this.selected(), this.selected() - 1);
+	}
+
+	protected void reloadObject()
 	{
 		GlobalObject object = this.objectSelection.getSelectionModel().getSelectedItem();
-		if (object == null) return;
-
-		this.nameLabel.textProperty().setValue(object.id);
-		this.id.setText(object.id);
-		this.order.setText(String.valueOf(object.order));
-
+		this.nameLabel.setText(object == null ? "(No selection)" : object.order + " : " + object.id);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -128,11 +227,33 @@ public class MainTestController implements Initializable
 		ArrayList<GlobalObject> objects = new ArrayList<>();
 		objects.addAll(currentRegistry.list());
 		objects.sort(Comparator.naturalOrder());
-		String search = this.searchbox.getText();
-		objects.removeIf(o -> {
-			return !o.id.contains(search);
-		});
 		this.objectSelection.getItems().setAll(objects);
+	}
+
+	@SuppressWarnings("unchecked")
+	protected void select(String id)
+	{
+		ArrayList<GlobalObject> objects = new ArrayList<>();
+		objects.addAll(currentRegistry.list());
+		objects.sort(Comparator.naturalOrder());
+		String search = this.searchbox.getText();
+		int index = -1;
+		for (int i = 0; i < objects.size(); ++i)
+			if (objects.get(i).id.contains(search))
+			{
+				index = i;
+				break;
+			}
+		if (index != -1)
+		{
+			this.objectSelection.getSelectionModel().select(index);
+			this.objectSelection.scrollTo(Math.max(0, index - 10));
+		}
+	}
+
+	private int selected()
+	{
+		return this.objectSelection.getSelectionModel().getSelectedIndex();
 	}
 
 }
