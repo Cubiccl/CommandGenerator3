@@ -26,4 +26,18 @@ public class VersionTranslator
 	public final HashBiMap<GlobalParticle, Particle> particles = HashBiMap.create();
 	public final HashBiMap<GlobalSound, Sound> sounds = HashBiMap.create();
 
+	public boolean exists(GlobalObject object)
+	{
+		if (object instanceof GlobalAttribute) return this.attributes.containsKey(object);
+		if (object instanceof GlobalBlock) return this.blocks.containsKey(object);
+		if (object instanceof GlobalEffect) return this.effects.containsKey(object);
+		if (object instanceof GlobalEnchantment) return this.enchantments.containsKey(object);
+		if (object instanceof GlobalEntity) return this.entities.containsKey(object);
+		if (object instanceof GlobalItem) return this.items.containsKey(object);
+		if (object instanceof GlobalNBTTag) return this.nbtTags.containsKey(object);
+		if (object instanceof GlobalParticle) return this.particles.containsKey(object);
+		if (object instanceof GlobalSound) return this.sounds.containsKey(object);
+		return false;
+	}
+
 }

@@ -10,11 +10,6 @@ public class GlobalSound extends GlobalObject
 		super("sound." + id, order);
 	}
 
-	public GlobalSound(String id, int order, Version introduced, Version removed)
-	{
-		super("sound." + id, order, introduced, removed);
-	}
-
 	public Sound value(Version version)
 	{
 		return VersionTranslator.translator(version).sounds.get(this);

@@ -10,14 +10,9 @@ public class GlobalEnchantment extends GlobalObject
 		super("enchantment." + id, order);
 	}
 
-	public GlobalEnchantment(String id, int order, Version introduced, Version removed)
-	{
-		super("enchantment." + id, order, introduced, removed);
-	}
-
 	public Enchantment value(Version version)
 	{
 		return VersionTranslator.translator(version).enchantments.get(this);
 	}
-	
+
 }

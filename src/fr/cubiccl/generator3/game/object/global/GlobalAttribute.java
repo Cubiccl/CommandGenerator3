@@ -10,11 +10,6 @@ public class GlobalAttribute extends GlobalObject
 		super("attribute." + id, order);
 	}
 
-	public GlobalAttribute(String id, int order, Version introduced, Version removed)
-	{
-		super("attribute." + id, order, introduced, removed);
-	}
-
 	public Attribute value(Version version)
 	{
 		return VersionTranslator.translator(version).attributes.get(this);

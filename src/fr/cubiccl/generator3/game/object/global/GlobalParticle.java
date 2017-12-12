@@ -10,11 +10,6 @@ public class GlobalParticle extends GlobalObject
 		super("particle." + id, order);
 	}
 
-	public GlobalParticle(String id, int order, Version introduced, Version removed)
-	{
-		super("particle." + id, order, introduced, removed);
-	}
-
 	public Particle value(Version version)
 	{
 		return VersionTranslator.translator(version).particles.get(this);

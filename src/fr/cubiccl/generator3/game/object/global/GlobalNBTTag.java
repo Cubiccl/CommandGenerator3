@@ -10,11 +10,6 @@ public class GlobalNBTTag extends GlobalObject
 		super("nbttag." + id, order);
 	}
 
-	public GlobalNBTTag(String id, int order, Version introduced, Version removed)
-	{
-		super("nbttag." + id, order, introduced, removed);
-	}
-
 	public NBTTag value(Version version)
 	{
 		return VersionTranslator.translator(version).nbtTags.get(this);

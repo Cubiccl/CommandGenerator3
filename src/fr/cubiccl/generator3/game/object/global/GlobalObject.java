@@ -1,6 +1,5 @@
 package fr.cubiccl.generator3.game.object.global;
 
-import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Settings.Version;
 import fr.cubiccl.generator3.util.Text;
 
@@ -13,22 +12,15 @@ public class GlobalObject implements Comparable<GlobalObject>
 
 	/** This Object's ID. */
 	public final String id;
-	public final Version introduced;
+	/** This Object's name. */
 	public final Text name;
+	/** This Object's order relative to the other objects of the same type. Used for sorting. */
 	public int order;
-	public final Version removed;
 
 	public GlobalObject(String id, int order)
 	{
-		this(id, order, Persistance.currentIntroduce, Persistance.currentRemoved);
-	}
-
-	public GlobalObject(String id, int order, Version introduced, Version removed)
-	{
 		this.id = id;
 		this.order = order;
-		this.introduced = introduced;
-		this.removed = removed;
 		this.name = new Text(this.id);
 	}
 
@@ -42,7 +34,7 @@ public class GlobalObject implements Comparable<GlobalObject>
 	public boolean exists(Version version)
 	{
 		if (version == null) return true;
-		return this.introduced.isBefore(version) && this.removed.isAfter(version);
+		return VersionTranslator.translator(version).exists(this);
 	}
 
 	@Override

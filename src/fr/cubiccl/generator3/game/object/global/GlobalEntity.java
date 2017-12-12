@@ -10,11 +10,6 @@ public class GlobalEntity extends GlobalObject
 		super("entity." + id, order);
 	}
 
-	public GlobalEntity(String id, int order, Version introduced, Version removed)
-	{
-		super("entity." + id, order, introduced, removed);
-	}
-
 	public Entity value(Version version)
 	{
 		return VersionTranslator.translator(version).entities.get(this);

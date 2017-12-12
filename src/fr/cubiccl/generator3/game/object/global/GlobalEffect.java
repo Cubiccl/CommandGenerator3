@@ -10,11 +10,6 @@ public class GlobalEffect extends GlobalObject
 		super("effect." + id, order);
 	}
 
-	public GlobalEffect(String id, int order, Version introduced, Version removed)
-	{
-		super("effect." + id, order, introduced, removed);
-	}
-
 	public Effect value(Version version)
 	{
 		return VersionTranslator.translator(version).effects.get(this);

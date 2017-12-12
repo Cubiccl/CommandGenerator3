@@ -10,11 +10,6 @@ public class GlobalItem extends GlobalObject
 		super("item." + id, order);
 	}
 
-	public GlobalItem(String id, int order, Version introduced, Version removed)
-	{
-		super("item." + id, order, introduced, removed);
-	}
-
 	public Item value(Version version)
 	{
 		return VersionTranslator.translator(version).items.get(this);
