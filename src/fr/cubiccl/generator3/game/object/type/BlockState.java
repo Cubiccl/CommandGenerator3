@@ -1,6 +1,5 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import fr.cubiccl.generator3.util.Text;
@@ -65,10 +64,6 @@ public class BlockState implements Comparable<BlockState>
 		return command.substring(0, command.length() - 1);
 	}
 
-	/** The damage values corresponding to this state. */
-	public final int[] customDamageValues;
-	/** The damage value corresponding to this state if {@link BlockState#customDamageValues} isn't <code>null</code>. */
-	public final int damageValue;
 	/** This Block state's ID. */
 	public final String id;
 	/** The type of the value.
@@ -78,67 +73,18 @@ public class BlockState implements Comparable<BlockState>
 	/** The state's values. */
 	public final String[] values;
 
-	public BlockState(String id, byte type, int damageValue, int[] customDamage, String... values)
+	public BlockState(String id, byte type, String... values)
 	{
 		super();
-		this.damageValue = damageValue;
-		this.customDamageValues = customDamage;
 		this.id = id;
 		this.type = type;
 		this.values = values;
 	}
 
-	public BlockState(String id, byte type, int damageValue, String... values)
-	{
-		this(id, type, damageValue, null, values);
-	}
-
-	public BlockState(String id, byte type, int[] customDamage, String... values)
-	{
-		this(id, type, -1, customDamage, values);
-	}
-
-	public BlockState(String id, byte type, String... values)
-	{
-		this(id, type, -1, values);
-	}
-
 	@Override
 	public int compareTo(BlockState o)
 	{
-		return Integer.compare(this.damageValue, o.damageValue);
-	}
-
-	/** @param value - The value of this Block state.
-	 * @return The damage value for the input state value. */
-	public int damageForValue(String value)
-	{
-		if (this.damageValue == -1) return 0;
-		int index = 0;
-		for (int i = 0; i < this.values.length; ++i)
-			if (value.equals(this.values[i]))
-			{
-				index = i;
-				break;
-			}
-		return this.damageValues().get(index);
-	}
-
-	/** @return The list of possible damage values created by this Block state. */
-	public ArrayList<Integer> damageValues()
-	{
-		ArrayList<Integer> d = new ArrayList<Integer>();
-		if (this.isDamageCustom())
-		{
-			for (int i : this.customDamageValues)
-				d.add(i);
-			return d;
-		}
-
-		if (this.damageValue != -1) for (int i = 0; i < this.values.length; ++i)
-			d.add(i * this.damageValue);
-		else d.add(0);
-		return d;
+		return this.id.compareTo(o.id);
 	}
 
 	/** @param value - A Block state value.
@@ -148,18 +94,5 @@ public class BlockState implements Comparable<BlockState>
 		for (String v : this.values)
 			if (v.equals(value)) return true;
 		return false;
-	}
-
-	/** @return <code>true</code> if the damage for this Block state isn't linear. */
-	boolean isDamageCustom()
-	{
-		return this.customDamageValues != null;
-	}
-
-	/** @param damage - A damage value.
-	 * @return The Block state value for the input damage value. */
-	public String valueForDamage(int damage)
-	{
-		return this.values[this.damageValues().indexOf(damage)];
 	}
 }

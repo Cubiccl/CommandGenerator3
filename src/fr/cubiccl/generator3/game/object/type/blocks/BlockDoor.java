@@ -9,6 +9,7 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockDoor extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		return new Text("block." + id + ".x", new Replacement("<door_status>", new Text("utils.door_status." + damage)));
@@ -16,19 +17,12 @@ public class BlockDoor extends Block
 
 	public BlockDoor(int idInt, String idString)
 	{
-		super(idInt, idString, 11);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, -1, "north", "south", "west", "east"));
-		this.addBlockState(new BlockState("half", BlockState.STRING, -1, "lower", "upper"));
-		this.addBlockState(new BlockState("hinge", BlockState.STRING, -1, "left", "right"));
-		this.addBlockState(new BlockState("open", BlockState.BOOLEAN, -1, "false", "true"));
-		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, -1, "false", "true"));
-		this.setTextureType(-8);
-	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
+		super(idString);
+		this.addBlockState(new BlockState("facing", BlockState.STRING, "north", "south", "west", "east"));
+		this.addBlockState(new BlockState("half", BlockState.STRING, "lower", "upper"));
+		this.addBlockState(new BlockState("hinge", BlockState.STRING, "left", "right"));
+		this.addBlockState(new BlockState("open", BlockState.BOOLEAN, "false", "true"));
+		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, "false", "true"));
 	}
 
 }

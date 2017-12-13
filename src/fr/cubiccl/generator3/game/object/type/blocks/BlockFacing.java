@@ -9,23 +9,17 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockFacing extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		if (damage >= 8) return new Text("block." + id + ".8.x", new Replacement("<facing>", new Text("utils.facing." + damage % 8)));
 		return new Text("block." + id + ".x", new Replacement("<facing>", new Text("utils.facing." + damage)));
 	}
 
-	public BlockFacing(int idInt, String idString)
+	public BlockFacing(String id)
 	{
-		super(idInt, idString);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, 1, "down", "up", "north", "south", "west", "east"));
-		this.setTextureType(-8);
-	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
+		super(id);
+		this.addBlockState(new BlockState("facing", BlockState.STRING, "down", "up", "north", "south", "west", "east"));
 	}
 
 }

@@ -9,22 +9,16 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockTerracotta extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		return new Text("block." + id + ".x", new Replacement("<terra>", new Text("utils.terra." + damage)));
 	}
 
-	public BlockTerracotta(int idInt, String idString)
+	public BlockTerracotta(String id)
 	{
-		super(idInt, idString);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, 1, "south", "west", "north", "east"));
-		this.setTextureType(-1);
-	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
+		super(id);
+		this.addBlockState(new BlockState("facing", BlockState.STRING, "south", "west", "north", "east"));
 	}
 
 }

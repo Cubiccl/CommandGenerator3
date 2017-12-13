@@ -9,24 +9,18 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockStairs extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		return new Text("block." + id + ".x", new Replacement("<orientation>", new Text("utils.stairs." + damage)));
 	}
 
-	public BlockStairs(int idInt, String idString)
+	public BlockStairs(String id)
 	{
-		super(idInt, idString);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, 1, "east", "west", "south", "north"));
-		this.addBlockState(new BlockState("half", BlockState.STRING, 4, "bottom", "top"));
-		this.addBlockState(new BlockState("shape", BlockState.STRING, -1, "straight", "inner_left", "inner_right", "outer_left", "outer_right"));
-		this.setTextureType(-4);
-	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
+		super(id);
+		this.addBlockState(new BlockState("facing", BlockState.STRING, "east", "west", "south", "north"));
+		this.addBlockState(new BlockState("half", BlockState.STRING, "bottom", "top"));
+		this.addBlockState(new BlockState("shape", BlockState.STRING, "straight", "inner_left", "inner_right", "outer_left", "outer_right"));
 	}
 
 }

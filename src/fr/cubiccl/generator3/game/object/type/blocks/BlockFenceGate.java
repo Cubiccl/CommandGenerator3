@@ -9,25 +9,19 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockFenceGate extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		return new Text("block." + id + ".x", new Replacement("<gate_status>", new Text("utils.gate_status." + damage)));
 	}
 
-	public BlockFenceGate(int idInt, String idString)
+	public BlockFenceGate(String id)
 	{
-		super(idInt, idString);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, 1, "south", "west", "north", "east"));
-		this.addBlockState(new BlockState("open", BlockState.BOOLEAN, 4, "false", "true"));
-		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, -1, "false", "true"));
-		this.addBlockState(new BlockState("in_wall", BlockState.BOOLEAN, -1, "false", "true"));
-		this.setTextureType(-4);
-	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
+		super(id);
+		this.addBlockState(new BlockState("facing", BlockState.STRING, "south", "west", "north", "east"));
+		this.addBlockState(new BlockState("open", BlockState.BOOLEAN, "false", "true"));
+		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, "false", "true"));
+		this.addBlockState(new BlockState("in_wall", BlockState.BOOLEAN, "false", "true"));
 	}
 
 }

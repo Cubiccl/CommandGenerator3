@@ -27,7 +27,7 @@ public class VersionObjects
 
 	private static void createBlock(Version version, String name, JsonValue value)
 	{
-		Block block = new Block(-1, name);
+		Block block = new Block(name);
 		GlobalBlock global = GlobalRegistry.blocks.find(value.asString());
 		if (global == null) Logger.log("No global block found for id \"" + value.asString() + "\". Could not register block \"" + name + "\" (" + version.name
 				+ ").");
@@ -76,7 +76,7 @@ public class VersionObjects
 
 	private static void createItem(Version version, String name, JsonValue value)
 	{
-		Item item = new Item(-1, name);
+		Item item = new Item(name);
 		GlobalItem global = GlobalRegistry.items.find(value.asString());
 		if (global == null) Logger.log("No global item found for id \"" + value.asString() + "\". Could not register item \"" + name + "\" (" + version.name
 				+ ").");

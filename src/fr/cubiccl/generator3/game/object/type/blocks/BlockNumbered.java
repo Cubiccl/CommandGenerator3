@@ -8,6 +8,7 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockNumbered extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		int actual = damage + 1;
@@ -17,16 +18,9 @@ public class BlockNumbered extends Block
 		return new Text("block." + id + ".x", new Replacement("<count>", Integer.toString(actual)));
 	}
 
-	public BlockNumbered(int idInt, String idString)
+	public BlockNumbered(String id)
 	{
-		super(idInt, idString);
-		this.setTextureType(-1);
-	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
+		super(id);
 	}
 
 }

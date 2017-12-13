@@ -9,24 +9,16 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockFurniture extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		if (damage >= 8) return new Text("block." + id + ".8.x", new Replacement("<facing>", new Text("utils.facing." + damage % 8)));
 		return new Text("block." + id + ".x", new Replacement("<facing>", new Text("utils.facing." + damage)));
 	}
 
-	public BlockFurniture(int idInt, String idString)
+	public BlockFurniture(String id)
 	{
-		super(idInt, idString);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, new int[]
-		{ 2, 3, 4, 5 }, "north", "south", "west", "east"));
-		this.setTextureType(-8);
+		super(id);
+		this.addBlockState(new BlockState("facing", BlockState.STRING, "north", "south", "west", "east"));
 	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
-	}
-
 }

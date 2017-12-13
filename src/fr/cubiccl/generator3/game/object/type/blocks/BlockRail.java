@@ -9,28 +9,18 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockRail extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		return new Text("block." + id + ".x", new Replacement("<shape>", new Text("utils.rail." + damage)));
 	}
 
-	public BlockRail()
+	public BlockRail(String id)
 	{
-		this(-1, null);
-	}
-
-	public BlockRail(int idInt, String idString)
-	{
-		super(idInt, idString);
-		this.addBlockState(new BlockState("shape", BlockState.STRING, 1, "north_south", "east_west", "ascending_east", "ascending_west", "ascending_north",
+		super(id);
+		this.addBlockState(new BlockState("shape", BlockState.STRING, "north_south", "east_west", "ascending_east", "ascending_west", "ascending_north",
 				"ascending_south"));
-		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, 1, "false", "true"));
-	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
+		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, "false", "true"));
 	}
 
 }

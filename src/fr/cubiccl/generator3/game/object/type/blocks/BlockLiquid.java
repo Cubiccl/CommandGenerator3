@@ -9,22 +9,16 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 public class BlockLiquid extends Block
 {
 
+	@Deprecated
 	public static Text getName(String id, int damage)
 	{
 		return new Text("block." + id + ".x", new Replacement("<liquid>", new Text("utils.liquid." + damage)));
 	}
 
-	public BlockLiquid(int idInt, String idString)
+	public BlockLiquid(String id)
 	{
-		super(idInt, idString);
-		this.addBlockState(new BlockState("level", BlockState.STRING, 1, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"));
-		this.setTextureType(-1);
-	}
-
-	@Override
-	public Text name(int damage)
-	{
-		return getName(this.id(), damage);
+		super(id);
+		this.addBlockState(new BlockState("level", BlockState.STRING, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"));
 	}
 
 }
