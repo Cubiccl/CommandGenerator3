@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import fr.cubiccl.generator3.game.object.GlobalRegistry;
 import fr.cubiccl.generator3.game.object.global.*;
+import fr.cubiccl.generator3.test.TestApplication;
 import fr.cubiccl.generator3.util.Lang;
 
 public class MainTestController implements Initializable
@@ -26,6 +27,11 @@ public class MainTestController implements Initializable
 	public ListView<GlobalObject> objectSelection;
 	public TextField searchbox;
 	public Button top, up, down, bottom;
+
+	public void goToVersion()
+	{
+		TestApplication.instance.setScene(TestApplication.VERSION_OBJECTS);
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
@@ -100,7 +106,7 @@ public class MainTestController implements Initializable
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Delete");
 		alert.setHeaderText("");
-		alert.setContentText("Are you sure you want to delete " + object.id + " !?");
+		alert.setContentText("Are you sure you want to delete " + object.name + " !?");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK)

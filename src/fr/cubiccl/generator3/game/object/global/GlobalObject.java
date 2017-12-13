@@ -1,5 +1,6 @@
 package fr.cubiccl.generator3.game.object.global;
 
+import fr.cubiccl.generator3.game.object.type.GameObjectType;
 import fr.cubiccl.generator3.util.Settings.Version;
 import fr.cubiccl.generator3.util.Text;
 
@@ -51,5 +52,7 @@ public abstract class GlobalObject implements Comparable<GlobalObject>
 	{
 		return this.name.toString();
 	}
+
+	public abstract GameObjectType value(Version version);
 
 }

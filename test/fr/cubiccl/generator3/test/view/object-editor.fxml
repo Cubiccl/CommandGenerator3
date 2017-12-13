@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.test.ui.MainTestController">
+<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.test.ui.ObjectEditorController">
    <left>
       <ListView fx:id="modeSelection" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
@@ -29,12 +29,10 @@
             <VBox alignment="CENTER" minWidth="200.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="nameLabel" text="Label" />
-                  <Button fx:id="top" mnemonicParsing="false" onAction="#onTop" text="Top (-∞)" />
-                  <Button mnemonicParsing="false" onAction="#onAbove" text="Above (-10)" />
-                  <Button fx:id="up" mnemonicParsing="false" onAction="#onUp" text="Up (-1)" />
-                  <Button fx:id="down" mnemonicParsing="false" onAction="#onDown" text="Down (+1)" />
-                  <Button mnemonicParsing="false" onAction="#onBelow" text="Below (+10)" />
-                  <Button fx:id="bottom" mnemonicParsing="false" onAction="#onBottom" text="Bottom (+∞)" />
+                  <Button mnemonicParsing="false" onAction="#editGlobalLink" text="Set Global link" />
+                  <Button mnemonicParsing="false" onAction="#editID" text="Set ID" />
+                  <Button fx:id="buttonNumID" mnemonicParsing="false" onAction="#editNumID" text="Set Numeric ID" />
+                  <Button fx:id="buttonMaxLevel" mnemonicParsing="false" onAction="#editMaxLevel" text="Set max level" />
                   <Button mnemonicParsing="false" onAction="#onNew" text="Create New">
                      <VBox.margin>
                         <Insets top="30.0" />
@@ -42,7 +40,8 @@
                   </Button>
                   <Button mnemonicParsing="false" onAction="#onDelete" text="Delete selected" />
                   <Button mnemonicParsing="false" onAction="#reloadLanguage" text="Reload language" />
-                  <Button mnemonicParsing="false" onAction="#goToVersion" text="Go to Version editor" />
+                  <Button mnemonicParsing="false" onAction="#changeVersion" text="Change version" />
+                  <Button mnemonicParsing="false" onAction="#goToGlobal" text="Edit Global objects" />
                </children>
             </VBox>
          </center>

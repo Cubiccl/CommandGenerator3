@@ -1,5 +1,6 @@
 package fr.cubiccl.generator3.game.object.type;
 
+import fr.cubiccl.generator3.game.object.global.GlobalObject;
 import fr.cubiccl.generator3.util.Settings.Version;
 import fr.cubiccl.generator3.util.Text;
 
@@ -7,17 +8,32 @@ import fr.cubiccl.generator3.util.Text;
 public abstract class GameObjectType
 {
 
+	public String id;
 	public final Version version;
 
-	public GameObjectType(Version version)
+	public GameObjectType(String id, Version version)
 	{
+		this.id = id;
 		this.version = version;
 	}
 
-	/** @return This Object type's ID. */
-	public abstract String id();
+	public abstract GlobalObject globalValue();
 
-	/** @return This Object's name. */
-	public abstract Text name();
+	public String idPrefixless()
+	{
+		return this.id.replaceAll("minecraft:", "");
+	}
+
+	public Text name()
+	{
+		GlobalObject global = this.globalValue();
+		return global == null ? null : global.name;
+	}
+
+	@Override
+	public String toString()
+	{
+		return this.name().toString();
+	}
 
 }

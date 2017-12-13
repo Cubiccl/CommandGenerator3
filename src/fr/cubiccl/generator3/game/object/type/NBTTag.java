@@ -98,15 +98,12 @@ public abstract class NBTTag extends GameObjectType
 
 	/** The Object IDs this Tag can be applied to. */
 	public final ArrayList<GameObjectType> applicable;
-	/** This NBT Tag's ID. */
-	public final String id;
 	/** This NBT Tag's type. */
 	public final byte type;
 
 	public NBTTag(String id, byte type, GameObjectType... applicable)
 	{
-		super(Persistance.selectedVersion);
-		this.id = id;
+		super(id, Persistance.selectedVersion);
 		this.type = type;
 		this.applicable = new ArrayList<GameObjectType>(Arrays.asList(applicable));
 	}
@@ -127,7 +124,7 @@ public abstract class NBTTag extends GameObjectType
 		Text t = new Text(d);
 		if (object != null)
 		{
-			String objectSpecific = d + "." + object.id();
+			String objectSpecific = d + "." + object.id;
 			if (Lang.keyExists(objectSpecific)) return new Text(objectSpecific, new Replacement("<o>", object.name()));
 			t.addReplacement("<o>", object.name());
 		}
@@ -140,24 +137,12 @@ public abstract class NBTTag extends GameObjectType
 		if (!(obj instanceof NBTTag)) return false;
 		NBTTag o = (NBTTag) obj;
 
-		return this.type == o.type && this.id().equals(o.id());
+		return this.type == o.type && this.id.equals(o.id);
 	}
 
 	public GlobalNBTTag globalValue()
 	{
 		return VersionTranslator.translator(this.version).nbtTags.inverse().get(this);
-	}
-
-	@Override
-	public String id()
-	{
-		return this.id;
-	}
-
-	@Override
-	public Text name()
-	{
-		return new Text(this.id, false);
 	}
 
 }
