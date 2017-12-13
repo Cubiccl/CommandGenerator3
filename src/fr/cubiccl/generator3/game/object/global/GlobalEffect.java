@@ -10,6 +10,12 @@ public class GlobalEffect extends GlobalObject
 		super("effect." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "effect";
+	}
+
 	public Effect value(Version version)
 	{
 		return VersionTranslator.translator(version).effects.get(this);

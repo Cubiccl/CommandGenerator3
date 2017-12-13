@@ -104,7 +104,7 @@ public class GlobalRegistry<T extends GlobalObject>
 
 	public void register(T object)
 	{
-		this.objects.put(object.id, object);
+		this.objects.put(object.idPrefixless(), object);
 	}
 
 	public int size()

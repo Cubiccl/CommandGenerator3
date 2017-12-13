@@ -189,7 +189,7 @@ public class Settings
 	{
 		try
 		{
-			settings.load(new FileInputStream(new File("settings.txt")));
+			settings.load(new FileInputStream(new File("settings.properties")));
 		} catch (IOException e)
 		{
 			Logger.log("Settings file not found, creating default.");
@@ -205,7 +205,7 @@ public class Settings
 	{
 		try
 		{
-			settings.store(new FileOutputStream(new File("settings.txt")), null);
+			settings.store(new FileOutputStream(new File("settings.properties")), null);
 			Logger.log("Preferences saved.");
 		} catch (IOException e)
 		{

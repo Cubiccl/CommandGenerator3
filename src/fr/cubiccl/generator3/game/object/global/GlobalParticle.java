@@ -10,6 +10,12 @@ public class GlobalParticle extends GlobalObject
 		super("particle." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "particle";
+	}
+
 	public Particle value(Version version)
 	{
 		return VersionTranslator.translator(version).particles.get(this);

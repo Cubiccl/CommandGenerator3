@@ -9,6 +9,7 @@ import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.PrettyPrint;
 
 import fr.cubiccl.generator3.game.object.GlobalRegistry;
+import fr.cubiccl.generator3.game.object.VersionObjects;
 import fr.cubiccl.generator3.game.object.global.GlobalObject;
 import fr.cubiccl.generator3.util.FileUtils;
 import fr.cubiccl.generator3.util.Lang;
@@ -119,6 +120,7 @@ public class Main
 		Settings.loadSettings();
 		Lang.fullReload();
 		GlobalRegistry.loadObjects();
+		VersionObjects.loadObjects();
 		TestApplication.initialize(args);
 	}
 

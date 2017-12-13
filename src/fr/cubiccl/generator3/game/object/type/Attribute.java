@@ -8,7 +8,7 @@ import fr.cubiccl.generator3.util.Text;
 public class Attribute extends GameObjectType
 {
 
-	/** This Achievement's ID. */
+	/** This Attribute's ID. */
 	public final String id;
 
 	public Attribute(String id)

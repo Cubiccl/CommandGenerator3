@@ -10,6 +10,12 @@ public class GlobalItem extends GlobalObject
 		super("item." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "nbttag";
+	}
+
 	public Item value(Version version)
 	{
 		return VersionTranslator.translator(version).items.get(this);

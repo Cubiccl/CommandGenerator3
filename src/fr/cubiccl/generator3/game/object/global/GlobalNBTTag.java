@@ -10,6 +10,12 @@ public class GlobalNBTTag extends GlobalObject
 		super("nbttag." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "nbttag";
+	}
+
 	public NBTTag value(Version version)
 	{
 		return VersionTranslator.translator(version).nbtTags.get(this);

@@ -10,6 +10,12 @@ public class GlobalSound extends GlobalObject
 		super("sound." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "sound";
+	}
+
 	public Sound value(Version version)
 	{
 		return VersionTranslator.translator(version).sounds.get(this);

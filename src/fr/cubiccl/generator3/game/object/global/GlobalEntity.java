@@ -10,6 +10,12 @@ public class GlobalEntity extends GlobalObject
 		super("entity." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "nbttag";
+	}
+
 	public Entity value(Version version)
 	{
 		return VersionTranslator.translator(version).entities.get(this);

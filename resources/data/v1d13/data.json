@@ -306,7 +306,7 @@
 		"nether_bricks": "nether_brick",
 		"nether_brick_fence": "fence_nether_brick",
 		"nether_brick_slab": "slab_nether_brick",
-		"nether_brick_stairs": "stairs_nether_brick",",
+		"nether_brick_stairs": "stairs_nether_brick",
 		"nether_wart": "nether_wart",
 		"nether_wart_block": "block_nether_wart",
 		"netherrack": "netherrack",
@@ -612,32 +612,32 @@
 		"protection": {
 			"global": "protection",
 			"id": 0,
-			"maxlevel": 5
+			"max_level": 5
 		},
 		"fire_protection": {
 			"global": "protection_fire",
 			"id": 1,
-			"maxlevel": 4
+			"max_level": 4
 		},
 		"feather_falling": {
 			"global": "feather_falling",
 			"id": 2,
-			"maxlevel": 4
+			"max_level": 4
 		},
 		"blast_protection": {
 			"global": "protection_blast",
 			"id": 3,
-			"maxlevel": 4
+			"max_level": 4
 		},
 		"projectile_protection": {
 			"global": "protection_projectile",
 			"id": 4,
-			"maxlevel": 4
+			"max_level": 4
 		},
 		"respiration": {
 			"global": "respiration",
 			"id": 5,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"aqua_affinity": {
 			"global": "aqua_affinity",
@@ -646,17 +646,17 @@
 		"thorns": {
 			"global": "thorns",
 			"id": 7,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"depth_strider": {
 			"global": "depth_strider",
 			"id": 8,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"frost_walker": {
 			"global": "frost_walker",
 			"id": 9,
-			"maxlevel": 2
+			"max_level": 2
 		},
 		"binding_curse": {
 			"global": "curse_binding",
@@ -665,42 +665,42 @@
 		"sharpness": {
 			"global": "sharpness",
 			"id": 16,
-			"maxlevel": 5
+			"max_level": 5
 		},
 		"smite": {
 			"global": "smite",
 			"id": 17,
-			"maxlevel": 5
+			"max_level": 5
 		},
 		"bane_of_arthropods": {
 			"global": "bane_of_arthropods",
 			"id": 18,
-			"maxlevel": 5
+			"max_level": 5
 		},
 		"knockback": {
 			"global": "knockback",
 			"id": 19,
-			"maxlevel": 2
+			"max_level": 2
 		},
 		"fire_aspect": {
 			"global": "fire_aspect",
 			"id": 20,
-			"maxlevel": 2
+			"max_level": 2
 		},
 		"looting": {
 			"global": "looting",
 			"id": 21,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"sweeping_edge": {
 			"global": "sweeping_edge",
 			"id": 22,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"efficiency": {
 			"global": "efficiency",
 			"id": 32,
-			"maxlevel": 5
+			"max_level": 5
 		},
 		"silk_touch": {
 			"global": "silk_touch",
@@ -709,22 +709,22 @@
 		"unbreaking": {
 			"global": "unbreaking",
 			"id": 34,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"fortune": {
 			"global": "fortune",
 			"id": 35,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"power": {
 			"global": "power",
 			"id": 48,
-			"maxlevel": 5
+			"max_level": 5
 		},
 		"punch": {
 			"global": "punch",
 			"id": 49,
-			"maxlevel": 2
+			"max_level": 2
 		},
 		"flame": {
 			"global": "flame",
@@ -737,12 +737,12 @@
 		"luck_of_the_sea": {
 			"global": "luck_of_the_sea",
 			"id": 61,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"lure": {
 			"global": "lure",
 			"id": 62,
-			"maxlevel": 3
+			"max_level": 3
 		},
 		"mending": {
 			"global": "mending",
@@ -1289,7 +1289,7 @@
 		"nether_bricks": "nether_brick",
 		"nether_brick_fence": "fence_nether_brick",
 		"nether_brick_slab": "slab_nether_brick",
-		"nether_brick_stairs": "stairs_nether_brick",",
+		"nether_brick_stairs": "stairs_nether_brick",
 		"nether_star": "nether_star",
 		"nether_wart": "nether_wart",
 		"nether_wart_block": "block_nether_wart",
@@ -1510,7 +1510,7 @@
 		"vindication_illager_spawn_egg": "egg_spawn_illager_vindication",
 		"vine": "vines",
 		"water_bucket": "bucket_water",
-		"wet_sponge": "ponge_wet",
+		"wet_sponge": "sponge_wet",
 		"wheat": "wheat",
 		"wheat_seeds": "seeds_wheat",
 		"white_banner": "banner_white",
@@ -1547,7 +1547,7 @@
 		"yellow_stained_glass_pane": "glass_pane_yellow",
 		"yellow_terracotta": "terracotta_yellow",
 		"yellow_wool": "wool_yellow",
-		"zombie_head": "skull_zombie"
+		"zombie_head": "skull_zombie",
 		"zombie_spawn_egg": "egg_spawn_zombie",
 		"zombie_horse_spawn_egg": "egg_spawn_horse_zombie",
 		"zombie_pigman_spawn_egg": "egg_spawn_zombie_pigman",

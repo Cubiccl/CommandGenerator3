@@ -10,6 +10,12 @@ public class GlobalAttribute extends GlobalObject
 		super("attribute." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "attribute";
+	}
+
 	public Attribute value(Version version)
 	{
 		return VersionTranslator.translator(version).attributes.get(this);

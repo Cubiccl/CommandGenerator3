@@ -10,6 +10,12 @@ public class GlobalEnchantment extends GlobalObject
 		super("enchantment." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "enchantment";
+	}
+
 	public Enchantment value(Version version)
 	{
 		return VersionTranslator.translator(version).enchantments.get(this);

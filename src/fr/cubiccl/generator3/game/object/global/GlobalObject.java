@@ -7,7 +7,7 @@ import fr.cubiccl.generator3.util.Text;
  * 
  * @param <O> - The Object Type.
  * @param <I> - The Instance Type. */
-public class GlobalObject implements Comparable<GlobalObject>
+public abstract class GlobalObject implements Comparable<GlobalObject>
 {
 
 	/** This Object's ID. */
@@ -36,6 +36,15 @@ public class GlobalObject implements Comparable<GlobalObject>
 		if (version == null) return true;
 		return VersionTranslator.translator(version).exists(this);
 	}
+
+	/** @return This */
+	public String idPrefixless()
+	{
+		if (this.prefix() == null) return this.id;
+		return this.id.replaceAll(this.prefix() + ".", "");
+	}
+
+	protected abstract String prefix();
 
 	@Override
 	public String toString()

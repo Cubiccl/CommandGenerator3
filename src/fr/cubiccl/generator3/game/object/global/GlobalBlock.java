@@ -10,6 +10,12 @@ public class GlobalBlock extends GlobalObject
 		super("block." + id, order);
 	}
 
+	@Override
+	protected String prefix()
+	{
+		return "block";
+	}
+
 	public Block value(Version version)
 	{
 		return VersionTranslator.translator(version).blocks.get(this);
