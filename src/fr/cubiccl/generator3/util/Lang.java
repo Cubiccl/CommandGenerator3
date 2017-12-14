@@ -3,7 +3,6 @@ package fr.cubiccl.generator3.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Properties;
 
@@ -18,19 +17,11 @@ public class Lang
 	private static final Properties dictionnary = new Properties();
 	/** Contains all translations for the default language (English). */
 	private static final Properties english = new Properties();
+	private static boolean loaded = false;
 	/** Contains the mapping changes. */
 	private static final Properties remapping = new Properties();
-	/** Contains all untranslated IDs. */
-	public static ArrayList<String> untranslated = new ArrayList<String>();
 	/** Contains all instances of Text. Used when changing language, to update their values. */
 	private static HashSet<Text> usedTexts = new HashSet<Text>();
-
-	/** When loading a language, checks if every ID is translated (uses English as reference). */
-	public static void checkTranslations()
-	{
-		for (String id : FileUtils.readFileAsArray("untranslated.txt"))
-			if (!english.containsKey(id) && !untranslated.contains(id)) untranslated.add(id);
-	}
 
 	/** Translates the input ID directly. Does not check for remapping or grammar.
 	 * 
@@ -97,9 +88,8 @@ public class Lang
 		textID = textID.replaceAll("minecraft:", "");
 		while (remapping.containsKey(textID))
 			textID = (String) remapping.get(textID);
-		if (!keyExists(textID) && !untranslated.contains(textID))
+		if (!keyExists(textID) && loaded)
 		{
-			untranslated.add(textID);
 			Logger.log("Couldn't find translation for : " + textID);
 			// new Exception().printStackTrace();
 		}
@@ -128,17 +118,14 @@ public class Lang
 			}
 
 			for (Object textID : english.keySet())
-				if (!dictionnary.containsKey(textID))
-				{
-					Logger.log("Not translated in " + Settings.language().name + " : " + textID);
-					if (Settings.testMode && !untranslated.contains(textID)) untranslated.add((String) textID);
-				}
+				if (!dictionnary.containsKey(textID)) Logger.log("Not translated in " + Settings.language().name + " : " + textID);
 		}
 
 		for (Text text : usedTexts)
 			text.translate();
 
 		if (MainController.instance != null) MainController.instance.mapExplorer.refresh();
+		loaded = true;
 
 	}
 

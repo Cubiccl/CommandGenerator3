@@ -34,9 +34,8 @@ public class Main
 	{
 		TestApplication.instance.primaryStage.close();
 
-		saveGlobal();
-		for (Version v : Version.getVersions())
-			saveVersion(v);
+		// saveGlobal();
+		// for (Version v : Version.getVersions())saveVersion(v);
 	}
 
 	public static void main(String[] args)
@@ -44,7 +43,7 @@ public class Main
 		Settings.loadSettings();
 		Lang.fullReload();
 		GlobalRegistry.loadObjects();
-		VersionObjects.loadObjects();
+		//VersionObjects.loadObjects();
 		TestApplication.initialize(args);
 	}
 

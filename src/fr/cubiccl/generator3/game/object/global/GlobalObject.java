@@ -22,13 +22,18 @@ public abstract class GlobalObject implements Comparable<GlobalObject>
 	{
 		this.id = id;
 		this.order = order;
-		this.name = new Text(this.id);
+		this.name = this.createName();
 	}
 
 	@Override
 	public int compareTo(GlobalObject o)
 	{
 		return Double.compare(this.order, o.order);
+	}
+
+	protected Text createName()
+	{
+		return new Text(this.id);
 	}
 
 	/** @return True if this Object exists in the input Version. */
