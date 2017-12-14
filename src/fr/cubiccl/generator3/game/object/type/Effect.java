@@ -16,6 +16,13 @@ public class Effect extends GameObjectType
 		this.idInt = idNum;
 	}
 
+	@Override
+	public int compareTo(GameObjectType o)
+	{
+		if (!(o instanceof Effect)) return super.compareTo(o);
+		return Integer.compare(this.idInt, ((Effect) o).idInt);
+	}
+
 	public GlobalEffect globalValue()
 	{
 		return VersionTranslator.translator(this.version).effects.inverse().get(this);

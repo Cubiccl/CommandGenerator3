@@ -19,6 +19,13 @@ public class Enchantment extends GameObjectType
 		this.maxLevel = maxLevel;
 	}
 
+	@Override
+	public int compareTo(GameObjectType o)
+	{
+		if (!(o instanceof Enchantment)) return super.compareTo(o);
+		return Integer.compare(this.idInt, ((Enchantment) o).idInt);
+	}
+
 	public GlobalEnchantment globalValue()
 	{
 		return VersionTranslator.translator(this.version).enchantments.inverse().get(this);

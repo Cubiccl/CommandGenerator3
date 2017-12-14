@@ -99,7 +99,7 @@ public class VersionObjects
 	private static void createSound(Version version, String name, JsonValue value)
 	{
 		Sound sound = new Sound(name);
-		GlobalSound global = GlobalRegistry.sounds.find(value.asString());
+		GlobalSound global = GlobalRegistry.sounds.find(name);
 		if (global == null) Logger.log("No global sound found for id \"" + value.asString() + "\". Could not register sound \"" + name + "\" (" + version.name
 				+ ").");
 		else if (global.value(version) != null) Logger.log("Global sound \"" + value.asString() + "\" is already translated. Could not register sound \""
