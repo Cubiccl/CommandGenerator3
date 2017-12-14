@@ -13,7 +13,7 @@ public class GlobalEntity extends GlobalObject
 	@Override
 	protected String prefix()
 	{
-		return "nbttag";
+		return "entity";
 	}
 
 	public Entity value(Version version)

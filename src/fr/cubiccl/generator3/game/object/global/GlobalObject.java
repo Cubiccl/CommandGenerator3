@@ -43,11 +43,10 @@ public abstract class GlobalObject implements Comparable<GlobalObject>
 		return VersionTranslator.translator(version).exists(this);
 	}
 
-	/** @return This */
 	public String idPrefixless()
 	{
 		if (this.prefix() == null) return this.id;
-		return this.id.replaceAll(this.prefix() + ".", "");
+		return this.id.replaceAll(this.prefix() + "\\.", "");
 	}
 
 	protected abstract String prefix();

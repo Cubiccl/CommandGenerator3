@@ -43,7 +43,7 @@ public class Main
 		Settings.loadSettings();
 		Lang.fullReload();
 		GlobalRegistry.loadObjects();
-		//VersionObjects.loadObjects();
+		VersionObjects.loadObjects();
 		TestApplication.initialize(args);
 	}
 
