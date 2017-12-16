@@ -32,7 +32,7 @@ import fr.cubiccl.generator3.util.Settings.Version;
 
 public class ObjectEditorController implements Initializable
 {
-	public Button buttonNumID, buttonMaxLevel;
+	public Button buttonNumID, buttonMaxLevel, buttonBlockStates;
 	@SuppressWarnings("rawtypes")
 	private GlobalRegistry currentRegistry;
 	@SuppressWarnings("rawtypes")
@@ -61,6 +61,12 @@ public class ObjectEditorController implements Initializable
 			TestPersistance.version = v;
 			this.reloadObjects();
 		}
+	}
+
+	public void editBlockStates()
+	{
+		TestPersistance.editedBlock = (Block) this.objectSelection.getSelectionModel().getSelectedItem();
+		TestApplication.instance.setScene(TestApplication.BLOCK_STATES);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -239,6 +245,7 @@ public class ObjectEditorController implements Initializable
 
 		this.buttonNumID.setVisible(false);
 		this.buttonMaxLevel.setVisible(false);
+		this.buttonBlockStates.setVisible(false);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -318,6 +325,7 @@ public class ObjectEditorController implements Initializable
 
 		this.buttonNumID.setVisible(mode.equals("Effects") || mode.equals("Enchantments"));
 		this.buttonMaxLevel.setVisible(mode.equals("Enchantments"));
+		this.buttonBlockStates.setVisible(mode.equals("Blocks"));
 
 		this.modeLabel.textProperty().setValue(mode);
 		this.reloadObjects();

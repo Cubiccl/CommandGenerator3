@@ -13,7 +13,7 @@ import fr.cubiccl.generator3.MainApplication;
 public class TestApplication extends Application
 {
 
-	public static final byte GLOBAL_OBJECTS = 0, VERSION_OBJECTS = 1;
+	public static final byte GLOBAL_OBJECTS = 0, VERSION_OBJECTS = 1, BLOCK_STATES = 2;
 
 	public static TestApplication instance;
 
@@ -29,6 +29,7 @@ public class TestApplication extends Application
 		String scenePath = null;
 		if (sceneID == GLOBAL_OBJECTS) scenePath = "view/main-test.fxml";
 		else if (sceneID == VERSION_OBJECTS) scenePath = "view/object-editor.fxml";
+		else if (sceneID == BLOCK_STATES) scenePath = "view/states-editor.fxml";
 
 		if (scenePath == null) return;
 		try

@@ -33,6 +33,7 @@
                   <Button mnemonicParsing="false" onAction="#editID" text="Set ID" />
                   <Button fx:id="buttonNumID" mnemonicParsing="false" onAction="#editNumID" text="Set Numeric ID" />
                   <Button fx:id="buttonMaxLevel" mnemonicParsing="false" onAction="#editMaxLevel" text="Set max level" />
+                  <Button fx:id="buttonBlockStates" mnemonicParsing="false" onAction="#editBlockStates" text="Edit block states" />
                   <Button mnemonicParsing="false" onAction="#onNew" text="Create New">
                      <VBox.margin>
                         <Insets top="30.0" />
