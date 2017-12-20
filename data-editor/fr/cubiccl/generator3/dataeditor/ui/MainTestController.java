@@ -19,6 +19,8 @@ import fr.cubiccl.generator3.util.Lang;
 
 public class MainTestController implements Initializable
 {
+	public static MainTestController instance;
+
 	@SuppressWarnings("rawtypes")
 	private GlobalRegistry currentRegistry;
 
@@ -36,6 +38,8 @@ public class MainTestController implements Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
+		instance = this;
+
 		this.modeSelection.getItems().addAll("Blocks", "Items", "Entities", "Attributes", "Effects", "Enchantments", "NBT Tags", "Particles", "Sounds");
 		this.modeSelection.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<String>()
 		{
@@ -64,7 +68,7 @@ public class MainTestController implements Initializable
 		});
 	}
 
-	private void move(int from, int to)
+	public void move(int from, int to)
 	{
 		if (this.selected() == -1) return;
 
@@ -75,7 +79,8 @@ public class MainTestController implements Initializable
 			if (negative) --i;
 			else ++i;
 		}
-		this.objectSelection.getItems().get(from).order += to - from;
+		this.objectSelection.getItems().get(from).order += to - from + (negative ? -1 : 1);
+		if (!negative) this.objectSelection.getItems().get(from).order += 1;
 		this.reloadObjects();
 		this.objectSelection.getSelectionModel().select(to);
 		// this.objectSelection.scrollTo(Math.max(0, to - 10));
