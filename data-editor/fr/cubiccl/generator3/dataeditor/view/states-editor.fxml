@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.test.ui.StatesEditorController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.dataeditor.ui.StatesEditorController">
    <center>
       <BorderPane BorderPane.alignment="CENTER">
          <left>
@@ -38,7 +38,7 @@
                      </VBox.margin>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#onReset" text="Reset" />
-                  <Button mnemonicParsing="false" onAction="#removeState" text="Remove state" />
+                  <Button mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
                </children>
             </VBox>
          </center>

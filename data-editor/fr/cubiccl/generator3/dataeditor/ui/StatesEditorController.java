@@ -61,7 +61,7 @@ public class StatesEditorController implements Initializable
 		this.onReset();
 	}
 
-	private void onCancel()
+	public void onCancel()
 	{
 		TestApplication.instance.setScene(TestApplication.VERSION_OBJECTS);
 	}
