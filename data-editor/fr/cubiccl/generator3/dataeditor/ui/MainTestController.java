@@ -53,6 +53,7 @@ public class MainTestController implements Initializable
 				reloadObject();
 			}
 		});
+		this.objectSelection.setCellFactory(param -> new OrderableCell());
 		this.searchbox.textProperty().addListener(new ChangeListener<String>()
 		{
 			@Override
