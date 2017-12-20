@@ -1,4 +1,4 @@
-package fr.cubiccl.generator3.test.ui;
+package fr.cubiccl.generator3.dataeditor.ui;
 
 import java.net.URL;
 import java.util.*;
@@ -8,10 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import fr.cubiccl.generator3.dataeditor.TestApplication;
+import fr.cubiccl.generator3.dataeditor.TestPersistance;
 import fr.cubiccl.generator3.game.object.type.Block;
 import fr.cubiccl.generator3.game.object.type.BlockState;
-import fr.cubiccl.generator3.test.TestApplication;
-import fr.cubiccl.generator3.test.TestPersistance;
 
 public class StatesEditorController implements Initializable
 {
@@ -29,7 +29,6 @@ public class StatesEditorController implements Initializable
 			this.listStates.getItems().add(state);
 			this.listStates.getItems().sort(Comparator.naturalOrder());
 			this.listStates.getSelectionModel().select(state);
-			System.out.println(state);
 		}
 	}
 

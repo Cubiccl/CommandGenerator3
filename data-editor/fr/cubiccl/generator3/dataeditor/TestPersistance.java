@@ -1,4 +1,4 @@
-package fr.cubiccl.generator3.test;
+package fr.cubiccl.generator3.dataeditor;
 
 import fr.cubiccl.generator3.game.object.type.Block;
 import fr.cubiccl.generator3.util.Settings.Version;

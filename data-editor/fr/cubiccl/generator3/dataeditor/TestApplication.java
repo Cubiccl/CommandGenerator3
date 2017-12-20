@@ -1,4 +1,4 @@
-package fr.cubiccl.generator3.test;
+package fr.cubiccl.generator3.dataeditor;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package fr.cubiccl.generator3.test.ui;
+package fr.cubiccl.generator3.dataeditor.ui;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,12 +21,12 @@ import javafx.scene.layout.VBox;
 
 import com.google.common.collect.BiMap;
 
+import fr.cubiccl.generator3.dataeditor.TestApplication;
+import fr.cubiccl.generator3.dataeditor.TestPersistance;
 import fr.cubiccl.generator3.game.object.GlobalRegistry;
 import fr.cubiccl.generator3.game.object.global.GlobalObject;
 import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.game.object.type.*;
-import fr.cubiccl.generator3.test.TestApplication;
-import fr.cubiccl.generator3.test.TestPersistance;
 import fr.cubiccl.generator3.util.Lang;
 import fr.cubiccl.generator3.util.Settings.Version;
 
