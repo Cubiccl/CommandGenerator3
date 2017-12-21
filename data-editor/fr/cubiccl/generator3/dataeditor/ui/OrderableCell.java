@@ -1,5 +1,7 @@
 package fr.cubiccl.generator3.dataeditor.ui;
 
+import java.util.Comparator;
+
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.input.ClipboardContent;
@@ -63,14 +65,12 @@ public class OrderableCell extends ListCell<GlobalObject>
 					GlobalObject dragged = items.get(draggedIdx);
 					GlobalObject thisObject = items.get(thisIdx);
 
-					items.set(draggedIdx, thisObject);
-					items.set(thisIdx, dragged);
-
 					int draggedOrder = dragged.order;
 					int thisOrder = thisObject.order;
 					dragged.order = thisOrder;
 					thisObject.order = draggedOrder;
 
+					getListView().getItems().sort(Comparator.naturalOrder());
 					getListView().getSelectionModel().select(thisIdx);
 
 					success = true;

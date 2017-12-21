@@ -79,8 +79,8 @@ public class MainTestController implements Initializable
 			if (negative) --i;
 			else ++i;
 		}
-		this.objectSelection.getItems().get(from).order += to - from + (negative ? -1 : 1);
-		if (!negative) this.objectSelection.getItems().get(from).order += 1;
+		this.objectSelection.getItems().get(from).order += to - from;
+		//if (!negative) this.objectSelection.getItems().get(from).order += 1;
 		this.reloadObjects();
 		this.objectSelection.getSelectionModel().select(to);
 		// this.objectSelection.scrollTo(Math.max(0, to - 10));

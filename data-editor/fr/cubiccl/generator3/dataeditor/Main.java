@@ -10,7 +10,7 @@ import com.eclipsesource.json.PrettyPrint;
 
 import fr.cubiccl.generator3.game.object.GlobalRegistry;
 import fr.cubiccl.generator3.game.object.VersionObjects;
-import fr.cubiccl.generator3.game.object.global.GlobalObject;
+import fr.cubiccl.generator3.game.object.global.*;
 import fr.cubiccl.generator3.game.object.type.Effect;
 import fr.cubiccl.generator3.game.object.type.Enchantment;
 import fr.cubiccl.generator3.game.object.type.GameObjectType;
