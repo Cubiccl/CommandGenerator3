@@ -4,11 +4,14 @@ import java.util.Comparator;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import fr.cubiccl.generator3.game.object.global.GlobalObject;
+import fr.cubiccl.generator3.game.object.global.TexturedObject;
 
 public class OrderableCell extends ListCell<GlobalObject>
 {
@@ -24,6 +27,11 @@ public class OrderableCell extends ListCell<GlobalObject>
 			Dragboard dragboard = startDragAndDrop(TransferMode.MOVE);
 			ClipboardContent content = new ClipboardContent();
 			content.putString(event.getButton().name().charAt(0) + Integer.toString(getIndex()));
+			if (getItem() instanceof TexturedObject)
+			{
+				Image image = ((TexturedObject) getItem()).texture();
+				if (image != null) dragboard.setDragView(image);
+			}
 			dragboard.setContent(content);
 
 			event.consume();
@@ -43,7 +51,8 @@ public class OrderableCell extends ListCell<GlobalObject>
 		});
 
 		setOnDragExited(event -> {
-			if (event.getGestureSource() != thisCell && event.getDragboard().hasString()) {
+			if (event.getGestureSource() != thisCell && event.getDragboard().hasString())
+			{
 				if (event.getDragboard().getString().charAt(0) == 'S') setOpacity(1);
 				else setStyle(defaultStyle);
 			}
@@ -89,5 +98,16 @@ public class OrderableCell extends ListCell<GlobalObject>
 	{
 		super.updateItem(item, empty);
 		this.setText(empty || item == null ? "" : item.toString());
+		if (item instanceof TexturedObject)
+		{
+			Image image = ((TexturedObject) item).texture();
+			if (image != null)
+			{
+				ImageView iv = new ImageView(image);
+				iv.setFitHeight(24);
+				iv.setFitWidth(24);
+				this.setGraphic(iv);
+			} else this.setGraphic(null);
+		} else this.setGraphic(null);
 	}
 }

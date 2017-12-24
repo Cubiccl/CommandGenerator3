@@ -1,9 +1,11 @@
 package fr.cubiccl.generator3.game.object.global;
 
+import javafx.scene.image.Image;
 import fr.cubiccl.generator3.game.object.type.Entity;
 import fr.cubiccl.generator3.util.Settings.Version;
+import fr.cubiccl.generator3.util.Textures;
 
-public class GlobalEntity extends GlobalObject
+public class GlobalEntity extends GlobalObject implements TexturedObject
 {
 	public GlobalEntity(String id, int order)
 	{
@@ -16,6 +18,13 @@ public class GlobalEntity extends GlobalObject
 		return "entity";
 	}
 
+	@Override
+	public Image texture()
+	{
+		return Textures.getTexture(this.id);
+	}
+
+	@Override
 	public Entity value(Version version)
 	{
 		return VersionTranslator.translator(version).entities.get(this);

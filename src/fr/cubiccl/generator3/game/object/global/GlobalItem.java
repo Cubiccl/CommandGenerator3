@@ -1,11 +1,13 @@
 package fr.cubiccl.generator3.game.object.global;
 
+import javafx.scene.image.Image;
 import fr.cubiccl.generator3.game.object.type.Item;
 import fr.cubiccl.generator3.util.Lang;
 import fr.cubiccl.generator3.util.Settings.Version;
 import fr.cubiccl.generator3.util.Text;
+import fr.cubiccl.generator3.util.Textures;
 
-public class GlobalItem extends GlobalObject
+public class GlobalItem extends GlobalObject implements TexturedObject
 {
 	public GlobalItem(String id, int order)
 	{
@@ -26,6 +28,13 @@ public class GlobalItem extends GlobalObject
 		return "item";
 	}
 
+	@Override
+	public Image texture()
+	{
+		return Textures.getTexture(this.id);
+	}
+
+	@Override
 	public Item value(Version version)
 	{
 		return VersionTranslator.translator(version).items.get(this);

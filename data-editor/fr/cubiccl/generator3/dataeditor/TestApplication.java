@@ -54,7 +54,7 @@ public class TestApplication extends Application
 			Main.exit();
 		});
 
-		stage.getIcons().add(new Image(MainApplication.class.getResourceAsStream("/textures/blocks/command_block.png")));
+		stage.getIcons().add(new Image(MainApplication.class.getResourceAsStream("/textures/block/command_block.png")));
 		stage.show();
 		stage.titleProperty().setValue("Generator3 Testing");
 		this.setScene(GLOBAL_OBJECTS);

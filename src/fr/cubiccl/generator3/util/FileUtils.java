@@ -1,13 +1,12 @@
 package fr.cubiccl.generator3.util;
 
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
+import javafx.scene.image.Image;
 
 public class FileUtils
 {
@@ -106,15 +105,15 @@ public class FileUtils
 	 * 
 	 * @param path - The path to the file.
 	 * @return The read Image. */
-	public static BufferedImage readImage(String path)
+	public static Image readImage(String path)
 	{
 		if (path != null) try
 		{
-			return ImageIO.read(FileUtils.class.getResourceAsStream(path + ".png"));
-		} catch (IOException e)
+			return new Image(FileUtils.class.getResourceAsStream(path + ".png"));
+		} catch (Exception e)
 		{
 			Logger.log("Couldn't find Image: " + path);
-			e.printStackTrace();
+			// e.printStackTrace();
 			return null;
 		}
 		return null;
