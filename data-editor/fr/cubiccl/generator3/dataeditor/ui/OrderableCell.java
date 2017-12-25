@@ -82,8 +82,8 @@ public class OrderableCell extends ListCell<GlobalObject>
 					getListView().getItems().sort(Comparator.naturalOrder());
 					getListView().getSelectionModel().select(thisIdx);
 
-					success = true;
 				} else MainTestController.instance.move(draggedIdx, thisIdx - (draggedIdx > thisIdx ? 0 : 1));
+				success = true;
 			}
 			event.setDropCompleted(success);
 

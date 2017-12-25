@@ -17,12 +17,12 @@ public class Textures
 	{
 		paths.clear();
 		textures.clear();
-		String[] pathArray = FileUtils.readFileAsArray("textures.txt");
+		String[] pathArray = FileUtils.readFileAsArray("/textures/texture-remapping.txt");
 		for (String path : pathArray)
 		{
 			String[] data = path.split("=");
 			for (int i = 0; i < data.length - 1; ++i)
-				paths.put(data[i], "textures/" + data[data.length - 1]);
+				paths.put(data[i], "/textures/" + data[data.length - 1]);
 		}
 	}
 
@@ -45,7 +45,7 @@ public class Textures
 			loadTexture(path);
 			// if (textures.get(path) == null) Logger.log("Couldn't find texture: " + textureID);
 		}
-		if (textures.get(path) == null) return null;
+
 		return textures.get(path);
 	}
 

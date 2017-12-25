@@ -14,9 +14,7 @@ import fr.cubiccl.generator3.game.object.global.*;
 import fr.cubiccl.generator3.game.object.type.Effect;
 import fr.cubiccl.generator3.game.object.type.Enchantment;
 import fr.cubiccl.generator3.game.object.type.GameObjectType;
-import fr.cubiccl.generator3.util.FileUtils;
-import fr.cubiccl.generator3.util.Lang;
-import fr.cubiccl.generator3.util.Settings;
+import fr.cubiccl.generator3.util.*;
 import fr.cubiccl.generator3.util.Settings.Version;
 
 public class Main
@@ -43,6 +41,7 @@ public class Main
 	{
 		Settings.loadSettings();
 		Lang.fullReload();
+		Textures.createTextures();
 		GlobalRegistry.loadObjects();
 		VersionObjects.loadObjects();
 		TestApplication.initialize(args);
