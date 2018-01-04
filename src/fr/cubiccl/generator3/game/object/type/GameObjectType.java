@@ -20,7 +20,7 @@ public abstract class GameObjectType implements Comparable<GameObjectType>
 	@Override
 	public int compareTo(GameObjectType o)
 	{
-		return this.id.toLowerCase().compareTo(o.id.toLowerCase());
+		return Integer.compare(this.globalValue().order, o.globalValue().order);
 	}
 
 	public abstract GlobalObject globalValue();
