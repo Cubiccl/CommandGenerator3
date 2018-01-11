@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
+import com.eclipsesource.json.PrettyPrint;
+
 public class FileUtils
 {
 
@@ -117,6 +122,37 @@ public class FileUtils
 			return null;
 		}
 		return null;
+	}
+
+	public static JsonObject readJsonFile(File file)
+	{
+		try
+		{
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			JsonObject o = Json.parse(br).asObject();
+			br.close();
+			return o;
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		return Json.object();
+	}
+
+	public static JsonObject readJsonFile(String path)
+	{
+		URL url = FileUtils.class.getResource(path);
+		if (url != null)
+		{
+			File file = new File(url.getPath());
+			return readJsonFile(file);
+		}
+		return Json.object();
+	}
+
+	public static void writeJsonToFile(JsonValue json, File file)
+	{
+		writeToFile(json.toString(PrettyPrint.indentWithTabs()), file);
 	}
 
 	/** Saves a single line in the input file.
