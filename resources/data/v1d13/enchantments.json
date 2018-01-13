@@ -1,0 +1,115 @@
+{
+	"protection": {
+		"id": 0,
+		"max_level": 5
+	},
+	"fire_protection": {
+		"id": 1,
+		"max_level": 4
+	},
+	"feather_falling": {
+		"id": 2,
+		"max_level": 4
+	},
+	"blast_protection": {
+		"id": 3,
+		"max_level": 4
+	},
+	"projectile_protection": {
+		"id": 4,
+		"max_level": 4
+	},
+	"respiration": {
+		"id": 5,
+		"max_level": 3
+	},
+	"aqua_affinity": {
+		"id": 6
+	},
+	"thorns": {
+		"id": 7,
+		"max_level": 3
+	},
+	"depth_strider": {
+		"id": 8,
+		"max_level": 3
+	},
+	"frost_walker": {
+		"id": 9,
+		"max_level": 2
+	},
+	"binding_curse": {
+		"id": 10
+	},
+	"sharpness": {
+		"id": 16,
+		"max_level": 5
+	},
+	"smite": {
+		"id": 17,
+		"max_level": 5
+	},
+	"bane_of_arthropods": {
+		"id": 18,
+		"max_level": 5
+	},
+	"knockback": {
+		"id": 19,
+		"max_level": 2
+	},
+	"fire_aspect": {
+		"id": 20,
+		"max_level": 2
+	},
+	"looting": {
+		"id": 21,
+		"max_level": 3
+	},
+	"sweeping_edge": {
+		"id": 22,
+		"max_level": 3
+	},
+	"efficiency": {
+		"id": 32,
+		"max_level": 5
+	},
+	"silk_touch": {
+		"id": 33
+	},
+	"unbreaking": {
+		"id": 34,
+		"max_level": 3
+	},
+	"fortune": {
+		"id": 35,
+		"max_level": 3
+	},
+	"power": {
+		"id": 48,
+		"max_level": 5
+	},
+	"punch": {
+		"id": 49,
+		"max_level": 2
+	},
+	"flame": {
+		"id": 50
+	},
+	"infinity": {
+		"id": 51
+	},
+	"luck_of_the_sea": {
+		"id": 61,
+		"max_level": 3
+	},
+	"lure": {
+		"id": 62,
+		"max_level": 3
+	},
+	"mending": {
+		"id": 70
+	},
+	"vanishing_curse": {
+		"id": 71
+	}
+}

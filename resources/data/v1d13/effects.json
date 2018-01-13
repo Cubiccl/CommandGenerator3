@@ -1,0 +1,110 @@
+{
+	"speed": {
+		"global": "speed",
+		"id": 1
+	},
+	"slowness": {
+		"global": "slowness",
+		"id": 2
+	},
+	"haste": {
+		"global": "haste",
+		"id": 3
+	},
+	"mining_fatigue": {
+		"global": "mining_fatigue",
+		"id": 4
+	},
+	"strength": {
+		"global": "strength",
+		"id": 5
+	},
+	"instant_health": {
+		"global": "instant_health",
+		"id": 6
+	},
+	"instant_damage": {
+		"global": "instant_damage",
+		"id": 7
+	},
+	"jump_boost": {
+		"global": "jump_boost",
+		"id": 8
+	},
+	"nausea": {
+		"global": "nausea",
+		"id": 9
+	},
+	"regeneration": {
+		"global": "regeneration",
+		"id": 10
+	},
+	"resistance": {
+		"global": "resistance",
+		"id": 11
+	},
+	"fire_resistance": {
+		"global": "resistance_fire",
+		"id": 12
+	},
+	"water_breathing": {
+		"global": "water_breathing",
+		"id": 13
+	},
+	"invisibility": {
+		"global": "invisibility",
+		"id": 14
+	},
+	"blindness": {
+		"global": "blindness",
+		"id": 15
+	},
+	"night_vision": {
+		"global": "night_vision",
+		"id": 16
+	},
+	"hunger": {
+		"global": "hunger",
+		"id": 17
+	},
+	"weakness": {
+		"global": "weakness",
+		"id": 18
+	},
+	"poison": {
+		"global": "poison",
+		"id": 19
+	},
+	"wither": {
+		"global": "wither",
+		"id": 20
+	},
+	"health_boost": {
+		"global": "health_boost",
+		"id": 21
+	},
+	"absorption": {
+		"global": "absorption",
+		"id": 22
+	},
+	"saturation": {
+		"global": "saturation",
+		"id": 23
+	},
+	"glowing": {
+		"global": "glowing",
+		"id": 24
+	},
+	"levitation": {
+		"global": "levitation",
+		"id": 25
+	},
+	"luck": {
+		"global": "luck",
+		"id": 26
+	},
+	"unluck": {
+		"global": "luck_inverted",
+		"id": 27
+	}
+}
