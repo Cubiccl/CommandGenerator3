@@ -1,8 +1,12 @@
 package fr.cubiccl.generator3.util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Properties;
 
+import fr.cubiccl.generator3.controller.main.MainController;
 import fr.cubiccl.generator3.util.Settings.Language;
 
 /** Manages translations. */
@@ -10,20 +14,14 @@ public class Lang
 {
 
 	/** Contains all translations for the current language. */
-	private static final HashMap<String, String> dictionnary = new HashMap<String, String>();
+	private static final Properties dictionnary = new Properties();
 	/** Contains all translations for the default language (English). */
-	private static final HashMap<String, String> english = new HashMap<String, String>();
+	private static final Properties english = new Properties();
+	private static boolean loaded = false;
 	/** Contains the mapping changes. */
-	private static final HashMap<String, String> remapping = new HashMap<String, String>();
-	/** Contains all untranslated IDs. */
-	public static ArrayList<String> untranslated = new ArrayList<String>();
-
-	/** When loading a language, checks if every ID is translated (uses English as reference). */
-	public static void checkTranslations()
-	{
-		for (String id : FileUtils.readFileAsArray("untranslated.txt"))
-			if (!english.containsKey(id) && !untranslated.contains(id)) untranslated.add(id);
-	}
+	private static final Properties remapping = new Properties();
+	/** Contains all instances of Text. Used when changing language, to update their values. */
+	private static HashSet<Text> usedTexts = new HashSet<Text>();
 
 	/** Translates the input ID directly. Does not check for remapping or grammar.
 	 * 
@@ -31,9 +29,16 @@ public class Lang
 	 * @return The translation of the input ID. Returns the ID itself if it's not translated. */
 	private static String doTranslate(String textID)
 	{
-		if (Settings.language() != Language.ENGLISH && dictionnary.containsKey(textID)) return dictionnary.get(textID);
-		if (english.containsKey(textID)) return english.get(textID);
+		if (Settings.language() != Language.ENGLISH && dictionnary.containsKey(textID)) return (String) dictionnary.get(textID);
+		if (english.containsKey(textID)) return (String) english.get(textID);
 		return textID;
+	}
+
+	public static void fullReload()
+	{
+		loadEnglish();
+		loadRemapping();
+		updateLang();
 	}
 
 	/** @return True if the input <code>textID</code> exists in the language files. */
@@ -46,22 +51,32 @@ public class Lang
 	private static void loadEnglish()
 	{
 		english.clear();
-		String[] translations = FileUtils.readFileAsArray("lang/" + Language.ENGLISH.id + ".txt");
-		for (String translation : translations)
-			if (translation.contains("=")) english.put(translation.substring(0, translation.indexOf('=')), translation.substring(translation.indexOf('=') + 1));
+		try
+		{
+			english.load(new FileInputStream(new File(Lang.class.getResource("/lang/" + Language.ENGLISH.id + ".properties").getPath())));
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/** Loads the remapping. */
 	private static void loadRemapping()
 	{
 		remapping.clear();
-		String[] translations = FileUtils.readFileAsArray("lang/remapping.txt");
-		for (String path : translations)
+		try
 		{
-			String[] data = path.split("=");
-			for (int i = 0; i < data.length - 1; ++i)
-				remapping.put(data[i], data[data.length - 1]);
+			remapping.load(new FileInputStream(new File(Lang.class.getResource("/lang/remapping.properties").getPath())));
+		} catch (IOException e)
+		{
+			e.printStackTrace();
 		}
+	}
+
+	public static void register(Text text)
+	{
+		usedTexts.add(text);
+		text.translate();
 	}
 
 	/** Translates a text ID. Checks for remapping and logs if it's not translated.
@@ -72,39 +87,49 @@ public class Lang
 	{
 		textID = textID.replaceAll("minecraft:", "");
 		while (remapping.containsKey(textID))
-			textID = remapping.get(textID);
-		if (!keyExists(textID) && !untranslated.contains(textID))
+			textID = (String) remapping.get(textID);
+		if (!keyExists(textID) && loaded)
 		{
-			untranslated.add(textID);
 			Logger.log("Couldn't find translation for : " + textID);
 			// new Exception().printStackTrace();
 		}
 		return doTranslate(textID);
 	}
 
+	public static void unregister(Text text)
+	{
+		usedTexts.remove(text);
+	}
+
 	/** Updates the languages. Checks for the current languages and reads the files. */
 	public static void updateLang()
 	{
-		if (english.size() == 0) loadEnglish();
-		if (remapping.size() == 0) loadRemapping();
 		dictionnary.clear();
 
-		if (Settings.language() == Language.ENGLISH) return;
-		String[] translations = FileUtils.readFileAsArray("lang/" + Settings.language().id + ".txt");
-		for (String translation : translations)
+		if (Settings.language() != Language.ENGLISH)
 		{
-			if (translation.contains("=")) dictionnary.put(translation.substring(0, translation.indexOf('=')),
-					translation.substring(translation.indexOf('=') + 1));
+			try
+			{
+				dictionnary.load(new FileInputStream(new File(Lang.class.getResource("/lang/" + Settings.language().id + ".properties").getPath())));
+			} catch (IOException e)
+			{
+				Logger.log("Couldn't find language file for: " + Settings.language());
+				e.printStackTrace();
+			}
+
+			for (Object textID : english.keySet())
+				if (!dictionnary.containsKey(textID)) Logger.log("Not translated in " + Settings.language().name + " : " + textID);
 		}
 
-		for (String textID : english.keySet())
-			if (!dictionnary.containsKey(textID))
-			{
-				Logger.log("Not translated in " + Settings.language().name + " : " + textID);
-				if (Settings.testMode && !untranslated.contains(textID)) untranslated.add(textID);
-			}
+		for (Text text : usedTexts)
+			text.translate();
+
+		if (MainController.instance != null) MainController.instance.mapExplorer.refresh();
+		loaded = true;
+
 	}
 
 	private Lang()
 	{}
+
 }

@@ -1,0 +1,22 @@
+{
+	"id": 3,
+	"states": {
+		"variant": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"dirt",
+				"coarse_dirt",
+				"podzol"
+			]
+		},
+		"snowy": {
+			"type": 1,
+			"damage": 1,
+			"values": [
+				"true",
+				"false"
+			]
+		}
+	}
+}

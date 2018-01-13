@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="441.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.controller.main.MainController">
+   <top>
+    <MenuBar BorderPane.alignment="CENTER">
+      <menus>
+        <Menu fx:id="menuFile" text="File">
+          <items>
+            <MenuItem fx:id="menuFileNew" mnemonicParsing="false" text="New..." />
+            <MenuItem fx:id="menuFileOpen" mnemonicParsing="false" text="Open..." />
+            <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="menuFilePreferences" mnemonicParsing="false" onAction="#onMenuPreferences" text="Preferences..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem fx:id="menuFileExit" onAction="#onMenuQuit" text="Exit" />
+          </items>
+        </Menu>
+        <Menu fx:id="menuEdit" text="Edit" />
+        <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help" />
+      </menus>
+    </MenuBar>
+   </top>
+   <left>
+      <VBox styleClass="panel" stylesheets="@generator.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="explorerLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Map explorer" textAlignment="CENTER" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <TreeView fx:id="mapExplorer" prefHeight="200.0" prefWidth="200.0" showRoot="false" VBox.vgrow="ALWAYS" />
+         </children>
+         <opaqueInsets>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+   <bottom>
+      <Pane styleClass="panel" stylesheets="@generator.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label />
+         </children>
+      </Pane>
+   </bottom>
+   <center>
+      <TabPane fx:id="editorPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

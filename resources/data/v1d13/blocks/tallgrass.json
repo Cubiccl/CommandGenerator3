@@ -1,0 +1,14 @@
+{
+	"id": 31,
+	"states": {
+		"type": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"dead_bush",
+				"tall_grass",
+				"fern"
+			]
+		}
+	}
+}

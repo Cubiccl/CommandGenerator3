@@ -1,38 +1,31 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import java.awt.image.BufferedImage;
-
-import fr.cubiccl.generator3.util.Text;
-import fr.cubiccl.generator3.util.Textures;
+import fr.cubiccl.generator3.game.object.global.GlobalEffect;
+import fr.cubiccl.generator3.game.object.global.VersionTranslator;
+import fr.cubiccl.generator3.util.Persistance;
 
 public class Effect extends GameObjectType
 {
 
 	/** This Effect's numerical ID. */
-	public final int idInt;
-	/** This Effect's string ID. */
-	public final String idString;
+	public int idInt;
 
 	public Effect(int idNum, String idString)
 	{
-		this.idString = "minecraft:" + idString;
+		super("minecraft:" + idString, Persistance.selectedVersion);
 		this.idInt = idNum;
 	}
 
 	@Override
-	public String id()
+	public int compareTo(GameObjectType o)
 	{
-		return this.idString;
+		if (!(o instanceof Effect)) return super.compareTo(o);
+		return Integer.compare(this.idInt, ((Effect) o).idInt);
 	}
 
-	public Text name()
+	public GlobalEffect globalValue()
 	{
-		return new Text("effect." + this.idString);
-	}
-
-	public BufferedImage texture()
-	{
-		return Textures.getTexture("effect." + this.idString);
+		return VersionTranslator.translator(this.version).effects.inverse().get(this);
 	}
 
 }

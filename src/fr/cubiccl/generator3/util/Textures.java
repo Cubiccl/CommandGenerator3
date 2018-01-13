@@ -1,7 +1,8 @@
 package fr.cubiccl.generator3.util;
 
-import java.awt.image.BufferedImage;
 import java.util.HashMap;
+
+import javafx.scene.image.Image;
 
 /** Manages Images. */
 public class Textures
@@ -9,25 +10,25 @@ public class Textures
 	/** Maps texture IDs to file paths. */
 	private static final HashMap<String, String> paths = new HashMap<String, String>();
 	/** Maps file paths to the loaded Buffered Images. */
-	private static final HashMap<String, BufferedImage> textures = new HashMap<String, BufferedImage>();
+	private static final HashMap<String, Image> textures = new HashMap<String, Image>();
 
 	/** Reloads the textures and remaps the IDs to the paths. */
 	public static void createTextures()
 	{
 		paths.clear();
 		textures.clear();
-		String[] pathArray = FileUtils.readFileAsArray("textures.txt");
+		String[] pathArray = FileUtils.readFileAsArray("/textures/texture-remapping.txt");
 		for (String path : pathArray)
 		{
 			String[] data = path.split("=");
 			for (int i = 0; i < data.length - 1; ++i)
-				paths.put(data[i], "textures/" + data[data.length - 1]);
+				paths.put(data[i], "/textures/" + data[data.length - 1]);
 		}
 	}
 
 	/** @param textureID - The Identifier of the Texture.
-	 * @return The corresponding BufferedImage. Returns null if <code>textureID</code> is not recognized or the image File can't be found. */
-	public static BufferedImage getTexture(String textureID)
+	 * @return The corresponding Image. Returns null if <code>textureID</code> is not recognized or the image File can't be found. */
+	public static Image getTexture(String textureID)
 	{
 		textureID = textureID.replaceAll("minecraft:", "");
 		String path = paths.get(textureID);
@@ -42,9 +43,9 @@ public class Textures
 		if (!textures.containsKey(path))
 		{
 			loadTexture(path);
-			if (textures.get(path) == null) Logger.log("Couldn't find texture: " + textureID);
+			// if (textures.get(path) == null) Logger.log("Couldn't find texture: " + textureID);
 		}
-		if (textures.get(path) == null) return null;
+
 		return textures.get(path);
 	}
 
@@ -62,9 +63,9 @@ public class Textures
 	 * @return The path to the Image File. */
 	private static String locateTexture(String textureID)
 	{
-		String defaultPath = "textures/" + textureID.replaceAll("\\.", "/");
-		if (!textureID.startsWith("item.") || FileUtils.fileExists(defaultPath + ".png")) return defaultPath;
-		return "textures/block/" + textureID.replaceAll("\\.", "/").substring("item/".length());
+		String defaultPath = "/textures/" + textureID.replaceAll("\\.", "/");
+		if (!textureID.startsWith("item.") || Textures.class.getResource(defaultPath + ".png") != null) return defaultPath;
+		return "/textures/block/" + textureID.replaceAll("\\.", "/").substring("item/".length());
 	}
 
 	private Textures()

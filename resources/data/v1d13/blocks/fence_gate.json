@@ -1,0 +1,41 @@
+{
+	"id": 107,
+	"texture": -4,
+	"class": "FenceGate",
+	"states": {
+		"in_wall": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"powered": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"facing": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"south",
+				"west",
+				"north",
+				"east"
+			]
+		},
+		"open": {
+			"type": 1,
+			"damage": 4,
+			"values": [
+				"true",
+				"false"
+			]
+		}
+	}
+}

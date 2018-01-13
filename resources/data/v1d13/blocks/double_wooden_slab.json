@@ -1,0 +1,19 @@
+{
+	"id": 125,
+	"texture": 8,
+	"class": "Wood",
+	"states": {
+		"type": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"oak",
+				"spruce",
+				"birch",
+				"jungle",
+				"acacia",
+				"dark_oak"
+			]
+		}
+	}
+}

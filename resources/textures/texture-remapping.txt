@@ -1,0 +1,27 @@
+// This file specifies irregular texture file paths.
+block.cobblestone_silverfish=item.cobblestone_silverfish=block/cobblestone
+block.block_quartz_smooth=item.block_quartz_smooth=block/block_quartz
+block.lava_flowing=block/lava
+block.ore_redstone_lit=block/ore_redstone
+block.stone_silverfish=item.stone_silverfish=block/stone_brick
+block.stone_brick_silverfish=item.stone_brick_silverfish=block/stone_brick
+block.stone_brick_chiseled_silverfish=item.stone_brick_chiseled_silverfish=block/stone_brick_chiseled
+block.stone_brick_cracked_silverfish=item.stone_brick_cracked_silverfish=block/stone_brick_cracked
+block.stone_brick_mossy_silverfish=item.stone_brick_mossy_silverfish=block/stone_brick_mossy
+block.stone_brick_silverfish=item.stone_brick_silverfish=block/stone_brick
+block.slab_double_acacia=block/planks_acacia
+block.slab_double_birch=block/planks_birch
+block.slab_double_cobblestone=block/cobblestone
+block.slab_double_dark_oak=block/planks_dark_oak
+block.slab_double_brick=block/brick
+block.slab_double_nether_brick=block/nether_brick
+block.slab_double_jungle=block/planks_jungle
+block.slab_double_oak=block/planks_oak
+block.slab_double_purpur=block/purpur
+block.slab_double_quartz=block/block_quartz
+block.slab_double_sandstone=block/sandstone
+block.slab_double_sandstone_red=block/sandstone_red
+block.slab_double_spruce=block/planks_spruce
+block.slab_double_stone_brick=block/stone_brick
+block.slab_double_wood_old=block/planks_oak
+block.water_flowing=block/water

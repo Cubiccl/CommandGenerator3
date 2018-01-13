@@ -1,0 +1,14 @@
+{
+	"id": 168,
+	"states": {
+		"variant": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"prismarine",
+				"prismarine_bricks",
+				"dark_prismarine"
+			]
+		}
+	}
+}

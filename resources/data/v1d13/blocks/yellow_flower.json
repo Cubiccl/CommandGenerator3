@@ -1,0 +1,12 @@
+{
+	"id": 37,
+	"states": {
+		"type": {
+			"type": 0,
+			"damage": -1,
+			"values": [
+				"dandelion"
+			]
+		}
+	}
+}

@@ -1,8 +1,12 @@
 package fr.cubiccl.generator3.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.Properties;
 
 /** Settings. */
 public class Settings
@@ -21,23 +25,6 @@ public class Settings
 			return get(Settings.getDefault(LANG));
 		}
 
-		/** @return An array containing all Languages. */
-		public static Language[] getLanguages()
-		{
-			ArrayList<Language> langs = new ArrayList<Settings.Language>();
-			for (Language language : values())
-				langs.add(language);
-			langs.sort(new Comparator<Language>()
-			{
-				@Override
-				public int compare(Language o1, Language o2)
-				{
-					return o1.name.toLowerCase().compareTo(o2.name.toLowerCase());
-				}
-			});
-			return langs.toArray(new Language[langs.size()]);
-		}
-
 		/** This Language's id. */
 		public final String id;
 		/** This Language's name. */
@@ -48,19 +35,44 @@ public class Settings
 			this.id = id;
 			this.name = name;
 		}
+
+		@Override
+		public String toString()
+		{
+			return this.name;
+		}
+
 	}
 
 	/** The available Minecraft Versions. */
 	public static enum Version
 	{
-		v111("1.11.2", "1.11", 0),
-		v112("1.12", "1.12", 1);
+
+		v113("1.13", "1d13", 0);
+
+		private static final Comparator<Version> versionComparator = new Comparator<Version>()
+		{
+			@Override
+			public int compare(Version o1, Version o2)
+			{
+				return o1.compare(o2);
+			}
+		};
+
+		public static Version earliest()
+		{
+			ArrayList<Version> vs = new ArrayList<Version>();
+			for (Version version : values())
+				vs.add(version);
+			vs.sort(versionComparator);
+			return vs.get(0);
+		}
 
 		public static Version get(String id)
 		{
 			for (Version v : Version.values())
 				if (v.id.equals(id)) return v;
-			return v112;
+			return v113;
 		}
 
 		/** @return An array containing all Versions. */
@@ -69,21 +81,24 @@ public class Settings
 			ArrayList<Version> vs = new ArrayList<Version>();
 			for (Version version : values())
 				vs.add(version);
-			vs.sort(new Comparator<Version>()
-			{
-				@Override
-				public int compare(Version o1, Version o2)
-				{
-					return o1.compare(o2);
-				}
-			});
+			vs.sort(versionComparator);
 			return vs.toArray(new Version[vs.size()]);
+		}
+
+		public static Version latest()
+		{
+			ArrayList<Version> vs = new ArrayList<Version>();
+			for (Version version : values())
+				vs.add(version);
+			vs.sort(versionComparator);
+			return vs.get(vs.size() - 1);
 		}
 
 		/** This Version's ID. */
 		public final String id;
 		/** This Version's name. */
 		public final String name;
+
 		/** The position of the Version. */
 		public final int order;
 
@@ -115,12 +130,11 @@ public class Settings
 	/** The Generator's version. */
 	public static final String GENERATOR_VERSION = "2.6.3.2";
 	/** Setting IDs. */
-	public static final String LANG = "lang", SLASH = "slash", SORT_TYPE = "sort", INDENTATION = "indentation", LAST_VERSION = "lastversion",
-			LAST_FOLDER = "folder";
+	public static final String LANG = "lang", SORT_TYPE = "sort", INDENTATION = "indentation", LAST_FOLDER = "folder", MINECRAFT_LOCATION = "mc_location";
 	/** The selected Language. */
 	private static Language language;
 	/** Stores the Settings. */
-	private static HashMap<String, String> settings = new HashMap<String, String>();
+	private static Properties settings = new Properties();
 	/** <code>true</code> if the Generator is in debug mode. */
 	public static boolean testMode = false;
 
@@ -133,15 +147,22 @@ public class Settings
 			case LANG:
 				return Language.ENGLISH.id;
 
-			case LAST_VERSION:
-				return " ";
-
 			case LAST_FOLDER:
 				return "";
 
 			case INDENTATION:
-			case SLASH:
 				return "true";
+
+			case MINECRAFT_LOCATION:
+				String workingDirectory;
+				String OS = (System.getProperty("os.name")).toUpperCase();
+				if (OS.contains("WIN")) workingDirectory = System.getenv("AppData");
+				else
+				{
+					workingDirectory = System.getProperty("user.home");
+					workingDirectory += "\\Library\\Application Support";
+				}
+				return workingDirectory + "\\.minecraft";
 
 			default:
 				return null;
@@ -153,46 +174,52 @@ public class Settings
 	public static String getSetting(String id)
 	{
 		if (!settings.containsKey(id)) setSetting(id, getDefault(id));
-		return settings.get(id);
+		return (String) settings.get(id);
 	}
 
 	/** @return The selected {@link Language}. */
 	public static Language language()
 	{
+		if (language == null) language = Language.get(getSetting(LANG));
 		return language;
 	}
 
 	/** Loads the Settings by reading the settings file. */
 	public static void loadSettings()
 	{
-		String[] values = FileUtils.readFileAsArray("settings.txt");
-		String lang = getDefault(LANG);
-		for (String line : values)
+		try
 		{
-			String id = line.split("=")[0];
-			String value = line.substring(line.indexOf('=') + 1);
-			if (id.equals(LANG)) lang = value;
-			else setSetting(id, value);
+			settings.load(new FileInputStream(new File("settings.properties")));
+		} catch (IOException e)
+		{
+			Logger.log("Settings file not found, creating default.");
+			// e.printStackTrace();
 		}
-		setSetting(LANG, lang);
+		String lang = getDefault(LANG);
+		if (!settings.containsKey(LANG)) settings.put(LANG, lang);
+		setSetting(LANG, settings.getProperty(LANG));
 	}
 
 	/** Saves the Settings to the file. */
 	public static void save()
 	{
-		ArrayList<String> data = new ArrayList<String>();
-		for (String id : settings.keySet())
-			data.add(id + "=" + getSetting(id));
-		FileUtils.writeToFile("settings.txt", data.toArray(new String[data.size()]));
+		try
+		{
+			settings.store(new FileOutputStream(new File("settings.properties")), null);
+			Logger.log("Preferences saved.");
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/** Changes the selected Language.
 	 * 
 	 * @param newLanguage - The new Language. */
-	public static void setLanguage(Language newLanguage)
+	private static void setLanguage(Language newLanguage)
 	{
 		language = newLanguage;
-		// CommandGenerator.updateLanguage();
+		Lang.updateLang();
 	}
 
 	/** Changes the value of a setting.

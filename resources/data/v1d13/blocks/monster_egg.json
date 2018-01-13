@@ -1,0 +1,17 @@
+{
+	"id": 97,
+	"states": {
+		"variant": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"stone",
+				"cobblestone",
+				"stone_brick",
+				"mossy_brick",
+				"cracked_brick",
+				"chiseled_brick"
+			]
+		}
+	}
+}

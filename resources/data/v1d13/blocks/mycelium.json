@@ -1,0 +1,13 @@
+{
+	"id": 110,
+	"states": {
+		"snowy": {
+			"type": 1,
+			"damage": 1,
+			"values": [
+				"true",
+				"false"
+			]
+		}
+	}
+}

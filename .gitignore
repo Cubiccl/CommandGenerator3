@@ -23,3 +23,5 @@ hs_err_pid*
 .classpath
 build.fxbuild
 bin/
+settings.txt
+resources/lang/fr.properties

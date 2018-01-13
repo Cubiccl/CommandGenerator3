@@ -1,0 +1,19 @@
+{
+	"id": 223,
+	"texture": -8,
+	"class": "Facing",
+	"states": {
+		"facing": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"down",
+				"up",
+				"north",
+				"south",
+				"west",
+				"east"
+			]
+		}
+	}
+}

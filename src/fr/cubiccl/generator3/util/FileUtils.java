@@ -1,13 +1,12 @@
 package fr.cubiccl.generator3.util;
 
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
+import javafx.scene.image.Image;
 
 public class FileUtils
 {
@@ -70,7 +69,7 @@ public class FileUtils
 		String[] data = readFileAsArray(path);
 		String toreturn = "";
 		for (String line : data)
-			if (!line.equals("")) toreturn += line;
+			if (!line.equals("")) toreturn += line + "\n";
 		return toreturn;
 	}
 
@@ -81,11 +80,14 @@ public class FileUtils
 	public static String[] readFileAsArray(String path)
 	{
 		ArrayList<String> lines = new ArrayList<String>();
-		if (path != null)
+		URL url = FileUtils.class.getResource(path);
+		if (url != null)
 		{
+			File f = new File(url.getPath());
+			if (!f.exists()) return lines.toArray(new String[lines.size()]);
 			try
 			{
-				BufferedReader br = new BufferedReader(new FileReader(new File(FileUtils.class.getResource(path).getPath())));
+				BufferedReader br = new BufferedReader(new FileReader(f));
 				String line;
 				while ((line = br.readLine()) != null)
 					if (!line.equals("") && !line.startsWith("//")) lines.add(line);
@@ -103,15 +105,15 @@ public class FileUtils
 	 * 
 	 * @param path - The path to the file.
 	 * @return The read Image. */
-	public static BufferedImage readImage(String path)
+	public static Image readImage(String path)
 	{
 		if (path != null) try
 		{
-			return ImageIO.read(FileUtils.class.getResourceAsStream(path + ".png"));
-		} catch (IOException e)
+			return new Image(FileUtils.class.getResourceAsStream(path + ".png"));
+		} catch (Exception e)
 		{
 			Logger.log("Couldn't find Image: " + path);
-			e.printStackTrace();
+			// e.printStackTrace();
 			return null;
 		}
 		return null;

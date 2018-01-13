@@ -2,6 +2,9 @@ package fr.cubiccl.generator3.util;
 
 import java.util.ArrayList;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /** Some text to display to the user. */
 public class Text
 {
@@ -39,15 +42,13 @@ public class Text
 
 	}
 
-	public static final Text INTEGER = new Text("general.integer"), NUMBER = new Text("general.number"), OBJECTIVE = new Text("score.name"), VALUE = new Text(
-			"score.value");
-
 	/** <code>true</code> if this Text should be translated. */
 	public boolean doTranslate;
 	/** The ID to translate. Can also be the actual text if {@link Text#doTranslate} is false. */
 	public String id;
 	/** The Replacements to apply to the translated text, in order. */
 	private ArrayList<Replacement> replacements;
+	public final StringProperty value = new SimpleStringProperty(null);
 
 	public Text(String id, boolean doTranslate, Replacement... replacements)
 	{
@@ -56,6 +57,7 @@ public class Text
 		this.replacements = new ArrayList<Replacement>();
 		for (Replacement replacement : replacements)
 			this.addReplacement(replacement);
+		Lang.register(this);
 	}
 
 	public Text(String id, Replacement... replacements)
@@ -117,12 +119,18 @@ public class Text
 	@Override
 	public String toString()
 	{
-		if (!this.doTranslate) return this.id;
+		if (this.value.get() == null) this.translate();
+		return this.value.get();
+	}
 
-		String output = Lang.translate(this.id);
-		for (Replacement replacement : this.replacements)
-			output = replacement.apply(output);
-
-		return output;
+	void translate()
+	{
+		if (this.doTranslate)
+		{
+			String output = Lang.translate(this.id);
+			for (Replacement replacement : this.replacements)
+				output = replacement.apply(output);
+			this.value.setValue(output);
+		} else this.value.setValue(this.id);
 	}
 }

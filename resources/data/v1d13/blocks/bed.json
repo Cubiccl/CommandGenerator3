@@ -1,0 +1,32 @@
+{
+	"id": 26,
+	"texture": -8,
+	"states": {
+		"part": {
+			"type": 0,
+			"damage": 8,
+			"values": [
+				"head",
+				"foot"
+			]
+		},
+		"facing": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"south",
+				"west",
+				"north",
+				"east"
+			]
+		},
+		"occupied": {
+			"type": 1,
+			"damage": 4,
+			"values": [
+				"true",
+				"false"
+			]
+		}
+	}
+}

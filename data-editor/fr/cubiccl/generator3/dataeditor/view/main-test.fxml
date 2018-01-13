@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.cubiccl.generator3.dataeditor.ui.MainTestController">
+   <left>
+      <ListView fx:id="modeSelection" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <BorderPane BorderPane.alignment="CENTER">
+         <left>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="searchbox" promptText="Search..." />
+                  <ListView fx:id="objectSelection" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <Label fx:id="modeLabel" text="Mode" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <VBox alignment="CENTER" minWidth="200.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="nameLabel" text="Label" />
+                  <Button fx:id="top" mnemonicParsing="false" onAction="#onTop" text="Top (-∞)" />
+                  <Button mnemonicParsing="false" onAction="#onAbove" text="Above (-10)" />
+                  <Button fx:id="up" mnemonicParsing="false" onAction="#onUp" text="Up (-1)" />
+                  <Button fx:id="down" mnemonicParsing="false" onAction="#onDown" text="Down (+1)" />
+                  <Button mnemonicParsing="false" onAction="#onBelow" text="Below (+10)" />
+                  <Button fx:id="bottom" mnemonicParsing="false" onAction="#onBottom" text="Bottom (+∞)" />
+                  <Button mnemonicParsing="false" onAction="#onNew" text="Create New">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#onDelete" text="Delete selected" />
+                  <Button mnemonicParsing="false" onAction="#reloadLanguage" text="Reload language" />
+                  <Button mnemonicParsing="false" onAction="#goToVersion" text="Go to Version editor" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

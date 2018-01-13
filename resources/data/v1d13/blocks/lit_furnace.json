@@ -1,0 +1,26 @@
+{
+	"id": 62,
+	"texture": -8,
+	"class": "Furniture",
+	"unuseddamage": [
+		0,
+		1
+	],
+	"states": {
+		"facing": {
+			"type": 0,
+			"customdamage": [
+				2,
+				3,
+				4,
+				5
+			],
+			"values": [
+				"north",
+				"south",
+				"west",
+				"east"
+			]
+		}
+	}
+}

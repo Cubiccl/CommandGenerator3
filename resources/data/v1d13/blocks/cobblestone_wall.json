@@ -1,0 +1,45 @@
+{
+	"id": 139,
+	"states": {
+		"east": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"south": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"north": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"variant": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"cobblestone",
+				"mossy_cobblestone"
+			]
+		},
+		"west": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		}
+	}
+}

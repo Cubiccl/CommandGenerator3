@@ -1,0 +1,16 @@
+{
+	"id": 91,
+	"texture": -1,
+	"states": {
+		"facing": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"south",
+				"west",
+				"north",
+				"east"
+			]
+		}
+	}
+}

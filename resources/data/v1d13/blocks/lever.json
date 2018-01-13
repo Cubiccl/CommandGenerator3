@@ -1,0 +1,37 @@
+{
+	"id": 69,
+	"texture": -1,
+	"unuseddamage": [
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7
+	],
+	"states": {
+		"powered": {
+			"type": 1,
+			"damage": 8,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"facing": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"up_x",
+				"east",
+				"west",
+				"south",
+				"north",
+				"bottom_z",
+				"bottom_x",
+				"up_z"
+			]
+		}
+	}
+}

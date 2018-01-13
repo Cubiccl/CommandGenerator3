@@ -1,0 +1,47 @@
+{
+	"id": 51,
+	"texture": -1,
+	"class": "Numbered",
+	"states": {
+		"east": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"south": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"north": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"west": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		},
+		"up": {
+			"type": 1,
+			"damage": -1,
+			"values": [
+				"true",
+				"false"
+			]
+		}
+	}
+}

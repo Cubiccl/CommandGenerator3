@@ -1,0 +1,17 @@
+{
+	"id": 238,
+	"texture": -1,
+	"class": "Terracotta",
+	"states": {
+		"facing": {
+			"type": 0,
+			"damage": 1,
+			"values": [
+				"south",
+				"west",
+				"north",
+				"east"
+			]
+		}
+	}
+}
