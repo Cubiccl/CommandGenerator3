@@ -3,8 +3,6 @@ package fr.cubiccl.generator3.game.object.type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import fr.cubiccl.generator3.game.object.global.GlobalNBTTag;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Lang;
 import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
@@ -115,6 +113,13 @@ public abstract class NBTTag extends GameObjectType
 		return this.applicable.contains(object);
 	}
 
+	@Override
+	public int compareTo(GameObjectType o)
+	{
+		if ((o instanceof NBTTag)) return 0;
+		return this.id.compareTo(((NBTTag) o).id);
+	}
+
 	/** @param object - The Object this Tag is applied to.
 	 * @return A description of this NBT Tag. */
 	public Text description(GameObjectType object)
@@ -125,8 +130,8 @@ public abstract class NBTTag extends GameObjectType
 		if (object != null)
 		{
 			String objectSpecific = d + "." + object.id;
-			if (Lang.keyExists(objectSpecific)) return new Text(objectSpecific, new Replacement("<o>", object.name()));
-			t.addReplacement("<o>", object.name());
+			if (Lang.keyExists(objectSpecific)) return new Text(objectSpecific, new Replacement("<o>", object.name));
+			t.addReplacement("<o>", object.name);
 		}
 		return t;
 	}
@@ -138,11 +143,6 @@ public abstract class NBTTag extends GameObjectType
 		NBTTag o = (NBTTag) obj;
 
 		return this.type == o.type && this.id.equals(o.id);
-	}
-
-	public GlobalNBTTag globalValue()
-	{
-		return VersionTranslator.translator(this.version).nbtTags.inverse().get(this);
 	}
 
 }

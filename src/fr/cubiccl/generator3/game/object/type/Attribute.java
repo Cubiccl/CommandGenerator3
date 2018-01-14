@@ -1,20 +1,23 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.global.GlobalAttribute;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Persistance;
 
 public class Attribute extends GameObjectType
 {
 
-	public Attribute(String id)
+	public final int order;
+
+	public Attribute(String id, int order)
 	{
 		super(id, Persistance.selectedVersion);
+		this.order = order;
 	}
 
-	public GlobalAttribute globalValue()
+	@Override
+	public int compareTo(GameObjectType o)
 	{
-		return VersionTranslator.translator(this.version).attributes.inverse().get(this);
+		if (!(o instanceof Attribute)) return 0;
+		return Integer.compare(this.order, ((Attribute) o).order);
 	}
 
 }

@@ -20,7 +20,7 @@ public class BlockNumbered extends Block
 
 	public BlockNumbered(String id)
 	{
-		super(id);
+		super(id, 0);
 	}
 
 }

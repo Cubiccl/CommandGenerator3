@@ -1,20 +1,23 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.global.GlobalEntity;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Persistance;
 
 public class Entity extends GameObjectType
 {
 
-	public Entity(String id)
+	public final int order;
+
+	public Entity(String id, int order)
 	{
 		super("minecraft:" + id, Persistance.selectedVersion);
+		this.order = order;
 	}
 
-	public GlobalEntity globalValue()
+	@Override
+	public int compareTo(GameObjectType o)
 	{
-		return VersionTranslator.translator(this.version).entities.inverse().get(this);
+		if (!(o instanceof Entity)) return 0;
+		return Integer.compare(this.order, ((Entity) o).order);
 	}
 
 }

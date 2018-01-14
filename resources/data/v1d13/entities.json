@@ -1,4 +1,4 @@
-[
+{
 	"item": 1,
 	"xp_orb": 2,
 	"area_effect_cloud": 3,
@@ -83,4 +83,4 @@
 	"parrot": 82,
 	"villager": 83,
 	"lightning_bolt": 84,
-]
+}

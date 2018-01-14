@@ -17,7 +17,7 @@ public class BlockRail extends Block
 
 	public BlockRail(String id)
 	{
-		super(id);
+		super(id, 0);
 		this.addBlockState(new BlockState("shape", BlockState.STRING, "north_south", "east_west", "ascending_east", "ascending_west", "ascending_north",
 				"ascending_south"));
 		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, "false", "true"));

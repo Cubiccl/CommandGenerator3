@@ -1,7 +1,5 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.global.GlobalEffect;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Persistance;
 
 public class Effect extends GameObjectType
@@ -19,13 +17,8 @@ public class Effect extends GameObjectType
 	@Override
 	public int compareTo(GameObjectType o)
 	{
-		if (!(o instanceof Effect)) return super.compareTo(o);
+		if (!(o instanceof Effect)) return 0;
 		return Integer.compare(this.idInt, ((Effect) o).idInt);
-	}
-
-	public GlobalEffect globalValue()
-	{
-		return VersionTranslator.translator(this.version).effects.inverse().get(this);
 	}
 
 }

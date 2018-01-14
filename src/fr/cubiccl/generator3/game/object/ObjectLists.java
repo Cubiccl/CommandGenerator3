@@ -1,15 +1,17 @@
 package fr.cubiccl.generator3.game.object;
 
+import java.util.Comparator;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import fr.cubiccl.generator3.game.object.global.GlobalObject;
+import fr.cubiccl.generator3.game.object.type.GameObjectType;
 
-public final class ObjectLists implements ListChangeListener<GlobalObject>
+public final class ObjectLists implements ListChangeListener<GameObjectType>
 {
 	private static final ObjectLists _instance = new ObjectLists();
 
-	public static final ObservableList<GlobalObject> exampleList = FXCollections.observableArrayList();
+	public static final ObservableList<GameObjectType> exampleList = FXCollections.observableArrayList();
 
 	public static void load()
 	{
@@ -20,9 +22,9 @@ public final class ObjectLists implements ListChangeListener<GlobalObject>
 	{}
 
 	@Override
-	public void onChanged(Change<? extends GlobalObject> c)
+	public void onChanged(Change<? extends GameObjectType> c)
 	{
-		c.getList().sort(GlobalRegistry._idComparator);
+		c.getList().sort(Comparator.naturalOrder());
 	}
 
 }

@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import fr.cubiccl.generator3.dataeditor.TestApplication;
-import fr.cubiccl.generator3.game.object.GlobalRegistry;
+import fr.cubiccl.generator3.game.object.GameObjectRegistry;
 import fr.cubiccl.generator3.game.object.global.*;
 import fr.cubiccl.generator3.util.Lang;
 
@@ -22,7 +22,7 @@ public class MainTestController implements Initializable
 	public static MainTestController instance;
 
 	@SuppressWarnings("rawtypes")
-	private GlobalRegistry currentRegistry;
+	private GameObjectRegistry currentRegistry;
 
 	public Label modeLabel, nameLabel;
 	public ListView<String> modeSelection;
@@ -103,7 +103,6 @@ public class MainTestController implements Initializable
 		this.move(this.selected(), this.objectSelection.getItems().size() - 1);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void onDelete()
 	{
 		GlobalObject object = this.objectSelection.getSelectionModel().getSelectedItem();
@@ -118,7 +117,7 @@ public class MainTestController implements Initializable
 		if (result.get() == ButtonType.OK)
 		{
 			this.onBottom();
-			this.currentRegistry.unregister(object);
+			//this.currentRegistry.unregister(object);
 			this.reloadObjects();
 		}
 	}
@@ -132,42 +131,42 @@ public class MainTestController implements Initializable
 	{
 		if (mode == null) return;
 
-		switch (mode)
+		/*switch (mode)
 		{
 			case "Items":
-				currentRegistry = GlobalRegistry.items;
+				currentRegistry = GameObjectRegistry.items;
 				break;
 			case "Entities":
-				currentRegistry = GlobalRegistry.entities;
+				currentRegistry = GameObjectRegistry.entities;
 				break;
 			case "Attributes":
-				currentRegistry = GlobalRegistry.attributes;
+				currentRegistry = GameObjectRegistry.attributes;
 				break;
 			case "Effects":
-				currentRegistry = GlobalRegistry.effects;
+				currentRegistry = GameObjectRegistry.effects;
 				break;
 			case "Enchantments":
-				currentRegistry = GlobalRegistry.enchantments;
+				currentRegistry = GameObjectRegistry.enchantments;
 				break;
 			case "NBT Tags":
-				currentRegistry = GlobalRegistry.nbttags;
+				currentRegistry = GameObjectRegistry.nbttags;
 				break;
 			case "Particles":
-				currentRegistry = GlobalRegistry.particles;
+				currentRegistry = GameObjectRegistry.particles;
 				break;
 			case "Sounds":
-				currentRegistry = GlobalRegistry.sounds;
+				currentRegistry = GameObjectRegistry.sounds;
 				break;
 			default:
-				currentRegistry = GlobalRegistry.blocks;
+				currentRegistry = GameObjectRegistry.blocks;
 				break;
-		}
+		}*/
 
 		this.modeLabel.textProperty().setValue(mode);
 		this.reloadObjects();
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unused")
 	public void onNew()
 	{
 		TextInputDialog dialog = new TextInputDialog();
@@ -215,7 +214,7 @@ public class MainTestController implements Initializable
 				break;
 		}
 
-		if (newObject != null) currentRegistry.register(newObject);
+		//if (newObject != null) currentRegistry.register(newObject);
 		this.reloadObjects();
 	}
 

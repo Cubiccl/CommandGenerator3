@@ -17,7 +17,7 @@ public class BlockDoor extends Block
 
 	public BlockDoor(int idInt, String idString)
 	{
-		super(idString);
+		super(idString, 0);
 		this.addBlockState(new BlockState("facing", BlockState.STRING, "north", "south", "west", "east"));
 		this.addBlockState(new BlockState("half", BlockState.STRING, "lower", "upper"));
 		this.addBlockState(new BlockState("hinge", BlockState.STRING, "left", "right"));

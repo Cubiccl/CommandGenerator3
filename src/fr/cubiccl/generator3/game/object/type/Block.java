@@ -2,8 +2,6 @@ package fr.cubiccl.generator3.game.object.type;
 
 import java.util.HashMap;
 
-import fr.cubiccl.generator3.game.object.global.GlobalBlock;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Persistance;
 
 public class Block extends GameObjectType
@@ -11,10 +9,12 @@ public class Block extends GameObjectType
 
 	/** The possible {@link BlockState Block states} for this Block. */
 	public HashMap<String, BlockState> blockStates;
+	public final int idNum;
 
-	public Block(String id)
+	public Block(String id, int idNum)
 	{
 		super("minecraft:" + id, Persistance.selectedVersion);
+		this.idNum = idNum;
 		this.blockStates = new HashMap<String, BlockState>();
 	}
 
@@ -26,9 +26,11 @@ public class Block extends GameObjectType
 		this.blockStates.put(state.id, state);
 	}
 
-	public GlobalBlock globalValue()
+	@Override
+	public int compareTo(GameObjectType o)
 	{
-		return VersionTranslator.translator(this.version).blocks.inverse().get(this);
+		if (!(o instanceof Block)) return 0;
+		return Integer.compare(this.idNum, ((Block) o).idNum);
 	}
 
 }
