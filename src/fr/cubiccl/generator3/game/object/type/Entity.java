@@ -1,6 +1,7 @@
 package fr.cubiccl.generator3.game.object.type;
 
 import fr.cubiccl.generator3.util.Persistance;
+import fr.cubiccl.generator3.util.Text;
 
 public class Entity extends GameObjectType
 {
@@ -18,6 +19,12 @@ public class Entity extends GameObjectType
 	{
 		if (!(o instanceof Entity)) return 0;
 		return Integer.compare(this.order, ((Entity) o).order);
+	}
+	
+	@Override
+	protected Text createName()
+	{
+		return new Text("entity." + this.idPrefixless());
 	}
 
 }

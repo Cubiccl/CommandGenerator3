@@ -120,6 +120,12 @@ public abstract class NBTTag extends GameObjectType
 		return this.id.compareTo(((NBTTag) o).id);
 	}
 
+	@Override
+	protected Text createName()
+	{
+		return new Text("nbttag." + this.id);
+	}
+	
 	/** @param object - The Object this Tag is applied to.
 	 * @return A description of this NBT Tag. */
 	public Text description(GameObjectType object)

@@ -1,6 +1,7 @@
 package fr.cubiccl.generator3.game.object.type;
 
 import fr.cubiccl.generator3.util.Persistance;
+import fr.cubiccl.generator3.util.Text;
 
 public class Enchantment extends GameObjectType
 {
@@ -22,6 +23,12 @@ public class Enchantment extends GameObjectType
 	{
 		if (!(o instanceof Enchantment)) return 0;
 		return Integer.compare(this.idInt, ((Enchantment) o).idInt);
+	}
+	
+	@Override
+	protected Text createName()
+	{
+		return new Text("enchantment." + this.idPrefixless());
 	}
 
 }

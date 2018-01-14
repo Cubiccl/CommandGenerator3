@@ -1,5 +1,6 @@
 package fr.cubiccl.generator3.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.image.Image;
@@ -17,7 +18,7 @@ public class Textures
 	{
 		paths.clear();
 		textures.clear();
-		String[] pathArray = FileUtils.readFileAsArray("/textures/texture-remapping.txt");
+		ArrayList<String> pathArray = FileUtils.readFileAsArray("/textures/texture-remapping.txt");
 		for (String path : pathArray)
 		{
 			String[] data = path.split("=");

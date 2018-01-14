@@ -1,6 +1,8 @@
 package fr.cubiccl.generator3.game.object.type;
 
+import fr.cubiccl.generator3.util.Lang;
 import fr.cubiccl.generator3.util.Persistance;
+import fr.cubiccl.generator3.util.Text;
 
 public class Item extends GameObjectType
 {
@@ -14,6 +16,13 @@ public class Item extends GameObjectType
 		this(id, idNum, 0);
 	}
 
+	public Item(String id, int idNum, int durability)
+	{
+		super("minecraft:" + id, Persistance.selectedVersion);
+		this.idNum = idNum;
+		this.durability = durability;
+	}
+
 	@Override
 	public int compareTo(GameObjectType o)
 	{
@@ -21,11 +30,12 @@ public class Item extends GameObjectType
 		return Integer.compare(this.idNum, ((Item) o).idNum);
 	}
 
-	public Item(String id, int idNum, int durability)
+	@Override
+	protected Text createName()
 	{
-		super("minecraft:" + id, Persistance.selectedVersion);
-		this.idNum = idNum;
-		this.durability = durability;
+		if (Lang.keyExists("item." + this.idPrefixless())) return new Text("item." + this.idPrefixless());
+		if (Lang.keyExists("blocks." + this.idPrefixless())) return new Text("blocks." + this.idPrefixless());
+		return new Text("item." + this.idPrefixless());
 	}
 
 }

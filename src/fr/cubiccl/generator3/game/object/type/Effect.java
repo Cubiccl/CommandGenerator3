@@ -1,6 +1,7 @@
 package fr.cubiccl.generator3.game.object.type;
 
 import fr.cubiccl.generator3.util.Persistance;
+import fr.cubiccl.generator3.util.Text;
 
 public class Effect extends GameObjectType
 {
@@ -19,6 +20,12 @@ public class Effect extends GameObjectType
 	{
 		if (!(o instanceof Effect)) return 0;
 		return Integer.compare(this.idInt, ((Effect) o).idInt);
+	}
+	
+	@Override
+	protected Text createName()
+	{
+		return new Text("effect." + this.idPrefixless());
 	}
 
 }

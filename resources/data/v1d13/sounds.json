@@ -507,5 +507,5 @@
 	"record.ward",
 	"ui.button.click",
 	"weather.rain",
-	"weather.rain.above": "weather.rain.above"
+	"weather.rain.above"
 ]

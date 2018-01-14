@@ -3,6 +3,7 @@ package fr.cubiccl.generator3.game.object.type;
 import java.util.HashMap;
 
 import fr.cubiccl.generator3.util.Persistance;
+import fr.cubiccl.generator3.util.Text;
 
 public class Block extends GameObjectType
 {
@@ -31,6 +32,12 @@ public class Block extends GameObjectType
 	{
 		if (!(o instanceof Block)) return 0;
 		return Integer.compare(this.idNum, ((Block) o).idNum);
+	}
+	
+	@Override
+	protected Text createName()
+	{
+		return new Text("block." + this.idPrefixless());
 	}
 
 }

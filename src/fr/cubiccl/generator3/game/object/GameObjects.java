@@ -9,6 +9,12 @@ public class GameObjects
 
 	private static final HashMap<Version, VersionRegistry> registries = new HashMap<Version, VersionRegistry>();
 
+	static void create(Version version)
+	{
+		registries.put(version, new VersionRegistry(version));
+
+	}
+
 	public static final VersionRegistry registry(Version version)
 	{
 		return registries.get(version);
