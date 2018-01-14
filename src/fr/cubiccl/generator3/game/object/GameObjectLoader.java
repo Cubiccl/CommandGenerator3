@@ -1,5 +1,7 @@
 package fr.cubiccl.generator3.game.object;
 
+import java.util.ArrayList;
+
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonObject.Member;
@@ -20,7 +22,16 @@ public class GameObjectLoader
 
 	private static Block createBlock(Version version, String name, JsonValue value)
 	{
-		return new Block(name, value.asObject().getInt("id", 0));
+		JsonObject o = value.asObject();
+		Block b = new Block(name, o.get("states").asArray().get(0).asObject().getInt("id", 0));
+		if (o.get("properties") != null) for (Member state : o.get("properties").asObject())
+		{
+			ArrayList<String> values = new ArrayList<String>();
+			for (JsonValue v : state.getValue().asArray())
+				values.add(v.asString());
+			b.addBlockState(new BlockState(state.getName(), values.toArray(new String[values.size()])));
+		}
+		return b;
 	}
 
 	private static Effect createEffect(Version version, String name, JsonValue value)
@@ -64,7 +75,7 @@ public class GameObjectLoader
 	{
 		Logger.log("---------------- Loading version " + version.name + "------------");
 		GameObjects.create(version);
-		
+
 		Logger.log("Loading attributes.");
 		JsonValue root = Json.parse(FileUtils.readFile("/data/v" + version.id + "/attributes.json"));
 		for (Member m : root.asObject())

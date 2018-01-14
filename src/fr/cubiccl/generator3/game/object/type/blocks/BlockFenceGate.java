@@ -18,10 +18,10 @@ public class BlockFenceGate extends Block
 	public BlockFenceGate(String id)
 	{
 		super(id, 0);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, "south", "west", "north", "east"));
-		this.addBlockState(new BlockState("open", BlockState.BOOLEAN, "false", "true"));
-		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, "false", "true"));
-		this.addBlockState(new BlockState("in_wall", BlockState.BOOLEAN, "false", "true"));
+		this.addBlockState(new BlockState("facing", "south", "west", "north", "east"));
+		this.addBlockState(new BlockState("open", "false", "true"));
+		this.addBlockState(new BlockState("powered", "false", "true"));
+		this.addBlockState(new BlockState("in_wall", "false", "true"));
 	}
 
 }

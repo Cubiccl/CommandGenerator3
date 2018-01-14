@@ -18,7 +18,7 @@ public class BlockLiquid extends Block
 	public BlockLiquid(String id)
 	{
 		super(id, 0);
-		this.addBlockState(new BlockState("level", BlockState.STRING, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"));
+		this.addBlockState(new BlockState("level", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"));
 	}
 
 }

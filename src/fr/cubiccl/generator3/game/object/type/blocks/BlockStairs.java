@@ -18,9 +18,9 @@ public class BlockStairs extends Block
 	public BlockStairs(String id)
 	{
 		super(id, 0);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, "east", "west", "south", "north"));
-		this.addBlockState(new BlockState("half", BlockState.STRING, "bottom", "top"));
-		this.addBlockState(new BlockState("shape", BlockState.STRING, "straight", "inner_left", "inner_right", "outer_left", "outer_right"));
+		this.addBlockState(new BlockState("facing", "east", "west", "south", "north"));
+		this.addBlockState(new BlockState("half", "bottom", "top"));
+		this.addBlockState(new BlockState("shape", "straight", "inner_left", "inner_right", "outer_left", "outer_right"));
 	}
 
 }

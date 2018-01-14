@@ -19,7 +19,7 @@ public class BlockFacing extends Block
 	public BlockFacing(String id)
 	{
 		super(id, 0);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, "down", "up", "north", "south", "west", "east"));
+		this.addBlockState(new BlockState("facing", "down", "up", "north", "south", "west", "east"));
 	}
 
 }
