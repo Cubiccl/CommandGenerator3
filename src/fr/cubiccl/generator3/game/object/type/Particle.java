@@ -24,4 +24,10 @@ public class Particle extends GameObjectType
 		return new Text("particle." + this.idPrefixless());
 	}
 
+	@Override
+	public String type()
+	{
+		return "Particle";
+	}
+
 }

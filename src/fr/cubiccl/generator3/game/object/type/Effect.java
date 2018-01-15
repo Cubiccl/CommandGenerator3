@@ -21,11 +21,23 @@ public class Effect extends GameObjectType
 		if (!(o instanceof Effect)) return 0;
 		return Integer.compare(this.idInt, ((Effect) o).idInt);
 	}
-	
+
 	@Override
 	protected Text createName()
 	{
 		return new Text("effect." + this.idPrefixless());
+	}
+
+	@Override
+	public String describe()
+	{
+		return super.describe() + " (" + this.idInt + ")";
+	}
+
+	@Override
+	public String type()
+	{
+		return "Effect";
 	}
 
 }

@@ -27,4 +27,10 @@ public class Entity extends GameObjectType
 		return new Text("entity." + this.idPrefixless());
 	}
 
+	@Override
+	public String type()
+	{
+		return "Entity";
+	}
+
 }

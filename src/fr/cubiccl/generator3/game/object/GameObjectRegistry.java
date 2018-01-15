@@ -33,7 +33,11 @@ public class GameObjectRegistry<T extends GameObjectType>
 	public void register(T object)
 	{
 		if (this.objects.containsKey(object.idPrefixless())) Logger.log("Object " + object.idPrefixless() + " already exists !");
-		else this.objects.put(object.idPrefixless(), object);
+		else
+		{
+			this.objects.put(object.idPrefixless(), object);
+			System.out.println("Registered " + object.describe());
+		}
 	}
 
 	public int size()

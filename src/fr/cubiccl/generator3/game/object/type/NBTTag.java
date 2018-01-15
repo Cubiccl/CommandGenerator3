@@ -10,7 +10,6 @@ import fr.cubiccl.generator3.util.Text.Replacement;
 
 public abstract class NBTTag extends GameObjectType
 {
-
 	public static class asBoolean extends NBTTag
 	{
 		public asBoolean(String id, GameObjectType... applicable)
@@ -93,6 +92,8 @@ public abstract class NBTTag extends GameObjectType
 
 	/** Identifiers for Tag types. */
 	public static final byte BOOLEAN = 0, BYTE = 1, SHORT = 2, INT = 3, LONG = 4, FLOAT = 5, DOUBLE = 6, STRING = 7, COMPOUND = 8, LIST = 9;
+	public static final String[] TYPENAMES =
+	{ "Boolean", "Byte", "Short", "Int", "Float", "Double", "String", "Compound", "List" };
 
 	/** The Object IDs this Tag can be applied to. */
 	public final ArrayList<GameObjectType> applicable;
@@ -125,7 +126,13 @@ public abstract class NBTTag extends GameObjectType
 	{
 		return new Text("nbttag." + this.id);
 	}
-	
+
+	@Override
+	public String describe()
+	{
+		return super.describe() + " (" + TYPENAMES[this.type] + ")";
+	}
+
 	/** @param object - The Object this Tag is applied to.
 	 * @return A description of this NBT Tag. */
 	public Text description(GameObjectType object)
@@ -149,6 +156,12 @@ public abstract class NBTTag extends GameObjectType
 		NBTTag o = (NBTTag) obj;
 
 		return this.type == o.type && this.id.equals(o.id);
+	}
+
+	@Override
+	public String type()
+	{
+		return "NBT Tag";
 	}
 
 }

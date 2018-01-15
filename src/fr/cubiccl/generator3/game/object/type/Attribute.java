@@ -27,4 +27,10 @@ public class Attribute extends GameObjectType
 		return new Text("attribute." + this.idPrefixless());
 	}
 
+	@Override
+	public String type()
+	{
+		return "Attribute";
+	}
+
 }

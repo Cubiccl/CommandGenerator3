@@ -23,6 +23,16 @@ public abstract class GameObjectType implements Comparable<GameObjectType>
 		return new Text(this.idPrefixless());
 	}
 
+	public String describe()
+	{
+		return this.type() + " " + this.id;
+	}
+
+	public String type()
+	{
+		return "???";
+	}
+
 	public String idPrefixless()
 	{
 		return this.id.replaceAll("minecraft:", "");

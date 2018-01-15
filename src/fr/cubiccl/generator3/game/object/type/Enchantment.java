@@ -24,11 +24,23 @@ public class Enchantment extends GameObjectType
 		if (!(o instanceof Enchantment)) return 0;
 		return Integer.compare(this.idInt, ((Enchantment) o).idInt);
 	}
-	
+
 	@Override
 	protected Text createName()
 	{
 		return new Text("enchantment." + this.idPrefixless());
+	}
+
+	@Override
+	public String describe()
+	{
+		return super.describe() + " (" + this.idInt + ", max_level=" + this.maxLevel + ")";
+	}
+
+	@Override
+	public String type()
+	{
+		return "Enchantment";
 	}
 
 }

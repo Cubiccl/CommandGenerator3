@@ -10,7 +10,7 @@ public class Sound extends GameObjectType
 	{
 		super(id, Persistance.selectedVersion);
 	}
-	
+
 	@Override
 	public int compareTo(GameObjectType o)
 	{
@@ -22,6 +22,12 @@ public class Sound extends GameObjectType
 	protected Text createName()
 	{
 		return new Text("sound." + this.idPrefixless());
+	}
+
+	@Override
+	public String type()
+	{
+		return "Sound";
 	}
 
 }
