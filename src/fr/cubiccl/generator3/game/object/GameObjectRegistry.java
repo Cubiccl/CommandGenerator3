@@ -36,7 +36,7 @@ public class GameObjectRegistry<T extends GameObjectType>
 		else
 		{
 			this.objects.put(object.idPrefixless(), object);
-			System.out.println("Registered " + object.describe());
+			//System.out.println("Registered " + object.describe());
 		}
 	}
 
