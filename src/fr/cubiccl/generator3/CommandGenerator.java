@@ -3,6 +3,7 @@ package fr.cubiccl.generator3;
 import fr.cubiccl.generator3.game.object.GameObjectLoader;
 import fr.cubiccl.generator3.util.Lang;
 import fr.cubiccl.generator3.util.Settings;
+import fr.cubiccl.generator3.util.Textures;
 
 public class CommandGenerator
 {
@@ -19,6 +20,7 @@ public class CommandGenerator
 	{
 		Settings.loadSettings();
 		Lang.fullReload();
+		Textures.createTextures();
 		GameObjectLoader.loadObjects();
 		MainApplication.initialize(args);
 	}
