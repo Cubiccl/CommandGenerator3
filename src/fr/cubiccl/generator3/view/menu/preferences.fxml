@@ -54,7 +54,7 @@
             </Label>
             <ChoiceBox fx:id="language" GridPane.columnIndex="1" GridPane.columnSpan="2" />
             <TextField fx:id="location" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#onLocationBrowse" fx:id="browse" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="browse" mnemonicParsing="false" onAction="#onLocationBrowse" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

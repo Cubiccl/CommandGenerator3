@@ -34,7 +34,7 @@ public class Item extends GameObjectType
 	protected Text createName()
 	{
 		if (Lang.keyExists("item." + this.idPrefixless())) return new Text("item." + this.idPrefixless());
-		if (Lang.keyExists("blocks." + this.idPrefixless())) return new Text("blocks." + this.idPrefixless());
+		if (Lang.keyExists("block." + this.idPrefixless())) return new Text("block." + this.idPrefixless());
 		return new Text("item." + this.idPrefixless());
 	}
 

@@ -21,7 +21,7 @@ public class Sound extends GameObjectType
 	@Override
 	protected Text createName()
 	{
-		return new Text("sound." + this.idPrefixless());
+		return new Text(this.idPrefixless(), false);
 	}
 
 	@Override
