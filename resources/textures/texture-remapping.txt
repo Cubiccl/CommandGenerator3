@@ -1,4 +1,5 @@
 // This file specifies irregular texture file paths.
+block.attached_melon_stem=block.attached_pumpkin_stem=block.melon_stem=block/pumpkin_stem
 block.creeper_wall_head=block/creeper_head
 block.dragon_wall_head=block/dragon_head
 block.flowing_lava=block/lava
