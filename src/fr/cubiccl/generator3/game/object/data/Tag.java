@@ -114,6 +114,12 @@ public class Tag extends DataObject
 		return (ArrayList<TagContent>) values.clone();
 	}
 
+	@Override
+	public String id()
+	{
+		return this.name;
+	}
+
 	public boolean isReplace()
 	{
 		return replace;

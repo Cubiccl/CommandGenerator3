@@ -9,12 +9,15 @@ import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.PrettyPrint;
 
 import fr.cubiccl.generator3.game.object.GameObjectLoader;
-import fr.cubiccl.generator3.game.object.GameObjects;
+import fr.cubiccl.generator3.game.object.Versions;
+import fr.cubiccl.generator3.game.object.Versions.Version;
 import fr.cubiccl.generator3.game.object.type.Effect;
 import fr.cubiccl.generator3.game.object.type.Enchantment;
 import fr.cubiccl.generator3.game.object.type.GameObjectType;
-import fr.cubiccl.generator3.util.*;
-import fr.cubiccl.generator3.util.Settings.Version;
+import fr.cubiccl.generator3.util.FileUtils;
+import fr.cubiccl.generator3.util.Lang;
+import fr.cubiccl.generator3.util.Settings;
+import fr.cubiccl.generator3.util.Textures;
 
 public class Main
 {
@@ -42,21 +45,21 @@ public class Main
 
 		JsonObject object = Json.object();
 		ArrayList<GameObjectType> objects = new ArrayList<GameObjectType>();
-		objects.addAll(GameObjects.registry(version).attributes.list());
+		objects.addAll(Versions.registry(version).attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("attributes", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(GameObjects.registry(version).blocks.list());
+		objects.addAll(Versions.registry(version).blocks.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("blocks", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(GameObjects.registry(version).effects.list());
+		objects.addAll(Versions.registry(version).effects.list());
 		objects.sort(Comparator.naturalOrder());
 		for (GameObjectType o : objects)
 		{
@@ -69,7 +72,7 @@ public class Main
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(GameObjects.registry(version).attributes.list());
+		objects.addAll(Versions.registry(version).attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		for (GameObjectType o : objects)
 		{
@@ -83,28 +86,28 @@ public class Main
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(GameObjects.registry(version).attributes.list());
+		objects.addAll(Versions.registry(version).attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("entities", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(GameObjects.registry(version).attributes.list());
+		objects.addAll(Versions.registry(version).attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("items", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(GameObjects.registry(version).attributes.list());
+		objects.addAll(Versions.registry(version).attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("particles", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(GameObjects.registry(version).attributes.list());
+		objects.addAll(Versions.registry(version).attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("sounds", object);

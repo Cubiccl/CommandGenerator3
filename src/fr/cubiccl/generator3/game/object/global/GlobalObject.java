@@ -1,7 +1,7 @@
 package fr.cubiccl.generator3.game.object.global;
 
+import fr.cubiccl.generator3.game.object.Versions.Version;
 import fr.cubiccl.generator3.game.object.type.GameObjectType;
-import fr.cubiccl.generator3.util.Settings.Version;
 import fr.cubiccl.generator3.util.Text;
 
 /** Represents a global Object type, version independent.

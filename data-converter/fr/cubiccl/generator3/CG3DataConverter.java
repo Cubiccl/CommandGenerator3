@@ -2,11 +2,14 @@ package fr.cubiccl.generator3;
 
 import java.io.File;
 
-import com.eclipsesource.json.*;
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonObject.Member;
+import com.eclipsesource.json.JsonValue;
+import com.eclipsesource.json.PrettyPrint;
 
+import fr.cubiccl.generator3.game.object.Versions.Version;
 import fr.cubiccl.generator3.util.FileUtils;
-import fr.cubiccl.generator3.util.Settings.Version;
 
 public class CG3DataConverter
 {

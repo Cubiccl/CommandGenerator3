@@ -1,6 +1,5 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 
 public class Attribute extends GameObjectType
@@ -10,7 +9,7 @@ public class Attribute extends GameObjectType
 
 	public Attribute(String id, int order)
 	{
-		super(id, Persistance.selectedVersion);
+		super(id);
 		this.order = order;
 	}
 

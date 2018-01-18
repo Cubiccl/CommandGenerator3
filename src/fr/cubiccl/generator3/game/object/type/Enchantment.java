@@ -1,6 +1,5 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 
 public class Enchantment extends GameObjectType
@@ -13,7 +12,7 @@ public class Enchantment extends GameObjectType
 
 	public Enchantment(int idNum, String idStr, int maxLevel)
 	{
-		super("minecraft:" + idStr, Persistance.selectedVersion);
+		super("minecraft:" + idStr);
 		this.idInt = idNum;
 		this.maxLevel = maxLevel;
 	}

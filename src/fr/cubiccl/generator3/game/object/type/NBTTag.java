@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import fr.cubiccl.generator3.util.Lang;
-import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Text.Replacement;
 
@@ -102,7 +101,7 @@ public abstract class NBTTag extends GameObjectType
 
 	public NBTTag(String id, byte type, GameObjectType... applicable)
 	{
-		super(id, Persistance.selectedVersion);
+		super(id);
 		this.type = type;
 		this.applicable = new ArrayList<GameObjectType>(Arrays.asList(applicable));
 	}

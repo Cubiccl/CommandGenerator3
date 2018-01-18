@@ -1,9 +1,9 @@
 package fr.cubiccl.generator3.game.object.global;
 
-import javafx.scene.image.Image;
+import fr.cubiccl.generator3.game.object.Versions.Version;
 import fr.cubiccl.generator3.game.object.type.Entity;
-import fr.cubiccl.generator3.util.Settings.Version;
 import fr.cubiccl.generator3.util.Textures;
+import javafx.scene.image.Image;
 
 public class GlobalEntity extends GlobalObject implements TexturedObject
 {

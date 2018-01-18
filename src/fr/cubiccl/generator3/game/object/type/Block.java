@@ -2,7 +2,6 @@ package fr.cubiccl.generator3.game.object.type;
 
 import java.util.HashMap;
 
-import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Textures;
 import javafx.scene.image.Image;
@@ -17,7 +16,7 @@ public class Block extends GameObjectType
 
 	public Block(String id, int order)
 	{
-		super("minecraft:" + id, Persistance.selectedVersion);
+		super("minecraft:" + id);
 		this.order = order;
 		this.blockStates = new HashMap<String, BlockState>();
 		this.texture = Textures.getTexture("block." + this.idPrefixless());
