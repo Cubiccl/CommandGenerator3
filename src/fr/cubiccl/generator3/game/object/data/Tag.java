@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
-import com.eclipsesource.json.JsonObject.Member;
 import com.eclipsesource.json.JsonValue;
-
-import fr.cubiccl.generator3.util.Utils;
 
 /** A list of Objects the game uses. */
 public class Tag extends DataObject
@@ -117,7 +114,7 @@ public class Tag extends DataObject
 	@Override
 	public String id()
 	{
-		return this.name;
+		return this.name.substring(this.name.indexOf(':') + 1);
 	}
 
 	public boolean isReplace()
@@ -132,11 +129,9 @@ public class Tag extends DataObject
 	}
 
 	@Override
-	public Tag readJson(Member json)
+	public Tag readJson(JsonValue json)
 	{
-		this.setName(json.getName());
-
-		JsonObject root = json.getValue().asObject();
+		JsonObject root = json.asObject();
 		this.replace = root.getBoolean("replace", false);
 		this.values.clear();
 		if (root.get("values") != null)
@@ -172,7 +167,7 @@ public class Tag extends DataObject
 	}
 
 	@Override
-	public Member toJson()
+	public JsonValue toJson()
 	{
 		JsonObject value = Json.object();
 		value.add(JSON_REPLACE, this.replace);
@@ -182,7 +177,7 @@ public class Tag extends DataObject
 			v.add(content.toJson());
 		value.add(JSON_VALUES, Json.array(v.toArray(new String[v.size()])));
 
-		return Utils.jsonMember(this.name, value);
+		return value;
 	}
 
 }
