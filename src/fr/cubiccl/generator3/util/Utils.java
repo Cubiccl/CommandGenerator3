@@ -1,5 +1,9 @@
 package fr.cubiccl.generator3.util;
 
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonObject.Member;
+import com.eclipsesource.json.JsonValue;
+
 public class Utils
 {
 
@@ -16,6 +20,11 @@ public class Utils
 		for (int i = 0; i < array.length; ++i)
 			array[i] = i + min;
 		return array;
+	}
+
+	public static Member jsonMember(String name, JsonValue value)
+	{
+		return Json.object().add(name, value).iterator().next();
 	}
 
 }

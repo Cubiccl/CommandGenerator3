@@ -6,6 +6,18 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.google.common.collect.BiMap;
+
+import fr.cubiccl.generator3.dataeditor.TestApplication;
+import fr.cubiccl.generator3.dataeditor.TestPersistance;
+import fr.cubiccl.generator3.game.object.GameObjectRegistry;
+import fr.cubiccl.generator3.game.object.Versions.Version;
+import fr.cubiccl.generator3.game.object.global.GlobalObject;
+import fr.cubiccl.generator3.game.object.type.Block;
+import fr.cubiccl.generator3.game.object.type.Effect;
+import fr.cubiccl.generator3.game.object.type.Enchantment;
+import fr.cubiccl.generator3.game.object.type.GameObjectType;
+import fr.cubiccl.generator3.util.Lang;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,24 +25,19 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-
-import com.google.common.collect.BiMap;
-
-import fr.cubiccl.generator3.dataeditor.TestApplication;
-import fr.cubiccl.generator3.dataeditor.TestPersistance;
-import fr.cubiccl.generator3.game.object.GameObjectRegistry;
-import fr.cubiccl.generator3.game.object.global.GlobalObject;
-import fr.cubiccl.generator3.game.object.type.Block;
-import fr.cubiccl.generator3.game.object.type.Effect;
-import fr.cubiccl.generator3.game.object.type.Enchantment;
-import fr.cubiccl.generator3.game.object.type.GameObjectType;
-import fr.cubiccl.generator3.util.Lang;
-import fr.cubiccl.generator3.util.Settings.Version;
 
 public class ObjectEditorController implements Initializable
 {

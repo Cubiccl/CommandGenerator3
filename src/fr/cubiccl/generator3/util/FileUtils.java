@@ -1,11 +1,23 @@
 package fr.cubiccl.generator3.util;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 
+import com.eclipsesource.json.Json;
+import com.eclipsesource.json.JsonValue;
+
+import fr.cubiccl.generator3.game.object.DataObjectLoader;
 import javafx.scene.image.Image;
 
 public class FileUtils
@@ -58,6 +70,48 @@ public class FileUtils
 	public static String fileName(File file, String extension)
 	{
 		return file.getName().substring(0, file.getName().length() - extension.length());
+	}
+
+	public static ArrayList<String> getResourceFiles(String path)
+	{
+		ArrayList<String> filenames = new ArrayList<>();
+
+		try (InputStream in = DataObjectLoader.class.getResourceAsStream(path); BufferedReader br = new BufferedReader(new InputStreamReader(in)))
+		{
+			String resource;
+			while ((resource = br.readLine()) != null)
+				filenames.add(resource);
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		return filenames;
+	}
+
+	public static ArrayList<String> getResourceSubFiles(String path)
+	{
+		return getResourceSubFiles(path, "");
+	}
+
+	public static ArrayList<String> getResourceSubFiles(String path, String parents)
+	{
+		ArrayList<String> filenames = new ArrayList<>();
+
+		try
+		{
+			InputStream in = DataObjectLoader.class.getResourceAsStream(path);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String resource;
+			while ((resource = br.readLine()) != null)
+				if (resource.contains(".")) filenames.add(parents + resource);
+				else filenames.addAll(getResourceSubFiles(path + "/" + resource, parents + resource + "/"));
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return filenames;
 	}
 
 	/** Reads the input file.
@@ -140,8 +194,7 @@ public class FileUtils
 	 * @param file - The file. */
 	public static void writeToFile(String data, File file)
 	{
-		writeToFile(new String[]
-		{ data }, file);
+		writeToFile(new String[] { data }, file);
 	}
 
 	/** @param path - Path to the File
@@ -172,5 +225,11 @@ public class FileUtils
 
 	private FileUtils()
 	{}
+
+	public static JsonValue readJsonFile(String path)
+	{
+		String data = readFile(path);
+		return Json.parse(data);
+	}
 
 }

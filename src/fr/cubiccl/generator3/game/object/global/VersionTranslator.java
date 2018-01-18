@@ -2,8 +2,16 @@ package fr.cubiccl.generator3.game.object.global;
 
 import com.google.common.collect.HashBiMap;
 
-import fr.cubiccl.generator3.game.object.type.*;
-import fr.cubiccl.generator3.util.Settings.Version;
+import fr.cubiccl.generator3.game.object.Versions.Version;
+import fr.cubiccl.generator3.game.object.type.Attribute;
+import fr.cubiccl.generator3.game.object.type.Block;
+import fr.cubiccl.generator3.game.object.type.Effect;
+import fr.cubiccl.generator3.game.object.type.Enchantment;
+import fr.cubiccl.generator3.game.object.type.Entity;
+import fr.cubiccl.generator3.game.object.type.Item;
+import fr.cubiccl.generator3.game.object.type.NBTTag;
+import fr.cubiccl.generator3.game.object.type.Particle;
+import fr.cubiccl.generator3.game.object.type.Sound;
 
 public class VersionTranslator
 {

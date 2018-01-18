@@ -1,7 +1,6 @@
 package fr.cubiccl.generator3.game.object.type;
 
 import fr.cubiccl.generator3.util.Lang;
-import fr.cubiccl.generator3.util.Persistance;
 import fr.cubiccl.generator3.util.Text;
 import fr.cubiccl.generator3.util.Textures;
 import javafx.scene.image.Image;
@@ -21,7 +20,7 @@ public class Item extends GameObjectType
 
 	public Item(String id, int idInt, int durability)
 	{
-		super("minecraft:" + id, Persistance.selectedVersion);
+		super("minecraft:" + id);
 		this.idInt = idInt;
 		this.durability = durability;
 		{
