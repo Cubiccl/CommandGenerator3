@@ -1,0 +1,13 @@
+{
+	"generic.armor": 1,
+	"generic.armorToughness": 2,
+	"generic.attackDamage": 3,
+	"generic.attackSpeed": 4,
+	"generic.followRange": 5,
+	"horse.jumpStrength": 6,
+	"generic.knockbackResistance": 7,
+	"generic.luck": 8,
+	"generic.maxHealth": 9,
+	"generic.movementSpeed": 10,
+	"zombie.spawnReinforcements": 11
+}

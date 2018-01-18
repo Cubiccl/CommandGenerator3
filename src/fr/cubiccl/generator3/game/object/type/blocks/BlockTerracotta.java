@@ -17,8 +17,8 @@ public class BlockTerracotta extends Block
 
 	public BlockTerracotta(String id)
 	{
-		super(id);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, "south", "west", "north", "east"));
+		super(id, 0);
+		this.addBlockState(new BlockState("facing", "south", "west", "north", "east"));
 	}
 
 }

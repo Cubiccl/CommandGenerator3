@@ -18,7 +18,7 @@ public class BlockFurniture extends Block
 
 	public BlockFurniture(String id)
 	{
-		super(id);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, "north", "south", "west", "east"));
+		super(id, 0);
+		this.addBlockState(new BlockState("facing", "north", "south", "west", "east"));
 	}
 }

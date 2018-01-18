@@ -72,8 +72,7 @@ public class StatesEditorController implements Initializable
 		block.blockStates.clear();
 		for (String stateID : this.listStates.getItems())
 		{
-			BlockState state = new BlockState(stateID, (byte) this.comboboxType.getSelectionModel().getSelectedIndex(), this.states.get(stateID).toArray(
-					new String[0]));
+			BlockState state = new BlockState(stateID, this.states.get(stateID).toArray(new String[0]));
 			block.addBlockState(state);
 		}
 		this.onCancel();

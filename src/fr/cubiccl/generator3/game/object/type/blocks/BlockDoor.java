@@ -17,12 +17,12 @@ public class BlockDoor extends Block
 
 	public BlockDoor(int idInt, String idString)
 	{
-		super(idString);
-		this.addBlockState(new BlockState("facing", BlockState.STRING, "north", "south", "west", "east"));
-		this.addBlockState(new BlockState("half", BlockState.STRING, "lower", "upper"));
-		this.addBlockState(new BlockState("hinge", BlockState.STRING, "left", "right"));
-		this.addBlockState(new BlockState("open", BlockState.BOOLEAN, "false", "true"));
-		this.addBlockState(new BlockState("powered", BlockState.BOOLEAN, "false", "true"));
+		super(idString, 0);
+		this.addBlockState(new BlockState("facing", "north", "south", "west", "east"));
+		this.addBlockState(new BlockState("half", "lower", "upper"));
+		this.addBlockState(new BlockState("hinge", "left", "right"));
+		this.addBlockState(new BlockState("open", "false", "true"));
+		this.addBlockState(new BlockState("powered", "false", "true"));
 	}
 
 }

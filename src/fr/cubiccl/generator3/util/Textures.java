@@ -1,5 +1,6 @@
 package fr.cubiccl.generator3.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.scene.image.Image;
@@ -17,7 +18,7 @@ public class Textures
 	{
 		paths.clear();
 		textures.clear();
-		String[] pathArray = FileUtils.readFileAsArray("/textures/texture-remapping.txt");
+		ArrayList<String> pathArray = FileUtils.readFileAsArray("/textures/texture-remapping.txt");
 		for (String path : pathArray)
 		{
 			String[] data = path.split("=");
@@ -30,7 +31,6 @@ public class Textures
 	 * @return The corresponding Image. Returns null if <code>textureID</code> is not recognized or the image File can't be found. */
 	public static Image getTexture(String textureID)
 	{
-		textureID = textureID.replaceAll("minecraft:", "");
 		String path = paths.get(textureID);
 
 		if (path == null)
@@ -70,4 +70,12 @@ public class Textures
 
 	private Textures()
 	{}
+
+	/** @param textureID - The ID of the Image.
+	 * @return True if the texture with the input ID exists. */
+	public static boolean exists(String textureID)
+	{
+		return getTexture(textureID) != null;
+	}
+
 }

@@ -1,8 +1,7 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.global.GlobalParticle;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Persistance;
+import fr.cubiccl.generator3.util.Text;
 
 public class Particle extends GameObjectType
 {
@@ -11,10 +10,24 @@ public class Particle extends GameObjectType
 	{
 		super("minecraft:" + id, Persistance.selectedVersion);
 	}
-
-	public GlobalParticle globalValue()
+	
+	@Override
+	public int compareTo(GameObjectType o)
 	{
-		return VersionTranslator.translator(this.version).particles.inverse().get(this);
+		if ((o instanceof Particle)) return 0;
+		return this.id.compareTo(((Particle) o).id);
+	}
+
+	@Override
+	protected Text createName()
+	{
+		return new Text("particle." + this.idPrefixless());
+	}
+
+	@Override
+	public String type()
+	{
+		return "Particle";
 	}
 
 }

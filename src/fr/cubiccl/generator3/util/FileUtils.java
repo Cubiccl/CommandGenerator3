@@ -66,25 +66,40 @@ public class FileUtils
 	 * @return A String containing the file content. */
 	public static String readFile(String path)
 	{
-		String[] data = readFileAsArray(path);
-		String toreturn = "";
-		for (String line : data)
-			if (!line.equals("")) toreturn += line + "\n";
-		return toreturn;
+		StringBuilder data = new StringBuilder("");
+		URL url = FileUtils.class.getResource(path);
+		if (url != null)
+		{
+			File f = new File(url.getPath());
+			if (!f.exists()) return data.toString();
+			try
+			{
+				BufferedReader br = new BufferedReader(new FileReader(f));
+				String line;
+				while ((line = br.readLine()) != null)
+					if (!line.equals("") && !line.startsWith("//")) data.append(line + "\n");
+				br.close();
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		} else Logger.log("File not found : " + path);
+
+		return data.toString();
 	}
 
 	/** Reads the input file.
 	 * 
 	 * @param path - The path to the file.
 	 * @return A String array containing each line of the file content. */
-	public static String[] readFileAsArray(String path)
+	public static ArrayList<String> readFileAsArray(String path)
 	{
 		ArrayList<String> lines = new ArrayList<String>();
 		URL url = FileUtils.class.getResource(path);
 		if (url != null)
 		{
 			File f = new File(url.getPath());
-			if (!f.exists()) return lines.toArray(new String[lines.size()]);
+			if (!f.exists()) return lines;
 			try
 			{
 				BufferedReader br = new BufferedReader(new FileReader(f));
@@ -98,7 +113,7 @@ public class FileUtils
 			}
 		} else Logger.log("File not found : " + path);
 
-		return lines.toArray(new String[lines.size()]);
+		return lines;
 	}
 
 	/** Reads the input file.

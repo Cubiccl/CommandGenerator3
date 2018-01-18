@@ -6,31 +6,6 @@ import fr.cubiccl.generator3.util.Text;
 
 public class BlockState implements Comparable<BlockState>
 {
-	/** Identifiers for Block states value types.<br />
-	 * <br />
-	 * <table border="1">
-	 * <tr>
-	 * <td>ID</td>
-	 * <td>Variable</td>
-	 * <td>Mode</td>
-	 * </tr>
-	 * <tr>
-	 * <td>0</td>
-	 * <td>STRING</td>
-	 * <td>String value</td>
-	 * </tr>
-	 * <tr>
-	 * <td>1</td>
-	 * <td>BOOLEAN</td>
-	 * <td><code>"true"</code> or <code>"false"</code></td>
-	 * </tr>
-	 * <tr>
-	 * <td>2</td>
-	 * <td>INTEGER</td>
-	 * <td>Integer value</td>
-	 * </tr>
-	 * </table> */
-	public static final byte STRING = 0, BOOLEAN = 1, INTEGER = 2;
 
 	/** Parses the input Block states.
 	 * 
@@ -66,18 +41,13 @@ public class BlockState implements Comparable<BlockState>
 
 	/** This Block state's ID. */
 	public final String id;
-	/** The type of the value.
-	 * 
-	 * @see BlockState#STRING */
-	public final byte type;
 	/** The state's values. */
 	public final String[] values;
 
-	public BlockState(String id, byte type, String... values)
+	public BlockState(String id, String... values)
 	{
 		super();
 		this.id = id;
-		this.type = type;
 		this.values = values;
 	}
 

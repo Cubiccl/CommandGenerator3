@@ -1,8 +1,7 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.global.GlobalEnchantment;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Persistance;
+import fr.cubiccl.generator3.util.Text;
 
 public class Enchantment extends GameObjectType
 {
@@ -22,13 +21,26 @@ public class Enchantment extends GameObjectType
 	@Override
 	public int compareTo(GameObjectType o)
 	{
-		if (!(o instanceof Enchantment)) return super.compareTo(o);
+		if (!(o instanceof Enchantment)) return 0;
 		return Integer.compare(this.idInt, ((Enchantment) o).idInt);
 	}
 
-	public GlobalEnchantment globalValue()
+	@Override
+	protected Text createName()
 	{
-		return VersionTranslator.translator(this.version).enchantments.inverse().get(this);
+		return new Text("enchantment." + this.idPrefixless());
+	}
+
+	@Override
+	public String describe()
+	{
+		return super.describe() + " (" + this.idInt + ", max_level=" + this.maxLevel + ")";
+	}
+
+	@Override
+	public String type()
+	{
+		return "Enchantment";
 	}
 
 }

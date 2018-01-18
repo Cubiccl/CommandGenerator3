@@ -1,0 +1,83 @@
+{
+	"speed": {
+		"id": 1
+	},
+	"slowness": {
+		"id": 2
+	},
+	"haste": {
+		"id": 3
+	},
+	"mining_fatigue": {
+		"id": 4
+	},
+	"strength": {
+		"id": 5
+	},
+	"instant_health": {
+		"id": 6
+	},
+	"instant_damage": {
+		"id": 7
+	},
+	"jump_boost": {
+		"id": 8
+	},
+	"nausea": {
+		"id": 9
+	},
+	"regeneration": {
+		"id": 10
+	},
+	"resistance": {
+		"id": 11
+	},
+	"fire_resistance": {
+		"id": 12
+	},
+	"water_breathing": {
+		"id": 13
+	},
+	"invisibility": {
+		"id": 14
+	},
+	"blindness": {
+		"id": 15
+	},
+	"night_vision": {
+		"id": 16
+	},
+	"hunger": {
+		"id": 17
+	},
+	"weakness": {
+		"id": 18
+	},
+	"poison": {
+		"id": 19
+	},
+	"wither": {
+		"id": 20
+	},
+	"health_boost": {
+		"id": 21
+	},
+	"absorption": {
+		"id": 22
+	},
+	"saturation": {
+		"id": 23
+	},
+	"glowing": {
+		"id": 24
+	},
+	"levitation": {
+		"id": 25
+	},
+	"luck": {
+		"id": 26
+	},
+	"unluck": {
+		"id": 27
+	}
+}

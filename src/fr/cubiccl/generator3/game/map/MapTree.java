@@ -126,7 +126,7 @@ public class MapTree extends MapTreeItem
 		this.loottables = new LootTablesFolder().getTreeItem();
 		this.recipes = new RecipesFolder().getTreeItem();
 
-		this.root.getChildren().addAll(this.advancements, this.commands, this.functions, this.loottables, this.recipes);
+		this.root.getChildren().addAll(this.advancements, this.functions, this.commands, this.loottables, this.recipes);
 	}
 
 	@Override

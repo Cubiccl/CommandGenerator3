@@ -23,10 +23,12 @@ import com.google.common.collect.BiMap;
 
 import fr.cubiccl.generator3.dataeditor.TestApplication;
 import fr.cubiccl.generator3.dataeditor.TestPersistance;
-import fr.cubiccl.generator3.game.object.GlobalRegistry;
+import fr.cubiccl.generator3.game.object.GameObjectRegistry;
 import fr.cubiccl.generator3.game.object.global.GlobalObject;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
-import fr.cubiccl.generator3.game.object.type.*;
+import fr.cubiccl.generator3.game.object.type.Block;
+import fr.cubiccl.generator3.game.object.type.Effect;
+import fr.cubiccl.generator3.game.object.type.Enchantment;
+import fr.cubiccl.generator3.game.object.type.GameObjectType;
 import fr.cubiccl.generator3.util.Lang;
 import fr.cubiccl.generator3.util.Settings.Version;
 
@@ -34,7 +36,7 @@ public class ObjectEditorController implements Initializable
 {
 	public Button buttonNumID, buttonMaxLevel, buttonBlockStates;
 	@SuppressWarnings("rawtypes")
-	private GlobalRegistry currentRegistry;
+	private GameObjectRegistry currentRegistry;
 	@SuppressWarnings("rawtypes")
 	private BiMap currentTranslator;
 	public Label modeLabel, nameLabel;
@@ -69,20 +71,19 @@ public class ObjectEditorController implements Initializable
 		TestApplication.instance.setScene(TestApplication.BLOCK_STATES);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void editGlobalLink()
 	{
 		GameObjectType object = this.objectSelection.getSelectionModel().getSelectedItem();
 		if (object == null) return;
 
-		Dialog<GlobalObject> dialog = this.globalObjectSelector(object.globalValue());
+		/*Dialog<GlobalObject> dialog = this.globalObjectSelector(object.globalValue());
 
 		Optional<GlobalObject> result = dialog.showAndWait();
 		if (result.isPresent())
 		{
 			this.currentTranslator.remove(object.globalValue());
 			this.currentTranslator.put(result.get(), object);
-		}
+		}*/
 	}
 
 	public void editID()
@@ -269,12 +270,12 @@ public class ObjectEditorController implements Initializable
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Delete");
 		alert.setHeaderText("");
-		alert.setContentText("Are you sure you want to delete " + object.name() + " !?");
+		alert.setContentText("Are you sure you want to delete " + object.name + " !?");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK)
 		{
-			this.currentTranslator.remove(object.globalValue());
+			//this.currentTranslator.remove(object.globalValue());
 			this.reloadObjects();
 		}
 	}
@@ -283,45 +284,45 @@ public class ObjectEditorController implements Initializable
 	{
 		if (mode == null) return;
 
-		switch (mode)
+		/*switch (mode)
 		{
 			case "Items":
-				currentRegistry = GlobalRegistry.items;
+				currentRegistry = GameObjectRegistry.items;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).items;
 				break;
 			case "Entities":
-				currentRegistry = GlobalRegistry.entities;
+				currentRegistry = GameObjectRegistry.entities;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).entities;
 				break;
 			case "Attributes":
-				currentRegistry = GlobalRegistry.attributes;
+				currentRegistry = GameObjectRegistry.attributes;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).attributes;
 				break;
 			case "Effects":
-				currentRegistry = GlobalRegistry.effects;
+				currentRegistry = GameObjectRegistry.effects;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).effects;
 				break;
 			case "Enchantments":
-				currentRegistry = GlobalRegistry.enchantments;
+				currentRegistry = GameObjectRegistry.enchantments;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).enchantments;
 				break;
 			case "NBT Tags":
-				currentRegistry = GlobalRegistry.nbttags;
+				currentRegistry = GameObjectRegistry.nbttags;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).nbtTags;
 				break;
 			case "Particles":
-				currentRegistry = GlobalRegistry.particles;
+				currentRegistry = GameObjectRegistry.particles;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).particles;
 				break;
 			case "Sounds":
-				currentRegistry = GlobalRegistry.sounds;
+				currentRegistry = GameObjectRegistry.sounds;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).sounds;
 				break;
 			default:
-				currentRegistry = GlobalRegistry.blocks;
+				currentRegistry = GameObjectRegistry.blocks;
 				currentTranslator = VersionTranslator.translator(TestPersistance.version).blocks;
 				break;
-		}
+		}*/
 
 		this.buttonNumID.setVisible(mode.equals("Effects") || mode.equals("Enchantments"));
 		this.buttonMaxLevel.setVisible(mode.equals("Enchantments"));
@@ -331,7 +332,7 @@ public class ObjectEditorController implements Initializable
 		this.reloadObjects();
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	public void onNew()
 	{
 		String mode = this.modeSelection.getSelectionModel().getSelectedItem();
@@ -351,7 +352,7 @@ public class ObjectEditorController implements Initializable
 
 		String id = result.get();
 		GameObjectType newObject = null;
-		switch (mode)
+		/*switch (mode)
 		{
 			case "Blocks":
 				newObject = new Block(id);
@@ -382,7 +383,7 @@ public class ObjectEditorController implements Initializable
 				break;
 			default:
 				break;
-		}
+		}*/
 
 		if (newObject != null) this.currentTranslator.put(result2.get(), newObject);
 		this.reloadObjects();
@@ -396,7 +397,7 @@ public class ObjectEditorController implements Initializable
 	protected void reloadObject()
 	{
 		GameObjectType object = this.objectSelection.getSelectionModel().getSelectedItem();
-		this.nameLabel.setText(object == null ? "(No selection)" : object.globalValue().name + " -> " + object.id);
+		this.nameLabel.setText(/*object == null ? "(No selection)" : object.globalValue().name + " -> " +*/ object.id);
 	}
 
 	private void reloadObjects()
@@ -410,7 +411,7 @@ public class ObjectEditorController implements Initializable
 		String search = this.searchbox.getText();
 		int index = -1;
 		for (int i = 0; i < objects.size(); ++i)
-			if (objects.get(i).name().toString().contains(search))
+			if (objects.get(i).name.toString().contains(search))
 			{
 				index = i;
 				break;

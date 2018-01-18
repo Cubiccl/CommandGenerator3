@@ -1,8 +1,7 @@
 package fr.cubiccl.generator3.game.object.type;
 
-import fr.cubiccl.generator3.game.object.global.GlobalSound;
-import fr.cubiccl.generator3.game.object.global.VersionTranslator;
 import fr.cubiccl.generator3.util.Persistance;
+import fr.cubiccl.generator3.util.Text;
 
 public class Sound extends GameObjectType
 {
@@ -12,9 +11,23 @@ public class Sound extends GameObjectType
 		super(id, Persistance.selectedVersion);
 	}
 
-	public GlobalSound globalValue()
+	@Override
+	public int compareTo(GameObjectType o)
 	{
-		return VersionTranslator.translator(this.version).sounds.inverse().get(this);
+		if ((o instanceof Sound)) return 0;
+		return this.id.compareTo(((Sound) o).id);
+	}
+
+	@Override
+	protected Text createName()
+	{
+		return new Text(this.idPrefixless(), false);
+	}
+
+	@Override
+	public String type()
+	{
+		return "Sound";
 	}
 
 }
