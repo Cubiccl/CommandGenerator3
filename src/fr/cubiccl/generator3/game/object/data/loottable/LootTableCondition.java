@@ -60,32 +60,17 @@ public class LootTableCondition implements JsonWritable<LootTableCondition>
 			if ((this.type == LootTableConditionType.ENTITY_PROPERTIES || this.type == LootTableConditionType.ENTITY_SCORES) && root.get(JSON_ENTITY) != null)
 				this.testedEntity.setValue(root.getString(JSON_ENTITY, null));
 
-			switch (this.type)
-			{
-				case ENTITY_PROPERTIES:
-					if (root.get(JSON_PROPERTIES) != null && root.get(JSON_PROPERTIES).asObject().get(JSON_ISONFIRE) != null)
-						this.isEntityOnFire.setValue(root.get(JSON_PROPERTIES).asObject().getBoolean(JSON_ISONFIRE, false));
-					break;
+			if (root.get(JSON_PROPERTIES) != null && root.get(JSON_PROPERTIES).asObject().get(JSON_ISONFIRE) != null)
+				this.isEntityOnFire.setValue(root.get(JSON_PROPERTIES).asObject().getBoolean(JSON_ISONFIRE, false));
 
-				case ENTITY_SCORES:
-					if (root.get(JSON_SCORES) != null) for (Member member : root.get(JSON_SCORES).asObject())
-						this.scores.put(member.getName(), new IntRangedValue().readJson(member.getValue()));
-					break;
+			if (root.get(JSON_SCORES) != null) for (Member member : root.get(JSON_SCORES).asObject())
+				this.scores.put(member.getName(), new IntRangedValue().readJson(member.getValue()));
 
-				case KILLED_BY_PLAYER:
-					if (root.get(JSON_INVERSE) != null) this.killerInversed.setValue(root.getBoolean(JSON_INVERSE, false));
-					break;
+			if (root.get(JSON_INVERSE) != null) this.killerInversed.setValue(root.getBoolean(JSON_INVERSE, false));
 
-				case RANDOM_CHANCE_WITH_LOOTING:
-					if (root.get(JSON_LOOTING) != null) this.lootingMultiplier.setValue(root.getFloat(JSON_LOOTING, 0));
+			if (root.get(JSON_LOOTING) != null) this.lootingMultiplier.setValue(root.getFloat(JSON_LOOTING, 0));
 
-				case RANDOM_CHANCE:
-					if (root.get(JSON_CHANCE) != null) this.chance.setValue(root.getFloat(JSON_CHANCE, 0));
-					break;
-
-				default:
-					break;
-			}
+			if (root.get(JSON_CHANCE) != null) this.chance.setValue(root.getFloat(JSON_CHANCE, 0));
 
 		}
 		return this;
