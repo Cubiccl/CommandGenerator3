@@ -11,10 +11,12 @@ import fr.cubiccl.generator3.util.Logger;
 public class GameObjectRegistry<T extends GameObjectType>
 {
 
+	private final DataPack datapack;
 	private final HashMap<String, T> objects;
 
-	public GameObjectRegistry()
+	public GameObjectRegistry(DataPack datapack)
 	{
+		this.datapack = datapack;
 		this.objects = new HashMap<String, T>();
 	}
 
@@ -36,8 +38,9 @@ public class GameObjectRegistry<T extends GameObjectType>
 		else
 		{
 			this.objects.put(object.idPrefixless(), object);
-			//System.out.println("Registered " + object.describe());
+			// System.out.println("Registered " + object.describe());
 		}
+		object.setDatapack(this.datapack.id);
 	}
 
 	public int size()
@@ -48,6 +51,7 @@ public class GameObjectRegistry<T extends GameObjectType>
 	public void unregister(T object)
 	{
 		this.objects.remove(object.idPrefixless());
+		object.setDatapack(-1);
 	}
 
 }

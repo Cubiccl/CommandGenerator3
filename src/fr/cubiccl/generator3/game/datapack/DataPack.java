@@ -19,15 +19,15 @@ public class DataPack
 	public static class VanillaDataPack extends DataPack
 	{
 
-		public final GameObjectRegistry<Attribute> attributes = new GameObjectRegistry<Attribute>();
-		public final GameObjectRegistry<Block> blocks = new GameObjectRegistry<Block>();
-		public final GameObjectRegistry<Effect> effects = new GameObjectRegistry<Effect>();
-		public final GameObjectRegistry<Enchantment> enchantments = new GameObjectRegistry<Enchantment>();
-		public final GameObjectRegistry<Entity> entities = new GameObjectRegistry<Entity>();
-		public final GameObjectRegistry<Item> items = new GameObjectRegistry<Item>();
-		public final GameObjectRegistry<NBTTag> nbttags = new GameObjectRegistry<NBTTag>();
-		public final GameObjectRegistry<Particle> particles = new GameObjectRegistry<Particle>();
-		public final GameObjectRegistry<Sound> sounds = new GameObjectRegistry<Sound>();
+		public final GameObjectRegistry<Attribute> attributes = new GameObjectRegistry<Attribute>(this);
+		public final GameObjectRegistry<Block> blocks = new GameObjectRegistry<Block>(this);
+		public final GameObjectRegistry<Effect> effects = new GameObjectRegistry<Effect>(this);
+		public final GameObjectRegistry<Enchantment> enchantments = new GameObjectRegistry<Enchantment>(this);
+		public final GameObjectRegistry<Entity> entities = new GameObjectRegistry<Entity>(this);
+		public final GameObjectRegistry<Item> items = new GameObjectRegistry<Item>(this);
+		public final GameObjectRegistry<NBTTag> nbttags = new GameObjectRegistry<NBTTag>(this);
+		public final GameObjectRegistry<Particle> particles = new GameObjectRegistry<Particle>(this);
+		public final GameObjectRegistry<Sound> sounds = new GameObjectRegistry<Sound>(this);
 
 		public VanillaDataPack(String name, int id)
 		{

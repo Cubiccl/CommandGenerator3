@@ -1,9 +1,10 @@
 package fr.cubiccl.generator3.game.object.type;
 
+import fr.cubiccl.generator3.game.object.GameObject;
 import fr.cubiccl.generator3.util.Text;
 
 /** Parent class for any type of object in Minecraft. */
-public abstract class GameObjectType implements Comparable<GameObjectType>
+public abstract class GameObjectType extends GameObject implements Comparable<GameObjectType>
 {
 
 	public String id;
