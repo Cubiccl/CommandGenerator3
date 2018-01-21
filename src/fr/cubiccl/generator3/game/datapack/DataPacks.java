@@ -13,7 +13,7 @@ public class DataPacks
 	public static enum Version
 	{
 
-		v113("1.13", "1.13", 0);
+		v113("1.13", "1d13", 0);
 
 		private static final Comparator<Version> versionComparator = new Comparator<Version>() {
 			@Override
@@ -92,10 +92,11 @@ public class DataPacks
 
 	private static final HashMap<String, DataPack> dataPacks = new HashMap<String, DataPack>();
 
-	static DataPack create(Version version)
+	static VanillaDataPack create(Version version)
 	{
-		DataPack pack = new VanillaDataPack(version.id);
+		VanillaDataPack pack = new VanillaDataPack("v" + version.id, newID());
 		dataPacks.put("vanilla-" + version.id, pack);
+		pack.setVersion(version);
 		return pack;
 	}
 
@@ -114,6 +115,24 @@ public class DataPacks
 	{
 		for (Version version : Version.values())
 			loadPack(create(version));
+	}
+
+	public static int newID()
+	{
+		int id = 0;
+		boolean used = true;
+		while (used)
+		{
+			++id;
+			used = false;
+			for (DataPack pack : dataPacks.values())
+				if (pack.id == id)
+				{
+					used = true;
+					break;
+				}
+		}
+		return id;
 	}
 
 	public static final VanillaDataPack vanillaPack(Version version)
