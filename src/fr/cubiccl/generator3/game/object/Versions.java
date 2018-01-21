@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import fr.cubiccl.generator3.util.Settings;
+
 public class Versions
 {
 
@@ -13,8 +15,7 @@ public class Versions
 
 		v113("1.13", "1d13", 0);
 
-		private static final Comparator<Version> versionComparator = new Comparator<Version>()
-		{
+		private static final Comparator<Version> versionComparator = new Comparator<Version>() {
 			@Override
 			public int compare(Version o1, Version o2)
 			{
@@ -95,6 +96,11 @@ public class Versions
 	static void create(Version version)
 	{
 		registries.put(version, new VersionRegistry(version));
+	}
+
+	public static VersionRegistry current()
+	{
+		return registry(Version.v113);
 	}
 
 	public static final VersionRegistry registry(Version version)

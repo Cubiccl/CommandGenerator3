@@ -17,7 +17,12 @@ public class ItemStack implements GameObjectInstance
 
 	public ItemStack(Item item)
 	{
-		this(item, -1, -1, null);
+		this(item, 1);
+	}
+
+	public ItemStack(Item item, int quantity)
+	{
+		this(item, quantity, -1, null);
 	}
 
 	public ItemStack(Item item, int quantity, int slot, TagCompound nbtTags)
