@@ -114,7 +114,7 @@ public class Tag extends DataObject
 	@Override
 	public String id()
 	{
-		return this.name.substring(this.name.indexOf(':') + 1);
+		return this.name;
 	}
 
 	public boolean isReplace()

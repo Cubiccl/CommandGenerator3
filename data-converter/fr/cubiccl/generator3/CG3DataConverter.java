@@ -8,7 +8,7 @@ import com.eclipsesource.json.JsonObject.Member;
 import com.eclipsesource.json.JsonValue;
 import com.eclipsesource.json.PrettyPrint;
 
-import fr.cubiccl.generator3.game.object.Versions.Version;
+import fr.cubiccl.generator3.game.datapack.DataPacks.Version;
 import fr.cubiccl.generator3.util.FileUtils;
 
 public class CG3DataConverter

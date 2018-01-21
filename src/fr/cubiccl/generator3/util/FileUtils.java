@@ -13,11 +13,12 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonValue;
 
-import fr.cubiccl.generator3.game.object.DataObjectLoader;
+import fr.cubiccl.generator3.game.datapack.DataObjectLoader;
 import javafx.scene.image.Image;
 
 public class FileUtils
@@ -72,6 +73,15 @@ public class FileUtils
 		return file.getName().substring(0, file.getName().length() - extension.length());
 	}
 
+	public static ArrayList<String> getFiles(String path)
+	{
+		ArrayList<String> filenames = new ArrayList<>();
+		File f = new File(path);
+		if (f.isDirectory()) for (String fn : f.list())
+			filenames.add(fn);
+		return filenames;
+	}
+
 	public static ArrayList<String> getResourceFiles(String path)
 	{
 		ArrayList<String> filenames = new ArrayList<>();
@@ -110,7 +120,29 @@ public class FileUtils
 		{
 			e.printStackTrace();
 		}
+		
+		filenames.sort(Comparator.naturalOrder());
 
+		return filenames;
+	}
+
+	public static ArrayList<String> getSubFiles(String path)
+	{
+		ArrayList<String> files = getSubFiles(path, "");
+		files.sort(Comparator.naturalOrder());
+		return files;
+	}
+
+	private static ArrayList<String> getSubFiles(String path, String parents)
+	{
+		ArrayList<String> filenames = new ArrayList<>();
+		File f = new File(path);
+		if (f.isDirectory()) for (String fn : f.list())
+		{
+			File d = new File(fn);
+			if (d.isDirectory()) filenames.addAll(getSubFiles(path + "/" + fn, parents + fn + "/"));
+			else filenames.add(parents + fn);
+		}
 		return filenames;
 	}
 
@@ -188,6 +220,12 @@ public class FileUtils
 		return null;
 	}
 
+	public static JsonValue readJsonFile(String path)
+	{
+		String data = readFile(path);
+		return Json.parse(data);
+	}
+
 	/** Saves a single line in the input file.
 	 * 
 	 * @param data - The line to write.
@@ -225,11 +263,5 @@ public class FileUtils
 
 	private FileUtils()
 	{}
-
-	public static JsonValue readJsonFile(String path)
-	{
-		String data = readFile(path);
-		return Json.parse(data);
-	}
 
 }

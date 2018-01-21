@@ -1,17 +1,19 @@
-package fr.cubiccl.generator3.game.object;
+package fr.cubiccl.generator3.game.datapack;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class Versions
+import fr.cubiccl.generator3.game.datapack.DataPack.VanillaDataPack;
+
+public class DataPacks
 {
 
 	/** The available Minecraft Versions. */
 	public static enum Version
 	{
 
-		v113("1.13", "1d13", 0);
+		v113("1.13", "1.13", 0);
 
 		private static final Comparator<Version> versionComparator = new Comparator<Version>() {
 			@Override
@@ -60,7 +62,6 @@ public class Versions
 		public final String id;
 		/** This Version's name. */
 		public final String name;
-
 		/** The position of the Version. */
 		public final int order;
 
@@ -89,21 +90,35 @@ public class Versions
 		}
 	}
 
-	private static final HashMap<Version, VersionRegistry> registries = new HashMap<Version, VersionRegistry>();
+	private static final HashMap<String, DataPack> dataPacks = new HashMap<String, DataPack>();
 
-	static void create(Version version)
+	static DataPack create(Version version)
 	{
-		registries.put(version, new VersionRegistry(version));
+		DataPack pack = new VanillaDataPack(version.id);
+		dataPacks.put("vanilla-" + version.id, pack);
+		return pack;
 	}
 
-	public static VersionRegistry current()
+	public static VanillaDataPack current()
 	{
-		return registry(Version.v113);
+		return vanillaPack(Version.v113);
 	}
 
-	public static final VersionRegistry registry(Version version)
+	private static void loadPack(DataPack pack)
 	{
-		return registries.get(version);
+		if (pack.isVanillaPack()) GameObjectLoader.loadObjects((VanillaDataPack) pack);
+		DataObjectLoader.loadObjects(pack);
+	}
+
+	public static void loadVanillaPacks()
+	{
+		for (Version version : Version.values())
+			loadPack(create(version));
+	}
+
+	public static final VanillaDataPack vanillaPack(Version version)
+	{
+		return (VanillaDataPack) dataPacks.get("vanilla-" + version.id);
 	}
 
 }

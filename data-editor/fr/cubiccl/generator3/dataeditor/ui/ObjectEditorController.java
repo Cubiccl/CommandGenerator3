@@ -10,8 +10,8 @@ import com.google.common.collect.BiMap;
 
 import fr.cubiccl.generator3.dataeditor.TestApplication;
 import fr.cubiccl.generator3.dataeditor.TestPersistance;
-import fr.cubiccl.generator3.game.object.GameObjectRegistry;
-import fr.cubiccl.generator3.game.object.Versions.Version;
+import fr.cubiccl.generator3.game.datapack.GameObjectRegistry;
+import fr.cubiccl.generator3.game.datapack.DataPacks.Version;
 import fr.cubiccl.generator3.game.object.global.GlobalObject;
 import fr.cubiccl.generator3.game.object.type.Block;
 import fr.cubiccl.generator3.game.object.type.Effect;

@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import fr.cubiccl.generator3.dataeditor.TestApplication;
-import fr.cubiccl.generator3.game.object.GameObjectRegistry;
+import fr.cubiccl.generator3.game.datapack.GameObjectRegistry;
 import fr.cubiccl.generator3.game.object.global.*;
 import fr.cubiccl.generator3.util.Lang;
 

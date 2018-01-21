@@ -2,7 +2,7 @@ package fr.cubiccl.generator3.game.object.global;
 
 import com.google.common.collect.HashBiMap;
 
-import fr.cubiccl.generator3.game.object.Versions.Version;
+import fr.cubiccl.generator3.game.datapack.DataPacks.Version;
 import fr.cubiccl.generator3.game.object.type.Attribute;
 import fr.cubiccl.generator3.game.object.type.Block;
 import fr.cubiccl.generator3.game.object.type.Effect;

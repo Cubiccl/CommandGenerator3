@@ -1,26 +1,26 @@
-package fr.cubiccl.generator3.game.object;
+package fr.cubiccl.generator3.game.datapack;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 
-import fr.cubiccl.generator3.game.object.type.GameObjectType;
+import fr.cubiccl.generator3.game.object.data.DataObject;
 import fr.cubiccl.generator3.util.Logger;
 
-public class GameObjectRegistry<T extends GameObjectType>
+public class DataObjectRegistry<T extends DataObject>
 {
 
 	private final HashMap<String, T> objects;
 
-	public GameObjectRegistry()
+	public DataObjectRegistry()
 	{
 		this.objects = new HashMap<String, T>();
 	}
 
 	public T find(String id)
 	{
-		return this.objects.get(id.replaceAll("minecraft:", ""));
+		return this.objects.get(id);
 	}
 
 	public Collection<T> list()
@@ -32,11 +32,11 @@ public class GameObjectRegistry<T extends GameObjectType>
 
 	public void register(T object)
 	{
-		if (this.objects.containsKey(object.idPrefixless())) Logger.log("Object " + object.idPrefixless() + " already exists !");
+		if (this.objects.containsKey(object.id())) Logger.log("Object " + object.id() + " already exists !");
 		else
 		{
-			this.objects.put(object.idPrefixless(), object);
-			//System.out.println("Registered " + object.describe());
+			this.objects.put(object.id(), object);
+			// System.out.println("Registered " + object.describe());
 		}
 	}
 
@@ -47,7 +47,7 @@ public class GameObjectRegistry<T extends GameObjectType>
 
 	public void unregister(T object)
 	{
-		this.objects.remove(object.idPrefixless());
+		this.objects.remove(object.id());
 	}
 
 }

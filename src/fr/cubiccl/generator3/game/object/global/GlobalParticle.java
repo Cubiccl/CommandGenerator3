@@ -1,6 +1,6 @@
 package fr.cubiccl.generator3.game.object.global;
 
-import fr.cubiccl.generator3.game.object.Versions.Version;
+import fr.cubiccl.generator3.game.datapack.DataPacks.Version;
 import fr.cubiccl.generator3.game.object.type.Particle;
 
 public class GlobalParticle extends GlobalObject
