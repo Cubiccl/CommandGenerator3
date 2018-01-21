@@ -3,6 +3,7 @@ package fr.cubiccl.generator3.game.datapack;
 import fr.cubiccl.generator3.game.datapack.DataPacks.Version;
 import fr.cubiccl.generator3.game.object.data.Recipe;
 import fr.cubiccl.generator3.game.object.data.Tag;
+import fr.cubiccl.generator3.game.object.data.loottable.LootTable;
 import fr.cubiccl.generator3.game.object.type.Attribute;
 import fr.cubiccl.generator3.game.object.type.Block;
 import fr.cubiccl.generator3.game.object.type.Effect;
@@ -37,11 +38,12 @@ public class DataPack
 	}
 
 	public final DataObjectRegistry<Tag> blockTags = new DataObjectRegistry<Tag>(this);
-	public final int id;
 	public final DataObjectRegistry<Tag> itemTags = new DataObjectRegistry<Tag>(this);
-
-	private String name;
+	public final DataObjectRegistry<LootTable> lootTables = new DataObjectRegistry<LootTable>(this);
 	public final DataObjectRegistry<Recipe> recipes = new DataObjectRegistry<Recipe>(this);
+
+	public final int id;
+	private String name;
 	/** The Minecraft version this Pack is made for. */
 	private Version version;
 

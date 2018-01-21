@@ -47,6 +47,7 @@ public class LootTableFunction implements JsonWritable<LootTableFunction>
 	public static final String JSON_NAME = "function", JSON_CONDITIONS = "conditions", JSON_ENCHANTMENTS = "enchantments", JSON_TREASURE = "treasure",
 			JSON_LEVELS = "levels", JSON_COUNT = "count", JSON_LIMIT = "limit", JSON_MODIFIERS = "modifiers", JSON_DAMAGE = "damage", JSON_NBT = "tag";
 
+	private ArrayList<LootTableCondition> conditions = new ArrayList<>();
 	public final IntRangedValue count = new IntRangedValue();
 	public final FloatRangedValue damage = new FloatRangedValue();
 	private final ArrayList<Enchantment> enchantments = new ArrayList<>();
@@ -89,6 +90,9 @@ public class LootTableFunction implements JsonWritable<LootTableFunction>
 			if (root.get(JSON_DAMAGE) != null) this.damage.readJson(root.get(JSON_DAMAGE));
 
 			if (root.get(JSON_NBT) != null) this.nbt.setValue(root.getString(JSON_NBT, null));
+
+			if (root.get(JSON_CONDITIONS) != null) for (JsonValue value : root.get(JSON_CONDITIONS).asArray())
+				this.conditions.add(new LootTableCondition().readJson(value));
 
 		}
 		return this;
@@ -136,6 +140,14 @@ public class LootTableFunction implements JsonWritable<LootTableFunction>
 
 				default:
 					break;
+			}
+
+			if (this.conditions.size() != 0)
+			{
+				JsonArray array = Json.array();
+				for (LootTableCondition condition : this.conditions)
+					array.add(condition.toJson());
+				root.add(JSON_CONDITIONS, array);
 			}
 
 		}
