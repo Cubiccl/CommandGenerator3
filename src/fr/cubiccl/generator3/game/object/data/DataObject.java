@@ -1,10 +1,9 @@
 package fr.cubiccl.generator3.game.object.data;
 
-import com.eclipsesource.json.JsonValue;
-
 import fr.cubiccl.generator3.game.object.GameObject;
+import fr.cubiccl.generator3.util.JsonWritable;
 
-public abstract class DataObject extends GameObject implements Comparable<DataObject>
+public abstract class DataObject extends GameObject implements Comparable<DataObject>, JsonWritable<DataObject>
 {
 
 	@Override
@@ -19,9 +18,5 @@ public abstract class DataObject extends GameObject implements Comparable<DataOb
 	}
 
 	public abstract String idWithoutNamespace();
-
-	public abstract DataObject readJson(JsonValue json);
-
-	public abstract JsonValue toJson();
 
 }
