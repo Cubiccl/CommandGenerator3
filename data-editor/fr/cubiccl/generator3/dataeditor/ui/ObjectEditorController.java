@@ -10,8 +10,8 @@ import com.google.common.collect.BiMap;
 
 import fr.cubiccl.generator3.dataeditor.TestApplication;
 import fr.cubiccl.generator3.dataeditor.TestPersistance;
-import fr.cubiccl.generator3.game.datapack.GameObjectRegistry;
 import fr.cubiccl.generator3.game.datapack.DataPacks.Version;
+import fr.cubiccl.generator3.game.datapack.GameObjectRegistry;
 import fr.cubiccl.generator3.game.object.global.GlobalObject;
 import fr.cubiccl.generator3.game.object.type.Block;
 import fr.cubiccl.generator3.game.object.type.Effect;
@@ -83,14 +83,9 @@ public class ObjectEditorController implements Initializable
 		GameObjectType object = this.objectSelection.getSelectionModel().getSelectedItem();
 		if (object == null) return;
 
-		/*Dialog<GlobalObject> dialog = this.globalObjectSelector(object.globalValue());
-
-		Optional<GlobalObject> result = dialog.showAndWait();
-		if (result.isPresent())
-		{
-			this.currentTranslator.remove(object.globalValue());
-			this.currentTranslator.put(result.get(), object);
-		}*/
+		/* Dialog<GlobalObject> dialog = this.globalObjectSelector(object.globalValue());
+		 * 
+		 * Optional<GlobalObject> result = dialog.showAndWait(); if (result.isPresent()) { this.currentTranslator.remove(object.globalValue()); this.currentTranslator.put(result.get(), object); } */
 	}
 
 	public void editID()
@@ -98,13 +93,12 @@ public class ObjectEditorController implements Initializable
 		GameObjectType object = this.objectSelection.getSelectionModel().getSelectedItem();
 		if (object == null) return;
 
-		TextInputDialog dialog = new TextInputDialog(object.idPrefixless());
+		TextInputDialog dialog = new TextInputDialog(object.idWithoutNamespace());
 		dialog.setTitle("Set object ID");
 		dialog.setHeaderText("Set object ID");
 		dialog.setContentText("Type in the new ID for this object, without \"minecraft:\" :");
 
-		Optional<String> result = dialog.showAndWait();
-		if (result.isPresent()) object.id = result.get();
+		// Optional<String> result = dialog.showAndWait();if (result.isPresent()) object.id = result.get();
 	}
 
 	public void editMaxLevel()
@@ -148,7 +142,7 @@ public class ObjectEditorController implements Initializable
 			try
 			{
 				if (object instanceof Effect) ((Effect) object).idInt = Integer.parseInt(result.get());
-				else ((Enchantment) object).idInt = Integer.parseInt(result.get());
+				else((Enchantment) object).idInt = Integer.parseInt(result.get());
 			} catch (Exception e)
 			{
 				Alert alert = new Alert(AlertType.ERROR);
@@ -185,8 +179,7 @@ public class ObjectEditorController implements Initializable
 			okButton.setDisable(newValue == null);
 		});
 
-		sb.textProperty().addListener(new ChangeListener<String>()
-		{
+		sb.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
 			{
@@ -226,24 +219,21 @@ public class ObjectEditorController implements Initializable
 	public void initialize(URL location, ResourceBundle resources)
 	{
 		this.modeSelection.getItems().addAll("Blocks", "Items", "Entities", "Attributes", "Effects", "Enchantments", "NBT Tags", "Particles", "Sounds");
-		this.modeSelection.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<String>()
-		{
+		this.modeSelection.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<String>() {
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends String> c)
 			{
 				onModeSelected(c.getList().get(0));
 			}
 		});
-		this.objectSelection.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<GameObjectType>()
-		{
+		this.objectSelection.getSelectionModel().getSelectedItems().addListener(new ListChangeListener<GameObjectType>() {
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends GameObjectType> c)
 			{
 				reloadObject();
 			}
 		});
-		this.searchbox.textProperty().addListener(new ChangeListener<String>()
-		{
+		this.searchbox.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
 			{
@@ -282,7 +272,7 @@ public class ObjectEditorController implements Initializable
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK)
 		{
-			//this.currentTranslator.remove(object.globalValue());
+			// this.currentTranslator.remove(object.globalValue());
 			this.reloadObjects();
 		}
 	}
@@ -291,45 +281,12 @@ public class ObjectEditorController implements Initializable
 	{
 		if (mode == null) return;
 
-		/*switch (mode)
-		{
-			case "Items":
-				currentRegistry = GameObjectRegistry.items;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).items;
-				break;
-			case "Entities":
-				currentRegistry = GameObjectRegistry.entities;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).entities;
-				break;
-			case "Attributes":
-				currentRegistry = GameObjectRegistry.attributes;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).attributes;
-				break;
-			case "Effects":
-				currentRegistry = GameObjectRegistry.effects;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).effects;
-				break;
-			case "Enchantments":
-				currentRegistry = GameObjectRegistry.enchantments;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).enchantments;
-				break;
-			case "NBT Tags":
-				currentRegistry = GameObjectRegistry.nbttags;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).nbtTags;
-				break;
-			case "Particles":
-				currentRegistry = GameObjectRegistry.particles;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).particles;
-				break;
-			case "Sounds":
-				currentRegistry = GameObjectRegistry.sounds;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).sounds;
-				break;
-			default:
-				currentRegistry = GameObjectRegistry.blocks;
-				currentTranslator = VersionTranslator.translator(TestPersistance.version).blocks;
-				break;
-		}*/
+		/* switch (mode) { case "Items": currentRegistry = GameObjectRegistry.items; currentTranslator = VersionTranslator.translator(TestPersistance.version).items; break; case "Entities": currentRegistry = GameObjectRegistry.entities; currentTranslator =
+		 * VersionTranslator.translator(TestPersistance.version).entities; break; case "Attributes": currentRegistry = GameObjectRegistry.attributes; currentTranslator = VersionTranslator.translator(TestPersistance.version).attributes; break; case "Effects": currentRegistry =
+		 * GameObjectRegistry.effects; currentTranslator = VersionTranslator.translator(TestPersistance.version).effects; break; case "Enchantments": currentRegistry = GameObjectRegistry.enchantments; currentTranslator = VersionTranslator.translator(TestPersistance.version).enchantments; break; case
+		 * "NBT Tags": currentRegistry = GameObjectRegistry.nbttags; currentTranslator = VersionTranslator.translator(TestPersistance.version).nbtTags; break; case "Particles": currentRegistry = GameObjectRegistry.particles; currentTranslator =
+		 * VersionTranslator.translator(TestPersistance.version).particles; break; case "Sounds": currentRegistry = GameObjectRegistry.sounds; currentTranslator = VersionTranslator.translator(TestPersistance.version).sounds; break; default: currentRegistry = GameObjectRegistry.blocks;
+		 * currentTranslator = VersionTranslator.translator(TestPersistance.version).blocks; break; } */
 
 		this.buttonNumID.setVisible(mode.equals("Effects") || mode.equals("Enchantments"));
 		this.buttonMaxLevel.setVisible(mode.equals("Enchantments"));
@@ -359,38 +316,8 @@ public class ObjectEditorController implements Initializable
 
 		String id = result.get();
 		GameObjectType newObject = null;
-		/*switch (mode)
-		{
-			case "Blocks":
-				newObject = new Block(id);
-				break;
-			case "Items":
-				newObject = new Item(id);
-				break;
-			case "Entities":
-				newObject = new Entity(id);
-				break;
-			case "Attributes":
-				newObject = new Attribute(id);
-				break;
-			case "Effects":
-				newObject = new Effect(-1, id);
-				break;
-			case "Enchantments":
-				newObject = new Enchantment(-1, id, 1);
-				break;
-			case "NBT Tags":
-				// newObject = new NBTTag(id);
-				break;
-			case "Particles":
-				newObject = new Particle(id);
-				break;
-			case "Sounds":
-				newObject = new Sound(id);
-				break;
-			default:
-				break;
-		}*/
+		/* switch (mode) { case "Blocks": newObject = new Block(id); break; case "Items": newObject = new Item(id); break; case "Entities": newObject = new Entity(id); break; case "Attributes": newObject = new Attribute(id); break; case "Effects": newObject = new Effect(-1, id); break; case
+		 * "Enchantments": newObject = new Enchantment(-1, id, 1); break; case "NBT Tags": // newObject = new NBTTag(id); break; case "Particles": newObject = new Particle(id); break; case "Sounds": newObject = new Sound(id); break; default: break; } */
 
 		if (newObject != null) this.currentTranslator.put(result2.get(), newObject);
 		this.reloadObjects();
@@ -404,7 +331,7 @@ public class ObjectEditorController implements Initializable
 	protected void reloadObject()
 	{
 		GameObjectType object = this.objectSelection.getSelectionModel().getSelectedItem();
-		this.nameLabel.setText(/*object == null ? "(No selection)" : object.globalValue().name + " -> " +*/ object.id);
+		this.nameLabel.setText(/* object == null ? "(No selection)" : object.globalValue().name + " -> " + */ object.id());
 	}
 
 	private void reloadObjects()

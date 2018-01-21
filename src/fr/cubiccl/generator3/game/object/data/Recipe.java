@@ -177,7 +177,7 @@ public class Recipe extends DataObject
 	}
 
 	@Override
-	public String id()
+	public String idWithoutNamespace()
 	{
 		return this.name;
 	}
@@ -298,7 +298,7 @@ public class Recipe extends DataObject
 		if (this.result != null)
 		{
 			JsonObject item = Json.object();
-			item.add(JSON_ITEM, this.result.item.id);
+			item.add(JSON_ITEM, this.result.item.id());
 			if (this.result.quantity != 1) item.add(JSON_RESULT_COUNT, this.result.quantity);
 			root.add(JSON_RESULT, item);
 		}

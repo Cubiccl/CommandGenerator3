@@ -112,7 +112,7 @@ public class Tag extends DataObject
 	}
 
 	@Override
-	public String id()
+	public String idWithoutNamespace()
 	{
 		return this.name;
 	}

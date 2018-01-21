@@ -16,10 +16,10 @@ public class Block extends GameObjectType
 
 	public Block(String id, int order)
 	{
-		super("minecraft:" + id);
+		super(id);
 		this.order = order;
 		this.blockStates = new HashMap<String, BlockState>();
-		this.texture = Textures.getTexture("block." + this.idPrefixless());
+		this.texture = Textures.getTexture("block." + this.idWithoutNamespace());
 	}
 
 	/** Adds a State to this Block.
@@ -40,7 +40,7 @@ public class Block extends GameObjectType
 	@Override
 	protected Text createName()
 	{
-		return new Text("block." + this.idPrefixless());
+		return new Text("block." + this.idWithoutNamespace());
 	}
 
 	@Override

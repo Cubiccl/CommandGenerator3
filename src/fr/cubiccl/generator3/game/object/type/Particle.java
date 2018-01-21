@@ -7,20 +7,20 @@ public class Particle extends GameObjectType
 
 	public Particle(String id)
 	{
-		super("minecraft:" + id);
+		super(id);
 	}
 
 	@Override
 	public int compareTo(GameObjectType o)
 	{
 		if ((o instanceof Particle)) return 0;
-		return this.id.compareTo(((Particle) o).id);
+		return this.id().compareTo(((Particle) o).id());
 	}
 
 	@Override
 	protected Text createName()
 	{
-		return new Text("particle." + this.idPrefixless());
+		return new Text("particle." + this.idWithoutNamespace());
 	}
 
 	@Override

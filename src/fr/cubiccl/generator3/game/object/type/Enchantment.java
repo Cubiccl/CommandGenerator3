@@ -12,7 +12,7 @@ public class Enchantment extends GameObjectType
 
 	public Enchantment(int idNum, String idStr, int maxLevel)
 	{
-		super("minecraft:" + idStr);
+		super(idStr);
 		this.idInt = idNum;
 		this.maxLevel = maxLevel;
 	}
@@ -27,7 +27,7 @@ public class Enchantment extends GameObjectType
 	@Override
 	protected Text createName()
 	{
-		return new Text("enchantment." + this.idPrefixless());
+		return new Text("enchantment." + this.idWithoutNamespace());
 	}
 
 	@Override

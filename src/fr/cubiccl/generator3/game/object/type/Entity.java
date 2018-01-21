@@ -12,9 +12,9 @@ public class Entity extends GameObjectType
 
 	public Entity(String id, int order)
 	{
-		super("minecraft:" + id);
+		super(id);
 		this.order = order;
-		this.texture = Textures.getTexture("entity." + this.idPrefixless());
+		this.texture = Textures.getTexture("entity." + this.idWithoutNamespace());
 	}
 
 	@Override
@@ -23,11 +23,11 @@ public class Entity extends GameObjectType
 		if (!(o instanceof Entity)) return 0;
 		return Integer.compare(this.order, ((Entity) o).order);
 	}
-	
+
 	@Override
 	protected Text createName()
 	{
-		return new Text("entity." + this.idPrefixless());
+		return new Text("entity." + this.idWithoutNamespace());
 	}
 
 	@Override

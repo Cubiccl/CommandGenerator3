@@ -17,7 +17,7 @@ public abstract class Tag implements GameObjectInstance
 	/** @return The String to use as key when generating this NBT Tag. */
 	protected String key()
 	{
-		return this.tagType.id;
+		return this.tagType.id();
 	}
 
 	public String toString()

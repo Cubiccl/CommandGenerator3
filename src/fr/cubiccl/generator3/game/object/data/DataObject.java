@@ -10,10 +10,15 @@ public abstract class DataObject extends GameObject implements Comparable<DataOb
 	@Override
 	public int compareTo(DataObject o)
 	{
-		return this.id().compareTo(o.id());
+		return this.idWithoutNamespace().compareTo(o.idWithoutNamespace());
 	}
 
-	public abstract String id();
+	public String id()
+	{
+		return this.getDatapack().namespace() + this.idWithoutNamespace();
+	}
+
+	public abstract String idWithoutNamespace();
 
 	public abstract DataObject readJson(JsonValue json);
 

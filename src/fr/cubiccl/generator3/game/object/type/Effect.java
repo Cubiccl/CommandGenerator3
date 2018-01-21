@@ -13,9 +13,9 @@ public class Effect extends GameObjectType
 
 	public Effect(int idNum, String idString)
 	{
-		super("minecraft:" + idString);
+		super(idString);
 		this.idInt = idNum;
-		this.texture = Textures.getTexture("effect." + this.idPrefixless());
+		this.texture = Textures.getTexture("effect." + this.idWithoutNamespace());
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Effect extends GameObjectType
 	@Override
 	protected Text createName()
 	{
-		return new Text("effect." + this.idPrefixless());
+		return new Text("effect." + this.idWithoutNamespace());
 	}
 
 	@Override

@@ -19,17 +19,23 @@ public class Attribute extends GameObjectType
 		if (!(o instanceof Attribute)) return 0;
 		return Integer.compare(this.order, ((Attribute) o).order);
 	}
-	
+
 	@Override
 	protected Text createName()
 	{
-		return new Text("attribute." + this.idPrefixless());
+		return new Text("attribute." + this.idWithoutNamespace());
 	}
 
 	@Override
 	public String type()
 	{
 		return "Attribute";
+	}
+
+	@Override
+	protected boolean usesPrefix()
+	{
+		return false;
 	}
 
 }

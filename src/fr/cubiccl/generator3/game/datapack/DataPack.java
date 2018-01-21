@@ -37,11 +37,11 @@ public class DataPack
 	}
 
 	public final DataObjectRegistry<Tag> blockTags = new DataObjectRegistry<Tag>(this);
-	public final DataObjectRegistry<Tag> itemTags = new DataObjectRegistry<Tag>(this);
-	public final DataObjectRegistry<Recipe> recipes = new DataObjectRegistry<Recipe>(this);
-
 	public final int id;
+	public final DataObjectRegistry<Tag> itemTags = new DataObjectRegistry<Tag>(this);
+
 	private String name;
+	public final DataObjectRegistry<Recipe> recipes = new DataObjectRegistry<Recipe>(this);
 	/** The Minecraft version this Pack is made for. */
 	private Version version;
 
@@ -65,6 +65,11 @@ public class DataPack
 	public boolean isVanillaPack()
 	{
 		return this instanceof VanillaDataPack;
+	}
+
+	public String namespace()
+	{
+		return this.isVanillaPack() ? "minecraft:" : (this.name + ":");
 	}
 
 	public void setName(String name)

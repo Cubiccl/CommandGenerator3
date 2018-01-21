@@ -20,13 +20,13 @@ public class Item extends GameObjectType
 
 	public Item(String id, int idInt, int durability)
 	{
-		super("minecraft:" + id);
+		super(id);
 		this.idInt = idInt;
 		this.durability = durability;
 		{
-			if (Textures.exists("item." + this.idPrefixless())) this.texture = Textures.getTexture("item." + this.idPrefixless());
-			else if (Textures.exists("block." + this.idPrefixless())) this.texture = Textures.getTexture("block." + this.idPrefixless());
-			else this.texture = Textures.getTexture("item." + this.idPrefixless());
+			if (Textures.exists("item." + this.idWithoutNamespace())) this.texture = Textures.getTexture("item." + this.idWithoutNamespace());
+			else if (Textures.exists("block." + this.idWithoutNamespace())) this.texture = Textures.getTexture("block." + this.idWithoutNamespace());
+			else this.texture = Textures.getTexture("item." + this.idWithoutNamespace());
 		}
 	}
 
@@ -40,9 +40,9 @@ public class Item extends GameObjectType
 	@Override
 	protected Text createName()
 	{
-		if (Lang.keyExists("item." + this.idPrefixless())) return new Text("item." + this.idPrefixless());
-		if (Lang.keyExists("block." + this.idPrefixless())) return new Text("block." + this.idPrefixless());
-		return new Text("item." + this.idPrefixless());
+		if (Lang.keyExists("item." + this.idWithoutNamespace())) return new Text("item." + this.idWithoutNamespace());
+		if (Lang.keyExists("block." + this.idWithoutNamespace())) return new Text("block." + this.idWithoutNamespace());
+		return new Text("item." + this.idWithoutNamespace());
 	}
 
 	@Override

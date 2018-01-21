@@ -7,7 +7,7 @@ import fr.cubiccl.generator3.util.Text;
 public abstract class GameObjectType extends GameObject implements Comparable<GameObjectType>
 {
 
-	public String id;
+	private String id;
 	public final Text name;
 
 	public GameObjectType(String id)
@@ -18,7 +18,7 @@ public abstract class GameObjectType extends GameObject implements Comparable<Ga
 
 	protected Text createName()
 	{
-		return new Text(this.idPrefixless());
+		return new Text(this.idWithoutNamespace());
 	}
 
 	public String describe()
@@ -26,20 +26,30 @@ public abstract class GameObjectType extends GameObject implements Comparable<Ga
 		return this.type() + " " + this.id;
 	}
 
-	public String type()
+	public String id()
 	{
-		return "???";
+		return (this.usesPrefix() ? this.getDatapack().namespace() : "") + this.idWithoutNamespace();
 	}
 
-	public String idPrefixless()
+	public String idWithoutNamespace()
 	{
-		return this.id.replaceAll("minecraft:", "");
+		return this.id;
 	}
 
 	@Override
 	public String toString()
 	{
 		return this.name.toString();
+	}
+
+	public String type()
+	{
+		return "???";
+	}
+
+	protected boolean usesPrefix()
+	{
+		return true;
 	}
 
 }

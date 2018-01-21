@@ -64,7 +64,7 @@ public class Main
 			JsonObject e = Json.object();
 			// e.add("global", o.globalValue().idPrefixless());
 			e.add("id", ((Effect) o).idInt);
-			object.add(o.idPrefixless(), e);
+			object.add(o.idWithoutNamespace(), e);
 		}
 		root.add("effects", object);
 
@@ -78,7 +78,7 @@ public class Main
 			// e.add("global", o.globalValue().idPrefixless());
 			e.add("id", ((Enchantment) o).idInt);
 			if (((Enchantment) o).maxLevel != 1) e.add("max_level", ((Enchantment) o).maxLevel);
-			object.add(o.idPrefixless(), e);
+			object.add(o.idWithoutNamespace(), e);
 		}
 		root.add("enchantments", object);
 
