@@ -1,6 +1,7 @@
 package fr.cubiccl.generator3.game.object;
 
 import fr.cubiccl.generator3.game.object.Versions.Version;
+import fr.cubiccl.generator3.game.object.data.Recipe;
 import fr.cubiccl.generator3.game.object.data.Tag;
 import fr.cubiccl.generator3.util.FileUtils;
 import fr.cubiccl.generator3.util.Logger;
@@ -21,5 +22,10 @@ public class DataObjectLoader
 		for (String tag : FileUtils.getResourceFiles("/data/v" + version.id + "/tags/items"))
 			registry.itemTags
 					.register(new Tag("minecraft:" + tag.replace(".json", "")).readJson(FileUtils.readJsonFile("/data/v" + version.id + "/tags/items/" + tag)));
+
+		Logger.log("Loading recipes.");
+		for (String tag : FileUtils.getResourceFiles("/data/v" + version.id + "/recipes"))
+			registry.recipes
+					.register(new Recipe("minecraft:" + tag.replace(".json", "")).readJson(FileUtils.readJsonFile("/data/v" + version.id + "/recipes/" + tag)));
 	}
 }

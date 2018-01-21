@@ -1,6 +1,7 @@
 package fr.cubiccl.generator3.game.object;
 
 import fr.cubiccl.generator3.game.object.Versions.Version;
+import fr.cubiccl.generator3.game.object.data.Recipe;
 import fr.cubiccl.generator3.game.object.data.Tag;
 import fr.cubiccl.generator3.game.object.type.Attribute;
 import fr.cubiccl.generator3.game.object.type.Block;
@@ -23,6 +24,7 @@ public class VersionRegistry
 	public final GameObjectRegistry<Entity> entities = new GameObjectRegistry<Entity>();
 	public final GameObjectRegistry<Item> items = new GameObjectRegistry<Item>();
 	public final DataObjectRegistry<Tag> itemTags = new DataObjectRegistry<Tag>();
+	public final DataObjectRegistry<Recipe> recipes = new DataObjectRegistry<Recipe>();
 	public final GameObjectRegistry<NBTTag> nbttags = new GameObjectRegistry<NBTTag>();
 	public final GameObjectRegistry<Particle> particles = new GameObjectRegistry<Particle>();
 	public final GameObjectRegistry<Sound> sounds = new GameObjectRegistry<Sound>();

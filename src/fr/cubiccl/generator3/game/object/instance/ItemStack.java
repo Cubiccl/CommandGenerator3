@@ -6,8 +6,6 @@ import fr.cubiccl.generator3.game.object.type.Item;
 public class ItemStack implements GameObjectInstance
 {
 
-	/** The Damage value. */
-	public int damageValue;
 	/** The Item type. */
 	public Item item;
 	/** The NBT Tags. */
@@ -17,15 +15,19 @@ public class ItemStack implements GameObjectInstance
 	/** The slot containing these items. -1 if no slot. */
 	public int slot;
 
-	public ItemStack(Item item, int damageValue)
+	public ItemStack(Item item)
 	{
-		this(item, damageValue, -1, -1, null);
+		this(item, 1);
 	}
 
-	public ItemStack(Item item, int damageValue, int quantity, int slot, TagCompound nbtTags)
+	public ItemStack(Item item, int quantity)
+	{
+		this(item, quantity, -1, null);
+	}
+
+	public ItemStack(Item item, int quantity, int slot, TagCompound nbtTags)
 	{
 		this.item = item;
-		this.damageValue = damageValue;
 		this.quantity = quantity;
 		this.slot = slot;
 		this.nbtTags = nbtTags;
