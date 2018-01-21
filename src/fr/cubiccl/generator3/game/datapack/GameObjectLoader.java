@@ -31,7 +31,7 @@ public class GameObjectLoader
 	private static Block createBlock(VanillaDataPack VanillaDataPack, String name, JsonValue value)
 	{
 		JsonObject o = value.asObject();
-		Block b = new Block(name, o.get("states").asArray().get(0).asObject().getInt("id", 0));
+		Block b = new Block(name.replaceAll("minecraft:", ""), o.get("states").asArray().get(0).asObject().getInt("id", 0));
 		if (o.get("properties") != null) for (Member state : o.get("properties").asObject())
 		{
 			ArrayList<String> values = new ArrayList<String>();
@@ -60,7 +60,7 @@ public class GameObjectLoader
 
 	private static Item createItem(VanillaDataPack VanillaDataPack, String name, JsonValue value)
 	{
-		return new Item(name, value.asObject().getInt("protocol_id", 0));
+		return new Item(name.replaceAll("minecraft:", ""), value.asObject().getInt("protocol_id", 0));
 	}
 
 	private static Particle createParticle(VanillaDataPack VanillaDataPack, JsonValue value)

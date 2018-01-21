@@ -2,6 +2,7 @@ package fr.cubiccl.generator3.game.datapack;
 
 import fr.cubiccl.generator3.game.object.data.Recipe;
 import fr.cubiccl.generator3.game.object.data.Tag;
+import fr.cubiccl.generator3.game.object.data.loottable.LootTable;
 import fr.cubiccl.generator3.util.FileUtils;
 import fr.cubiccl.generator3.util.Logger;
 
@@ -28,8 +29,13 @@ public class DataObjectLoader
 
 		Logger.log("Loading recipes.");
 		for (String tag : FileUtils.getFiles("datapacks/" + datapack.getName() + "/recipes"))
-			datapack.recipes
-					.register(new Recipe(tag.replace(".json", "")).readJson(FileUtils.readJsonFile("datapacks/" + datapack.getName() + "/recipes/" + tag)));
+			datapack.recipes.register(
+					new Recipe(tag.replace(".json", ""), datapack.id).readJson(FileUtils.readJsonFile("datapacks/" + datapack.getName() + "/recipes/" + tag)));
+
+		Logger.log("Loading loot tables.");
+		for (String tag : FileUtils.getSubFiles("datapacks/" + datapack.getName() + "/loot_tables"))
+			datapack.lootTables.register(new LootTable(tag.replace(".json", ""), datapack.id)
+					.readJson(FileUtils.readJsonFile("datapacks/" + datapack.getName() + "/loot_tables/" + tag)));
 	}
 
 	private static void loadVanillaObjects(DataPack datapack)
@@ -46,6 +52,14 @@ public class DataObjectLoader
 
 		Logger.log("Loading recipes.");
 		for (String tag : FileUtils.getResourceFiles("/data/" + datapack.getName() + "/recipes"))
-			datapack.recipes.register(new Recipe(tag.replace(".json", "")).readJson(FileUtils.readJsonFile("/data/" + datapack.getName() + "/recipes/" + tag)));
+			datapack.recipes.register(
+					new Recipe(tag.replace(".json", ""), datapack.id).readJson(FileUtils.readJsonFile("/data/" + datapack.getName() + "/recipes/" + tag)));
+
+		Logger.log("Loading loot tables.");
+		for (String tag : FileUtils.getResourceSubFiles("/data/" + datapack.getName() + "/loot_tables"))
+		{
+			datapack.lootTables.register(new LootTable(tag.replace(".json", ""), datapack.id)
+					.readJson(FileUtils.readJsonFile("/data/" + datapack.getName() + "/loot_tables/" + tag)));
+		}
 	}
 }

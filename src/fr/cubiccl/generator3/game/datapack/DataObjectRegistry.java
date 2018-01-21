@@ -35,10 +35,10 @@ public class DataObjectRegistry<T extends DataObject>
 
 	public void register(T object)
 	{
-		if (this.objects.containsKey(object.id())) Logger.log("Object " + object.id() + " already exists !");
+		if (this.objects.containsKey(object.idWithoutNamespace())) Logger.log("Object " + object.id() + " already exists !");
 		else
 		{
-			this.objects.put(object.id(), object);
+			this.objects.put(object.idWithoutNamespace(), object);
 			// System.out.println("Registered " + object.describe());
 		}
 		object.setDatapack(this.datapack.id);
@@ -51,7 +51,7 @@ public class DataObjectRegistry<T extends DataObject>
 
 	public void unregister(T object)
 	{
-		this.objects.remove(object.id());
+		this.objects.remove(object.idWithoutNamespace());
 		object.setDatapack(-1);
 	}
 

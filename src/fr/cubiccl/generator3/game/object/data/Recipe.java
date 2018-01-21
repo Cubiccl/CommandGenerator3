@@ -129,13 +129,13 @@ public class Recipe extends DataObject
 	/** Type of this Recipe. */
 	private RecipeType type;
 
-	public Recipe(String name)
+	public Recipe(String name, int datapack)
 	{
 		this.name = name;
 		this.type = RecipeType.SHAPED;
 		this.ingredients = new ArrayList<>();
 		this.keys = new HashMap<>();
-		this.pattern = new String[] { "" };
+		this.setDatapack(datapack);
 	}
 
 	public void addIngredient(RecipeIngredient ingredient)

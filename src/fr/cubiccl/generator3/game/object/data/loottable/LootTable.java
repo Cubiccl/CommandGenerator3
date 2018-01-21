@@ -14,19 +14,18 @@ public class LootTable extends DataObject
 	public static final String JSON_POOLS = "pools";
 
 	private String name;
-	private String parentFolders;
 	private ArrayList<LootTablePool> pools = new ArrayList<>();
 
-	public LootTable(String name, String parentFolders)
+	public LootTable(String name, int datapack)
 	{
 		this.name = name;
-		this.parentFolders = parentFolders;
+		this.setDatapack(datapack);
 	}
 
 	@Override
 	public String idWithoutNamespace()
 	{
-		return this.parentFolders + "/" + this.name;
+		return this.name;
 	}
 
 	@Override
