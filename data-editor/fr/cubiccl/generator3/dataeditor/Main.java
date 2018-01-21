@@ -8,7 +8,6 @@ import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.PrettyPrint;
 
-import fr.cubiccl.generator3.game.datapack.DataPacks;
 import fr.cubiccl.generator3.game.datapack.DataPacks.Version;
 import fr.cubiccl.generator3.game.object.type.Effect;
 import fr.cubiccl.generator3.game.object.type.Enchantment;
@@ -34,7 +33,7 @@ public class Main
 		Settings.loadSettings();
 		Lang.fullReload();
 		Textures.createTextures();
-		//GameObjectLoader.loadObjects();
+		// GameObjectLoader.loadObjects();
 		TestApplication.initialize(args);
 	}
 
@@ -44,21 +43,21 @@ public class Main
 
 		JsonObject object = Json.object();
 		ArrayList<GameObjectType> objects = new ArrayList<GameObjectType>();
-		objects.addAll(DataPacks.vanillaPack(version).attributes.list());
+		objects.addAll(version.getDataPack().attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("attributes", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(DataPacks.vanillaPack(version).blocks.list());
+		objects.addAll(version.getDataPack().blocks.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("blocks", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(DataPacks.vanillaPack(version).effects.list());
+		objects.addAll(version.getDataPack().effects.list());
 		objects.sort(Comparator.naturalOrder());
 		for (GameObjectType o : objects)
 		{
@@ -71,7 +70,7 @@ public class Main
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(DataPacks.vanillaPack(version).attributes.list());
+		objects.addAll(version.getDataPack().attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		for (GameObjectType o : objects)
 		{
@@ -85,28 +84,28 @@ public class Main
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(DataPacks.vanillaPack(version).attributes.list());
+		objects.addAll(version.getDataPack().attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("entities", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(DataPacks.vanillaPack(version).attributes.list());
+		objects.addAll(version.getDataPack().attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("items", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(DataPacks.vanillaPack(version).attributes.list());
+		objects.addAll(version.getDataPack().attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("particles", object);
 
 		object = Json.object();
 		objects.clear();
-		objects.addAll(DataPacks.vanillaPack(version).attributes.list());
+		objects.addAll(version.getDataPack().attributes.list());
 		objects.sort(Comparator.naturalOrder());
 		// for (GameObjectType o : objects) object.add(o.idPrefixless(), o.globalValue().idPrefixless());
 		root.add("sounds", object);

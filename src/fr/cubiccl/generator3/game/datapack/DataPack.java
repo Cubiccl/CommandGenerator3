@@ -36,9 +36,9 @@ public class DataPack
 
 	}
 
-	public final DataObjectRegistry<Tag> blockTags = new DataObjectRegistry<Tag>();
-	public final DataObjectRegistry<Tag> itemTags = new DataObjectRegistry<Tag>();
-	public final DataObjectRegistry<Recipe> recipes = new DataObjectRegistry<Recipe>();
+	public final DataObjectRegistry<Tag> blockTags = new DataObjectRegistry<Tag>(this);
+	public final DataObjectRegistry<Tag> itemTags = new DataObjectRegistry<Tag>(this);
+	public final DataObjectRegistry<Recipe> recipes = new DataObjectRegistry<Recipe>(this);
 
 	public final int id;
 	private String name;
@@ -80,7 +80,7 @@ public class DataPack
 	/** @return The Vanilla Data Pack this Data Pack is linked to. */
 	public VanillaDataPack vanillaPack()
 	{
-		return DataPacks.vanillaPack(this.version);
+		return this.version.getDataPack();
 	}
 
 }

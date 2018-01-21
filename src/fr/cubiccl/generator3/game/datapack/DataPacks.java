@@ -64,6 +64,7 @@ public class DataPacks
 		public final String name;
 		/** The position of the Version. */
 		public final int order;
+		int packID;
 
 		private Version(String name, String id, int order)
 		{
@@ -75,6 +76,11 @@ public class DataPacks
 		public int compare(Version anotherVersion)
 		{
 			return Integer.compare(this.order, anotherVersion.order);
+		}
+
+		public VanillaDataPack getDataPack()
+		{
+			return vanillaPack(this);
 		}
 
 		/** @return <code>true</code> if this Version is after or equal to another Version. */
@@ -90,19 +96,25 @@ public class DataPacks
 		}
 	}
 
-	private static final HashMap<String, DataPack> dataPacks = new HashMap<String, DataPack>();
+	private static final HashMap<Integer, DataPack> dataPacks = new HashMap<Integer, DataPack>();
 
 	static VanillaDataPack create(Version version)
 	{
 		VanillaDataPack pack = new VanillaDataPack("v" + version.id, newID());
-		dataPacks.put("vanilla-" + version.id, pack);
 		pack.setVersion(version);
+		version.packID = pack.id;
+		register(pack);
 		return pack;
 	}
 
 	public static VanillaDataPack current()
 	{
 		return vanillaPack(Version.v113);
+	}
+
+	public static DataPack get(int id)
+	{
+		return dataPacks.get(id);
 	}
 
 	private static void loadPack(DataPack pack)
@@ -124,20 +136,19 @@ public class DataPacks
 		while (used)
 		{
 			++id;
-			used = false;
-			for (DataPack pack : dataPacks.values())
-				if (pack.id == id)
-				{
-					used = true;
-					break;
-				}
+			used = dataPacks.containsKey(id);
 		}
 		return id;
 	}
 
-	public static final VanillaDataPack vanillaPack(Version version)
+	private static void register(VanillaDataPack pack)
 	{
-		return (VanillaDataPack) dataPacks.get("vanilla-" + version.id);
+		dataPacks.put(pack.id, pack);
+	}
+
+	private static VanillaDataPack vanillaPack(Version version)
+	{
+		return (VanillaDataPack) dataPacks.get(version.packID);
 	}
 
 }

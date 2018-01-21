@@ -9,7 +9,6 @@ import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonObject.Member;
 import com.eclipsesource.json.JsonValue;
 
-import fr.cubiccl.generator3.game.datapack.DataPacks;
 import fr.cubiccl.generator3.game.object.instance.ItemStack;
 import fr.cubiccl.generator3.game.object.type.Item;
 import fr.cubiccl.generator3.util.Logger;
@@ -234,7 +233,7 @@ public class Recipe extends DataObject
 			JsonObject result = root.get(JSON_RESULT).asObject();
 			String id = result.getString(JSON_ITEM, null);
 			int count = result.getInt(JSON_RESULT_COUNT, 1);
-			if (id != null) this.result = new ItemStack(DataPacks.current().items.find(id), count);
+			if (id != null) this.result = new ItemStack(this.getVanillaPack().items.find(id), count);
 		}
 
 		return this;

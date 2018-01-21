@@ -11,10 +11,13 @@ import fr.cubiccl.generator3.util.Logger;
 public class DataObjectRegistry<T extends DataObject>
 {
 
+	/** The Data Pack this Registry is a part of. */
+	private final DataPack datapack;
 	private final HashMap<String, T> objects;
 
-	public DataObjectRegistry()
+	public DataObjectRegistry(DataPack datapack)
 	{
+		this.datapack = datapack;
 		this.objects = new HashMap<String, T>();
 	}
 
@@ -38,6 +41,7 @@ public class DataObjectRegistry<T extends DataObject>
 			this.objects.put(object.id(), object);
 			// System.out.println("Registered " + object.describe());
 		}
+		object.setDatapack(this.datapack.id);
 	}
 
 	public int size()
@@ -48,6 +52,7 @@ public class DataObjectRegistry<T extends DataObject>
 	public void unregister(T object)
 	{
 		this.objects.remove(object.id());
+		object.setDatapack(-1);
 	}
 
 }
