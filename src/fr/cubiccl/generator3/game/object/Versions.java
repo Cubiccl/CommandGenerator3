@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-import fr.cubiccl.generator3.util.Settings;
-
 public class Versions
 {
 

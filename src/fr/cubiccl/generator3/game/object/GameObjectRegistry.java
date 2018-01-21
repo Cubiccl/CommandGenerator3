@@ -20,7 +20,7 @@ public class GameObjectRegistry<T extends GameObjectType>
 
 	public T find(String id)
 	{
-		return this.objects.get(id);
+		return this.objects.get(id.replaceAll("minecraft:", ""));
 	}
 
 	public Collection<T> list()

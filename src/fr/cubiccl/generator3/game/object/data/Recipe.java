@@ -12,69 +12,67 @@ import com.eclipsesource.json.JsonValue;
 import fr.cubiccl.generator3.game.object.Versions;
 import fr.cubiccl.generator3.game.object.instance.ItemStack;
 import fr.cubiccl.generator3.game.object.type.Item;
+import fr.cubiccl.generator3.util.Logger;
 
 public class Recipe extends DataObject
 {
 	public static class RecipeIngredient
 	{
 		private RecipeIngredientType type;
-		private String value;
+		private ArrayList<String> values;
 
 		public RecipeIngredient()
 		{
-			this(RecipeIngredientType.ITEM, "");
+			this(RecipeIngredientType.ITEM, null);
 		}
 
 		public RecipeIngredient(RecipeIngredientType type, String value)
 		{
 			super();
 			this.type = type;
-			this.value = value;
+			this.values = new ArrayList<>();
+			if (value != null) this.values.add(value);
 		}
 
-		public RecipeIngredientType getType()
+		public RecipeIngredient readJson(JsonValue json)
 		{
-			return type;
-		}
-
-		public String getValue()
-		{
-			return value;
-		}
-
-		public RecipeIngredient readJson(JsonObject json)
-		{
-			if (json.get(JSON_ITEM) != null)
+			if (json.isObject())
+			{
+				JsonObject root = json.asObject();
+				if (root.get(JSON_ITEM) != null)
+				{
+					this.type = RecipeIngredientType.ITEM;
+					this.values.clear();
+					this.values.add(root.getString(JSON_ITEM, null));
+				} else if (root.get(JSON_TAG) != null)
+				{
+					this.type = RecipeIngredientType.TAG;
+					this.values.clear();
+					this.values.add(root.getString(JSON_TAG, null));
+				}
+			} else if (json.isArray())
 			{
 				this.type = RecipeIngredientType.ITEM;
-				this.value = json.getString(JSON_ITEM, null);
-			} else if (json.get(JSON_TAG) != null)
-			{
-				this.type = RecipeIngredientType.TAG;
-				this.value = json.getString(JSON_TAG, null);
+				for (JsonValue value : json.asArray())
+					this.values.add(value.asObject().getString(JSON_ITEM, null));
 			}
 			return this;
 		}
 
-		public void setType(RecipeIngredientType type)
+		public JsonValue toJson()
 		{
-			this.type = type;
-		}
-
-		public void setValue(String value)
-		{
-			this.value = value;
-		}
-
-		public JsonObject toJson()
-		{
-			return Json.object().add(this.type == RecipeIngredientType.ITEM ? JSON_ITEM : JSON_TAG, this.value);
+			if (this.values.size() == 1) return Json.object().add(this.type == RecipeIngredientType.ITEM ? JSON_ITEM : JSON_TAG, this.values.get(0));
+			JsonArray json = Json.array();
+			for (String value : this.values)
+				json.add(Json.object().add(JSON_ITEM, value));
+			return json;
 		}
 	}
 
 	public static enum RecipeIngredientType
 	{
 		ITEM,
+		ITEMS,
 		TAG;
 	}
 
@@ -100,6 +98,7 @@ public class Recipe extends DataObject
 		{
 			for (RecipeType recipe : values())
 				if (recipe.id.equals(id)) return recipe;
+			Logger.log("Recipe type " + id + " is unknown! Returning default \"" + SHAPED.id + "\".");
 			return null;
 		}
 
@@ -147,7 +146,7 @@ public class Recipe extends DataObject
 
 	public void addIngredient(String key, RecipeIngredient ingredient)
 	{
-		if (!this.ingredients.contains(ingredient)) this.addIngredient(ingredient);
+		if (!this.ingredients.contains(ingredient)) this.ingredients.add(ingredient);
 		this.keys.put(key, this.ingredients.indexOf(ingredient));
 	}
 
@@ -225,10 +224,10 @@ public class Recipe extends DataObject
 			if (root.get(JSON_KEYS) != null)
 			{
 				for (Member member : root.get(JSON_KEYS).asObject())
-					this.addIngredient(member.getName(), new RecipeIngredient().readJson(member.getValue().asObject()));
+					this.addIngredient(member.getName(), new RecipeIngredient().readJson(member.getValue()));
 			}
 		} else if (this.isShapeless() && root.get(JSON_INGREDIENTS) != null) for (JsonValue ingredient : root.get(JSON_INGREDIENTS).asArray())
-			this.addIngredient(new RecipeIngredient().readJson(ingredient.asObject()));
+			this.addIngredient(new RecipeIngredient().readJson(ingredient));
 
 		if (root.get(JSON_RESULT) != null)
 		{
